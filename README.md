@@ -1,6 +1,10 @@
-# FoodHub
+# FoodHub Resources
 
-Resources:
+External Tools:
+1. Online vector editor
+   # https://www.vecteezy.com/editor/random
+
+Tutorial Videos:
 1. How to create separate client and admin app
    # https://www.youtube.com/watch?v=ziZvfckxig0&list=PLyiYld37wmB1t5BOgjvCXrYuggEKj1xbL&index=2&t
    
