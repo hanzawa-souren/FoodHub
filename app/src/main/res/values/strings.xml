@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FoodHUB</string>
+    <string name="hi">Hi, </string>
+    <string name="username">Ali</string>
+    <string name="do_your_part">Do your part in making the world great again!</string>
+    <string name="categories">Categories</string>
 </resources>

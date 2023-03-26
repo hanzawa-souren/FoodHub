@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="darkCyan">#4A9798</color>
+    <color name="veryDarkCyan">#254C4C</color>
+    <color name="darkCyanAndSalmon">#A38776</color>
+    <color name="salmon">#FC7753</color>
+    <color name="salmonAndVanilla">#F7B086</color>
+    <color name="vanilla">#F1E8B8</color>
+    <color name="blackAndVanilla">#8E8347</color>
+    <color name="transparent">#00000000</color>
 </resources>
