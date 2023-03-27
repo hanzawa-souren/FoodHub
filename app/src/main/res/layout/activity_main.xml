@@ -10,7 +10,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="270dp"
-        android:background="@drawable/drop_shadow_blurred"
+        android:background="@drawable/home_drop_shadow_blurred"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,7 +19,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="250dp"
-        android:background= "@drawable/curved_tool_bar"
+        android:background= "@drawable/home_tool_bar"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
