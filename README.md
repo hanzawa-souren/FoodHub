@@ -14,3 +14,6 @@ Tutorial Videos:
    
 2. How to create scrollable layout using ScrollView and HorizontalScrollView
    # https://www.youtube.com/watch?v=sM4Fsq7Y9R4
+   
+3. How to add BottomAppBar with Material Design
+   # https://www.youtube.com/watch?v=IfgV9WzYOn8
