@@ -3,6 +3,10 @@
 External Tools:
 1. Online vector editor
    # https://www.vecteezy.com/editor/random
+   
+Stack Overflow & other forums:
+1. How to combine BottomAppBar + FAB with BottomNavigationView
+   # https://stackoverflow.com/questions/53864534/how-to-combine-bottomappbar-fab-with-bottomnavigationview
 
 Tutorial Videos:
 1. How to create separate client and admin app
