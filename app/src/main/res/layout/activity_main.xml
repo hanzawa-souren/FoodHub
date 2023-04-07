@@ -1,111 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/darkCyan"
-    tools:context=".MainActivity">
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="270dp"
-        android:background="@drawable/home_drop_shadow_blurred"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:background= "@drawable/home_tool_bar"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/hi"
-        android:layout_width="46dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
-        android:fontFamily="@font/poppins"
-        android:text="@string/hi"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="47dp"
-        android:layout_height="50dp"
-        android:fontFamily="@font/poppins"
-        android:text="@string/username"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="@+id/hi"
-        app:layout_constraintStart_toEndOf="@+id/hi"
-        app:layout_constraintTop_toTopOf="@+id/hi"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/do_your_part"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin"
-        android:fontFamily="@font/poppins"
-        android:text="@string/do_your_part"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hi" />
-
-    <TextView
-        android:id="@+id/categories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
-        android:fontFamily="@font/poppins"
-        android:text="@string/categories"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/do_your_part" />
-
-    <Button
-        android:id="@+id/volunteer_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categories" />
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darkCyan"
+            tools:context=".MainActivity">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="270dp"
+                android:background="@drawable/home_drop_shadow_blurred"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:background= "@drawable/home_tool_bar"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/hi"
+                android:layout_width="46dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:fontFamily="@font/poppins"
+                android:text="@string/hi"
+                android:textColor="@color/black"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="47dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/username"
+                android:textColor="@color/black"
+                android:textSize="34sp"
+                app:layout_constraintBottom_toBottomOf="@+id/hi"
+                app:layout_constraintStart_toEndOf="@+id/hi"
+                app:layout_constraintTop_toTopOf="@+id/hi"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/do_your_part"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:fontFamily="@font/poppins"
+                android:text="@string/do_your_part"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hi" />
+
+            <TextView
+                android:id="@+id/categories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:fontFamily="@font/poppins"
+                android:text="@string/categories"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/do_your_part" />
+
+            <Button
+                android:id="@+id/volunteer_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:text="Button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categories" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--BottomAppBar starts here-->
+
         <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottom_appbar"
+            android:id="@+id/bottom_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            app:fabCradleMargin="8dp"
+            app:fabCradleVerticalOffset="0dp"
+            app:fabCradleRoundedCornerRadius="15dp"
+            android:layout_gravity="bottom">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_nav_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/margin"
+                android:background="@color/transparent"
+                app:menu="@menu/bottom_nav_menu"
+                app:labelVisibilityMode="labeled"/>
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_donate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:src=""
-            />
+            android:backgroundTint="@color/salmon"
+            android:src="@drawable/ic_bottom_appbar_donate"
+            app:maxImageSize="40dp"
+            app:layout_anchor="@id/bottom_app_bar" />
+
+        <!--BottomAppBar ends here-->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

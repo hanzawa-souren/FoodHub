@@ -5,7 +5,11 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
+    <!--Customize starts here-->
+
     <color name="black">#FF000000</color>
+    <color name="gray">#B9BCBE</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkCyan">#4A9798</color>
     <color name="veryDarkCyan">#254C4C</color>
@@ -15,4 +19,6 @@
     <color name="vanilla">#F1E8B8</color>
     <color name="blackAndVanilla">#8E8347</color>
     <color name="transparent">#00000000</color>
+
+    <!--Customize ends here-->
 </resources>
