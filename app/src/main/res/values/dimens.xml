@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin">16dp</dimen>
+    <dimen name="greeting">28sp</dimen>
+    <dimen name="category">20sp</dimen>
+    <dimen name="do_your_part">14sp</dimen>
+    <dimen name="category_button_label">14sp</dimen>
+    <dimen name="category_ic_pad">15dp</dimen>
+    <dimen name="category_ic_stroke">3dp</dimen>
+    <dimen name="category_ic_radius">15dp</dimen>
 </resources>

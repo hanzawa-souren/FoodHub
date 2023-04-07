@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BlackTextStyle">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="GrayTextStyle">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="BottomNavLabelStyle">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="PreviewTitleStyle">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+</resources>
