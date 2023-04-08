@@ -5,7 +5,11 @@
     android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="@dimen/category_ic_radius">
+    app:cardElevation="5dp"
+    app:cardCornerRadius="@dimen/category_ic_radius"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
         android:id="@+id/bulletin_card"

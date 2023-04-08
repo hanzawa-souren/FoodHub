@@ -5,8 +5,11 @@
     android:layout_width="150dp"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="@dimen/category_ic_radius">
+    app:cardElevation="5dp"
+    app:cardCornerRadius="@dimen/category_ic_radius"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
         android:id="@+id/volunteer_card"
@@ -24,7 +27,7 @@
             android:background="@color/gray"
             android:paddingBottom="0.5dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/volunteer_card_title"
