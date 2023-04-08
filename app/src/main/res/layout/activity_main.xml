@@ -10,6 +10,7 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/root_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -20,8 +21,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/darkCyan"
+                android:paddingBottom="100dp"
                 tools:context=".MainActivity">
 
                 <!--Top white section starts here-->
@@ -191,23 +193,167 @@
                     android:id="@+id/volunteer_preview_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin"
-                    android:layout_marginBottom="@dimen/margin"
-                    android:layout_marginStart="@dimen/margin"
-                    android:layout_marginEnd="@dimen/margin"
+                    android:layout_marginTop="8dp"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="@dimen/margin"
+                    android:drawableRight="@drawable/ic_arrow_right"
                     android:text="@string/volunteer"
                     style="@style/PreviewTitleStyle"
-                    app:layout_constraintTop_toBottomOf="@id/top_drop"/>
+                    app:layout_constraintTop_toBottomOf="@id/top_drop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <HorizontalScrollView
                     android:id="@+id/volunteer_preview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/top_drop"
+                    app:layout_constraintTop_toBottomOf="@id/volunteer_preview_title"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:scrollbars="none">
 
+                    <LinearLayout
+                        android:id="@+id/volunteer_preview_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="8dp">
 
+                        <include layout="@layout/preview_card_volunteer" />
+
+                        <include layout="@layout/preview_card_volunteer" />
+
+                        <include layout="@layout/preview_card_volunteer" />
+
+                        <include layout="@layout/preview_card_volunteer" />
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/near_me_preview_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="@dimen/margin"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/near_me"
+                    style="@style/PreviewTitleStyle"
+                    app:layout_constraintTop_toBottomOf="@id/volunteer_preview"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <HorizontalScrollView
+                    android:id="@+id/near_me_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/near_me_preview_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/near_me_preview_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="8dp">
+
+                        <include layout="@layout/preview_card_near_me" />
+
+                        <include layout="@layout/preview_card_near_me" />
+
+                        <include layout="@layout/preview_card_near_me" />
+
+                        <include layout="@layout/preview_card_near_me" />
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/latest_news_preview_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="@dimen/margin"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/latest_news"
+                    style="@style/PreviewTitleStyle"
+                    app:layout_constraintTop_toBottomOf="@id/near_me_preview"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <HorizontalScrollView
+                    android:id="@+id/latest_news_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/latest_news_preview_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/latest_news_preview_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="8dp">
+
+                        <include layout="@layout/preview_card_bulletin" />
+
+                        <include layout="@layout/preview_card_bulletin" />
+
+                        <include layout="@layout/preview_card_bulletin" />
+
+                        <include layout="@layout/preview_card_bulletin" />
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/edigest_preview_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="@dimen/margin"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/edigest"
+                    style="@style/PreviewTitleStyle"
+                    app:layout_constraintTop_toBottomOf="@id/latest_news_preview"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <HorizontalScrollView
+                    android:id="@+id/edigest_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/edigest_preview_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/edigest_preview_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="8dp">
+
+                        <include layout="@layout/preview_card_bulletin" />
+
+                        <include layout="@layout/preview_card_bulletin" />
+
+                        <include layout="@layout/preview_card_bulletin" />
+
+                        <include layout="@layout/preview_card_bulletin" />
+
+                    </LinearLayout>
 
                 </HorizontalScrollView>
 
@@ -216,7 +362,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
-        
 
 
         <!--BottomAppBar starts here-->
@@ -260,8 +405,6 @@
             android:contentDescription="@string/donate"
             app:maxImageSize="40dp"
             app:layout_anchor="@id/bottom_app_bar" />
-
-        <!--BottomAppBar ends here-->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

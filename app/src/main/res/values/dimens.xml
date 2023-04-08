@@ -8,4 +8,8 @@
     <dimen name="category_ic_pad">15dp</dimen>
     <dimen name="category_ic_stroke">3dp</dimen>
     <dimen name="category_ic_radius">15dp</dimen>
+    <dimen name="card_title">14sp</dimen>
+    <dimen name="card_desc">10sp</dimen>
+    <dimen name="card_text_pad">8dp</dimen>
+    <dimen name="card_drawable_pad">4dp</dimen>
 </resources>

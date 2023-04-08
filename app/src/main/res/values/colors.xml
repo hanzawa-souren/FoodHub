@@ -9,7 +9,7 @@
     <!--Customize starts here-->
 
     <color name="black">#FF000000</color>
-    <color name="gray">#B9BCBE</color>
+    <color name="gray">#A9A9A9</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkCyan">#4A9798</color>
     <color name="veryDarkCyan">#254C4C</color>

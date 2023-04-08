@@ -1,11 +1,19 @@
 package com.example.foodhub
 
-import android.content.res.ColorStateList
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.databinding.DataBindingUtil
 import com.example.foodhub.databinding.ActivityMainBinding
+import com.google.android.material.bottomappbar.BottomAppBar
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,5 +35,6 @@ class MainActivity : AppCompatActivity() {
         bindingMain.fabDonate.setColorFilter(Color.rgb(255, 255, 255))
 
     }
+
 }
 
