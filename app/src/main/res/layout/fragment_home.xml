@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".HomeFragment">
+
+    <data>
+        <variable
+            name="userInfo"
+            type="com.example.foodhub.UserInfo" />
+    </data>
+
+    <!--<ScrollView
+        android:id="@+id/home_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/darkCyan">
+
+            <!--Top white section starts here-->
+
+            <ImageView
+                android:id="@+id/top_drop_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:background="@drawable/home_drop_shadow_blurred"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/top_drop"
+                android:layout_width="match_parent"
+                android:layout_height="256dp"
+                android:background="@drawable/home_tool_bar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/hi"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:text="@string/hi"
+                android:textSize="@dimen/greeting"
+                style="@style/BlackTextStyle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/username"
+                style="@style/BlackTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@={userInfo.firstName}"
+                android:textSize="@dimen/greeting"
+                app:layout_constraintLeft_toRightOf="@id/hi"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/do_your_part"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:text="@string/do_your_part"
+                android:textSize="@dimen/do_your_part"
+                style="@style/GrayTextStyle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hi" />
+
+            <TextView
+                android:id="@+id/categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:text="@string/categories"
+                android:textSize="@dimen/category"
+                style="@style/BlackTextStyle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/do_your_part" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/category_volunteer_card"
+                android:layout_marginStart="4dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/categories"
+                app:layout_constraintLeft_toLeftOf="@id/top_drop"
+                app:layout_constraintRight_toLeftOf="@id/category_donate_card"
+                style="@style/CategoryCardStyle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@drawable/ic_category_volunteer"
+                    android:drawablePadding="5dp"
+                    android:text="@string/volunteer"
+                    android:textAlignment="center"
+                    style="@style/BlackTextStyle" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/category_donate_card"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/categories"
+                app:layout_constraintLeft_toRightOf="@id/category_volunteer_card"
+                app:layout_constraintRight_toLeftOf="@id/category_latest_news_card"
+                style="@style/CategoryCardStyle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@drawable/ic_category_donate"
+                    android:drawablePadding="5dp"
+                    android:text="@string/donate"
+                    android:textAlignment="center"
+                    style="@style/BlackTextStyle" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/category_latest_news_card"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/categories"
+                app:layout_constraintLeft_toRightOf="@id/category_donate_card"
+                app:layout_constraintRight_toRightOf="@id/category_show_more_card"
+                style="@style/CategoryCardStyle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@drawable/ic_category_latest_news"
+                    android:drawablePadding="5dp"
+                    android:text="@string/latest_news"
+                    android:textAlignment="center"
+                    style="@style/BlackTextStyle" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/category_show_more_card"
+                android:layout_marginEnd="4dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/categories"
+                app:layout_constraintLeft_toRightOf="@id/category_latest_news_card"
+                app:layout_constraintRight_toRightOf="@id/top_drop"
+                style="@style/CategoryCardStyle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@drawable/ic_category_show_more"
+                    android:drawablePadding="5dp"
+                    android:text="@string/show_more"
+                    android:textAlignment="center"
+                    style="@style/BlackTextStyle" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!--Top white section ends here-->
+
+            <!--Category previews start here-->
+
+            <TextView
+                android:id="@+id/volunteer_preview_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/volunteer"
+                style="@style/PreviewTitleStyle"
+                app:layout_constraintTop_toBottomOf="@id/top_drop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <HorizontalScrollView
+                android:id="@+id/volunteer_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/volunteer_preview_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/volunteer_preview_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="8dp">
+
+                    <include layout="@layout/preview_card_volunteer" />
+
+                    <include layout="@layout/preview_card_volunteer" />
+
+                    <include layout="@layout/preview_card_volunteer" />
+
+                    <include layout="@layout/preview_card_volunteer" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/near_me_preview_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/near_me"
+                style="@style/PreviewTitleStyle"
+                app:layout_constraintTop_toBottomOf="@id/volunteer_preview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <HorizontalScrollView
+                android:id="@+id/near_me_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/near_me_preview_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/near_me_preview_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="8dp">
+
+                    <include layout="@layout/preview_card_near_me" />
+
+                    <include layout="@layout/preview_card_near_me" />
+
+                    <include layout="@layout/preview_card_near_me" />
+
+                    <include layout="@layout/preview_card_near_me" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/latest_news_preview_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/latest_news"
+                style="@style/PreviewTitleStyle"
+                app:layout_constraintTop_toBottomOf="@id/near_me_preview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <HorizontalScrollView
+                android:id="@+id/latest_news_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/latest_news_preview_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/latest_news_preview_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="8dp">
+
+                    <include layout="@layout/preview_card_bulletin" />
+
+                    <include layout="@layout/preview_card_bulletin" />
+
+                    <include layout="@layout/preview_card_bulletin" />
+
+                    <include layout="@layout/preview_card_bulletin" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/edigest_preview_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/edigest"
+                style="@style/PreviewTitleStyle"
+                app:layout_constraintTop_toBottomOf="@id/latest_news_preview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <HorizontalScrollView
+                android:id="@+id/edigest_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/edigest_preview_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/edigest_preview_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="8dp">
+
+                    <include layout="@layout/preview_card_bulletin" />
+
+                    <include layout="@layout/preview_card_bulletin" />
+
+                    <include layout="@layout/preview_card_bulletin" />
+
+                    <include layout="@layout/preview_card_bulletin" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <!--Category previews start here-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--</ScrollView>-->
+
+</layout>

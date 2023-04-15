@@ -24,4 +24,6 @@
     <string name="placeholder_location">Location</string>
     <string name="placeholder_facility">Facility</string>
     <string name="placeholder_date">Date Posted</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
