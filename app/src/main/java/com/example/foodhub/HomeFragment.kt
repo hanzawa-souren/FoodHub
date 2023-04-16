@@ -1,19 +1,16 @@
 package com.example.foodhub
 
-import android.app.ProgressDialog.show
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
-import com.example.foodhub.databinding.ActivityMainBinding
+import androidx.navigation.findNavController
 import com.example.foodhub.databinding.FragmentHomeBinding
-import com.google.android.material.bottomappbar.BottomAppBar
 
 class HomeFragment : Fragment() {
 
@@ -26,8 +23,6 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        bindingHome = DataBindingUtil.setContentView(this.requireActivity(), R.layout.fragment_home)
     }
 
     override fun onCreateView(
@@ -37,10 +32,18 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_home, container, false)
 
+        bindingHome = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        return bindingHome.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         bindingHome.userInfo = userInfo
 
-        bindingHome.categoryVolunteerCard.setOnClickListener {
-            Toast.makeText(this.requireActivity(), "Volunteer Category clicked", Toast.LENGTH_SHORT).show()
+        bindingHome.categoryVolunteerCard.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.volunteerFragment)
+            /*Toast.makeText(this.requireActivity(), "Volunteer Category clicked", Toast.LENGTH_SHORT).show()*/
         }
         bindingHome.categoryDonateCard.setOnClickListener {
             Toast.makeText(this.requireActivity(), "Donate Category clicked", Toast.LENGTH_SHORT).show()
@@ -52,6 +55,18 @@ class HomeFragment : Fragment() {
             Toast.makeText(this.requireActivity(), "Show More Category clicked", Toast.LENGTH_SHORT).show()
         }
 
-        return bindingHome.root
+
+
     }
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.findViewById<Toolbar>(R.id.top_toolbar).visibility = View.GONE
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity?)!!.findViewById<Toolbar>(R.id.top_toolbar).visibility = View.VISIBLE
+    }
+
+
 }

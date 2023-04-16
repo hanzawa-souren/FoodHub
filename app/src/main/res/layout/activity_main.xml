@@ -5,16 +5,34 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/root_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="ExtraText">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/top_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="@color/salmon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/top_toolbar_menu" />
 
+        <fragment
+            android:id="@+id/myNavHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/top_toolbar"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
 
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/root_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <!--BottomAppBar starts here-->
 

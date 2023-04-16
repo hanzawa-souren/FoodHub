@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.example.foodhub.databinding.FragmentNearMeBinding
+import com.example.foodhub.databinding.FragmentHelplinesBinding
 
-class NearMeFragment : Fragment() {
+class HelplinesFragment : Fragment() {
 
-    private lateinit var bindingNearMe: FragmentNearMeBinding
+    private lateinit var bindingHelplines: FragmentHelplinesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,15 +21,13 @@ class NearMeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_near_me, container, false)
-        bindingNearMe = DataBindingUtil.inflate(inflater, R.layout.fragment_near_me, container, false)
-        return bindingNearMe.root
+        //return inflater.inflate(R.layout.fragment_helplines, container, false)
 
-
+        bindingHelplines = DataBindingUtil.inflate(inflater, R.layout.fragment_helplines, container, false)
+        return bindingHelplines.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
-
 }

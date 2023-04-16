@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import com.example.foodhub.databinding.FragmentVolunteerBinding
 
@@ -15,7 +16,6 @@ class VolunteerFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        bindingVolunteer = DataBindingUtil.setContentView(this.requireActivity(), R.layout.fragment_volunteer)
     }
 
     override fun onCreateView(
@@ -24,7 +24,18 @@ class VolunteerFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_volunteer, container, false)
-        val binding = DataBindingUtil.inflate<FragmentVolunteerBinding>(inflater, R.layout.fragment_volunteer, container, false)
-        return binding.root
+
+        bindingVolunteer = DataBindingUtil.inflate(inflater, R.layout.fragment_volunteer, container, false)
+        return bindingVolunteer.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        /*requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+            }
+        })*/
+        
     }
 }
