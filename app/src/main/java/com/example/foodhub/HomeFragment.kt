@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -43,19 +44,76 @@ class HomeFragment : Fragment() {
 
         bindingHome.categoryVolunteerCard.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.volunteerFragment)
-            /*Toast.makeText(this.requireActivity(), "Volunteer Category clicked", Toast.LENGTH_SHORT).show()*/
-        }
-        bindingHome.categoryDonateCard.setOnClickListener {
-            Toast.makeText(this.requireActivity(), "Donate Category clicked", Toast.LENGTH_SHORT).show()
         }
         bindingHome.categoryLatestNewsCard.setOnClickListener {
-            Toast.makeText(this.requireActivity(), "Latest News Category clicked", Toast.LENGTH_SHORT).show()
+            view.findNavController().navigate(R.id.latestNewsFragment)
         }
-        bindingHome.categoryShowMoreCard.setOnClickListener {
-            Toast.makeText(this.requireActivity(), "Show More Category clicked", Toast.LENGTH_SHORT).show()
+        bindingHome.categoryEdigestCard.setOnClickListener {
+            view.findNavController().navigate(R.id.edigestFragment)
+        }
+        bindingHome.categorySettingsCard.setOnClickListener {
+            view.findNavController().navigate(R.id.settingsFragment)
         }
 
+        /*Volunteer Preview RecyclerView starts here*/
+        //Call RecyclerView, LayoutManager, Adapter
+        bindingHome.volunteerPreview.layoutManager = LinearLayoutManager(this.requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        //ArrayList of class VolunteerModel
+        val volunteerData = ArrayList<VolunteerModel>()
 
+        //The loop creates 4 views
+        for (i in 1..4) {
+            volunteerData.add(VolunteerModel(R.drawable.ic_fhlogo_background, "Volunteer $i", "Location $i"))
+        }
+
+        //Pass ArrayList into Adapter
+        val volunteerAdapter = VolunteerAdapter(volunteerData)
+
+        //Set Adapter with RecyclerView
+        bindingHome.volunteerPreview.adapter = volunteerAdapter
+        /*Volunteer Preview RecyclerView ends here*/
+
+        /*Near Me Preview RecyclerView starts here*/
+        bindingHome.nearMePreview.layoutManager = LinearLayoutManager(this.requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        val nearMeData = ArrayList<NearMeModel>()
+
+        for (i in 1..4) {
+            nearMeData.add(NearMeModel(R.drawable.ic_fhlogo_background, "Near Me $i", "Facility $i", "Location $i"))
+        }
+
+        val nearMeAdapter = NearMeAdapter(nearMeData)
+
+        bindingHome.nearMePreview.adapter = nearMeAdapter
+        /*Near Me Preview RecyclerView ends here*/
+
+        /*Latest News Preview RecyclerView starts here*/
+        bindingHome.latestNewsPreview.layoutManager = LinearLayoutManager(this.requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        val latestNewsData = ArrayList<LatestNewsModel>()
+
+        for (i in 1..4) {
+            latestNewsData.add(LatestNewsModel(R.drawable.ic_fhlogo_background, "News $i", "Date $i"))
+        }
+
+        val latestNewsAdapter = LatestNewsAdapter(latestNewsData)
+
+        bindingHome.latestNewsPreview.adapter = latestNewsAdapter
+        /*Latest News Preview RecyclerView ends here*/
+
+        /*Edigest Preview RecyclerView starts here*/
+        bindingHome.edigestPreview.layoutManager = LinearLayoutManager(this.requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        val edigestData = ArrayList<EdigestModel>()
+
+        for (i in 1..4) {
+            edigestData.add(EdigestModel(R.drawable.ic_fhlogo_background, "Digest $i", "Date $i"))
+        }
+
+        val edigestAdapter = EdigestAdapter(edigestData)
+
+        bindingHome.edigestPreview.adapter = edigestAdapter
+        /*Edigest Preview RecyclerView ends here*/
 
     }
     override fun onResume() {

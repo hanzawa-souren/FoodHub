@@ -30,4 +30,24 @@
         android:name="com.example.foodhub.MyProfileFragment"
         android:label="fragment_my_profile"
         tools:layout="@layout/fragment_my_profile" />
+    <fragment
+        android:id="@+id/donateFragment"
+        android:name="com.example.foodhub.DonateFragment"
+        android:label="fragment_donate"
+        tools:layout="@layout/fragment_donate" />
+    <fragment
+        android:id="@+id/latestNewsFragment"
+        android:name="com.example.foodhub.LatestNewsFragment"
+        android:label="fragment_latest_news"
+        tools:layout="@layout/fragment_latest_news" />
+    <fragment
+        android:id="@+id/edigestFragment"
+        android:name="com.example.foodhub.EdigestFragment"
+        android:label="fragment_edigest"
+        tools:layout="@layout/fragment_edigest" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.foodhub.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

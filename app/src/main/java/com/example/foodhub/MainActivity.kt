@@ -3,11 +3,10 @@ package com.example.foodhub
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.example.foodhub.databinding.ActivityMainBinding
@@ -31,19 +30,43 @@ class MainActivity : AppCompatActivity() {
 
         bindingMain.fabDonate.setColorFilter(Color.rgb(255, 255, 255))
 
-        //setSupportActionBar(bindingMain.bottomAppBar)
+        navController = findNavController(R.id.myNavHostFragment)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.nearMeFragment, R.id.donateFragment, R.id.helplinesFragment, R.id.myProfileFragment))
+
         setSupportActionBar(bindingMain.topToolbar)
 
-        bindingMain.fabDonate.setOnClickListener {
-            Toast.makeText(this, "Donate Button clicked", Toast.LENGTH_SHORT).show()
-        }
+        /*bindingMain.fabDonate.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                Navigation.findNavController(this@MainActivity, R.id.myNavHostFragment)
+                    .navigate(R.id.donateFragment)
+            }
+        })*/
 
-        navController = findNavController(R.id.myNavHostFragment)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.nearMeFragment))
+        bindingMain.fabDonate.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                if (navController.currentDestination?.id != R.id.donateFragment) {
+                    Navigation.findNavController(this@MainActivity, R.id.myNavHostFragment)
+                        .navigate(R.id.donateFragment)
+                }
+            }
+        })
 
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        bindingMain.bottomNavView.setupWithNavController(navController)
+        /*bindingMain.bottomNavView.setupWithNavController(navController)*/
+
+        bindingMain.bottomNavView.apply {
+            navController.let { navController ->
+                NavigationUI.setupWithNavController(this, navController)
+            }
+            setOnItemSelectedListener { item ->
+                NavigationUI.onNavDestinationSelected(item, navController)
+                true
+            }
+            setOnItemReselectedListener {
+                navController.popBackStack(destinationId = it.itemId, inclusive = false)
+            }
+        }
 
     }
 

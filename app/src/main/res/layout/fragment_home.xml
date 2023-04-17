@@ -98,7 +98,7 @@
                 app:cardElevation="0dp"
                 app:layout_constraintTop_toBottomOf="@id/categories"
                 app:layout_constraintLeft_toLeftOf="@id/top_drop"
-                app:layout_constraintRight_toLeftOf="@id/category_donate_card"
+                app:layout_constraintRight_toLeftOf="@id/category_latest_news_card"
                 style="@style/CategoryCardStyle">
 
                 <TextView
@@ -114,31 +114,11 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/category_donate_card"
-                app:cardElevation="0dp"
-                app:layout_constraintTop_toBottomOf="@id/categories"
-                app:layout_constraintLeft_toRightOf="@id/category_volunteer_card"
-                app:layout_constraintRight_toLeftOf="@id/category_latest_news_card"
-                style="@style/CategoryCardStyle">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawableTop="@drawable/ic_category_donate"
-                    android:drawablePadding="5dp"
-                    android:text="@string/donate"
-                    android:textAlignment="center"
-                    style="@style/BlackTextStyle" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
                 android:id="@+id/category_latest_news_card"
                 app:cardElevation="0dp"
                 app:layout_constraintTop_toBottomOf="@id/categories"
-                app:layout_constraintLeft_toRightOf="@id/category_donate_card"
-                app:layout_constraintRight_toRightOf="@id/category_show_more_card"
+                app:layout_constraintLeft_toRightOf="@id/category_volunteer_card"
+                app:layout_constraintRight_toLeftOf="@id/category_edigest_card"
                 style="@style/CategoryCardStyle">
 
                 <TextView
@@ -154,11 +134,31 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/category_show_more_card"
-                android:layout_marginEnd="4dp"
+                android:id="@+id/category_edigest_card"
                 app:cardElevation="0dp"
                 app:layout_constraintTop_toBottomOf="@id/categories"
                 app:layout_constraintLeft_toRightOf="@id/category_latest_news_card"
+                app:layout_constraintRight_toLeftOf="@id/category_settings_card"
+                style="@style/CategoryCardStyle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@drawable/ic_category_edigest"
+                    android:drawablePadding="5dp"
+                    android:text="@string/edigest"
+                    android:textAlignment="center"
+                    style="@style/BlackTextStyle" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/category_settings_card"
+                android:layout_marginEnd="4dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/categories"
+                app:layout_constraintLeft_toRightOf="@id/category_edigest_card"
                 app:layout_constraintRight_toRightOf="@id/top_drop"
                 style="@style/CategoryCardStyle">
 
@@ -166,9 +166,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:drawableTop="@drawable/ic_category_show_more"
+                    android:drawableTop="@drawable/ic_category_settings"
                     android:drawablePadding="5dp"
-                    android:text="@string/show_more"
+                    android:text="@string/settings"
                     android:textAlignment="center"
                     style="@style/BlackTextStyle" />
 
@@ -188,33 +188,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <HorizontalScrollView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/volunteer_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:paddingHorizontal="8dp"
+                android:clipToPadding="false"
                 app:layout_constraintTop_toBottomOf="@id/volunteer_preview_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:id="@+id/volunteer_preview_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="8dp">
-
-                    <include layout="@layout/preview_card_volunteer" />
-
-                    <include layout="@layout/preview_card_volunteer" />
-
-                    <include layout="@layout/preview_card_volunteer" />
-
-                    <include layout="@layout/preview_card_volunteer" />
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+                tools:listitem="@layout/preview_card_volunteer" />
 
             <TextView
                 android:id="@+id/near_me_preview_title"
@@ -226,33 +210,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <HorizontalScrollView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/near_me_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:paddingHorizontal="8dp"
+                android:clipToPadding="false"
                 app:layout_constraintTop_toBottomOf="@id/near_me_preview_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:id="@+id/near_me_preview_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="8dp">
-
-                    <include layout="@layout/preview_card_near_me" />
-
-                    <include layout="@layout/preview_card_near_me" />
-
-                    <include layout="@layout/preview_card_near_me" />
-
-                    <include layout="@layout/preview_card_near_me" />
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+                tools:listitem="@layout/preview_card_near_me" />
 
             <TextView
                 android:id="@+id/latest_news_preview_title"
@@ -264,33 +232,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <HorizontalScrollView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/latest_news_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:paddingHorizontal="8dp"
+                android:clipToPadding="false"
                 app:layout_constraintTop_toBottomOf="@id/latest_news_preview_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:id="@+id/latest_news_preview_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="8dp">
-
-                    <include layout="@layout/preview_card_bulletin" />
-
-                    <include layout="@layout/preview_card_bulletin" />
-
-                    <include layout="@layout/preview_card_bulletin" />
-
-                    <include layout="@layout/preview_card_bulletin" />
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+                tools:listitem="@layout/preview_card_bulletin" />
 
             <TextView
                 android:id="@+id/edigest_preview_title"
@@ -302,33 +254,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <HorizontalScrollView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/edigest_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:paddingHorizontal="8dp"
+                android:clipToPadding="false"
                 app:layout_constraintTop_toBottomOf="@id/edigest_preview_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:id="@+id/edigest_preview_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="8dp">
-
-                    <include layout="@layout/preview_card_bulletin" />
-
-                    <include layout="@layout/preview_card_bulletin" />
-
-                    <include layout="@layout/preview_card_bulletin" />
-
-                    <include layout="@layout/preview_card_bulletin" />
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+                tools:listitem="@layout/preview_card_bulletin" />
 
             <!--Category previews start here-->
 
