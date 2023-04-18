@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/vanilla" />
+            <stroke android:color="@color/salmonAndVanilla"
+                android:width="@dimen/category_ic_stroke" />
+            <corners android:radius="@dimen/category_ic_radius" />
+        </shape>
+    </item>
+
+    <item android:gravity="center"
+        android:drawable="@drawable/ic_salmon_volunteer"
+        android:top="@dimen/category_ic_pad"
+        android:bottom="@dimen/category_ic_pad"
+        android:left="@dimen/category_ic_pad"
+        android:right="@dimen/category_ic_pad" />
+
+</layer-list>
