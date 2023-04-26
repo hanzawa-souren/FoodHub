@@ -14,14 +14,72 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <include
+                android:id="@+id/include"
+                layout="@layout/orange_backdrop" />
+
+
+            <ListView
+                android:id="@+id/setting_menu"
+                android:layout_width="350dp"
+                android:layout_height="400dp"
+                android:background="@drawable/setting_background"
+                android:elevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.453"
+
+                />
+
             <TextView
+                android:id="@+id/setting_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Settings"
-                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/setting_menu"
+                app:layout_constraintStart_toStartOf="@+id/setting_menu"
+                app:layout_goneMarginBottom="0dp" />
+
+            <TextView
+                android:id="@+id/account_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginTop="37dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Account Information"
+                android:textColor="#80FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/setting_title"
+                app:layout_constraintTop_toTopOf="@+id/setting_title" />
+
+            <android.widget.Button
+                android:id="@+id/button"
+                android:layout_width="350dp"
+                android:layout_height="65dp"
+                android:background="@drawable/deactivate"
+                android:drawableLeft="@drawable/power_settings_new"
+                android:elevation="15dp"
+                android:text="Deactivate Account"
+                android:textColor="#FF0000"
+                android:paddingLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:paddingRight="35dp"
+                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/setting_menu" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
