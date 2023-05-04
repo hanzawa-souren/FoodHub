@@ -1,4 +1,4 @@
-package com.example.foodhub
+package com.example.foodhub.user
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

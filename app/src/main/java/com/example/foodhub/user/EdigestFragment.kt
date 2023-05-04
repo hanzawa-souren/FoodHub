@@ -1,4 +1,4 @@
-package com.example.foodhub
+package com.example.foodhub.user
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.example.foodhub.databinding.FragmentLatestNewsBinding
+import com.example.foodhub.R
+import com.example.foodhub.databinding.FragmentEdigestBinding
 
-class LatestNewsFragment : Fragment() {
+class EdigestFragment : Fragment() {
 
-    private lateinit var bindingNews: FragmentLatestNewsBinding
+    private lateinit var bindingEdigest: FragmentEdigestBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,10 +22,11 @@ class LatestNewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_latest_news, container, false)
+        //return inflater.inflate(R.layout.fragment_edigest, container, false)
 
-        bindingNews = DataBindingUtil.inflate(inflater, R.layout.fragment_latest_news, container, false)
-        return bindingNews.root
+        bindingEdigest = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_edigest, container, false)
+        return bindingEdigest.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

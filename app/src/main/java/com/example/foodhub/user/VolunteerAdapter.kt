@@ -1,4 +1,4 @@
-package com.example.foodhub
+package com.example.foodhub.user
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.foodhub.R
 
 class VolunteerAdapter(private val mList: List<VolunteerModel>) : RecyclerView.Adapter<VolunteerAdapter.ViewHolder>() {
 
@@ -16,13 +17,13 @@ class VolunteerAdapter(private val mList: List<VolunteerModel>) : RecyclerView.A
         val location: TextView = itemView.findViewById(R.id.volunteer_card_location)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VolunteerAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Create view and send it into ViewHolder
         val view = LayoutInflater.from(parent.context).inflate(R.layout.preview_card_volunteer, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: VolunteerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ItemsViewModel = mList[position]
 
         //Sets image to ImageView from itemHolder class

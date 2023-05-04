@@ -7,47 +7,47 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.foodhub.HomeFragment"
+        android:name="com.example.foodhub.user.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/nearMeFragment"
-        android:name="com.example.foodhub.NearMeFragment"
+        android:name="com.example.foodhub.user.NearMeFragment"
         android:label="fragment_near_me"
         tools:layout="@layout/fragment_near_me" />
     <fragment
         android:id="@+id/volunteerFragment"
-        android:name="com.example.foodhub.VolunteerFragment"
+        android:name="com.example.foodhub.user.VolunteerFragment"
         android:label="fragment_volunteer"
         tools:layout="@layout/fragment_volunteer" />
     <fragment
         android:id="@+id/helplinesFragment"
-        android:name="com.example.foodhub.HelplinesFragment"
+        android:name="com.example.foodhub.user.HelplinesFragment"
         android:label="fragment_helplines"
         tools:layout="@layout/fragment_helplines" />
     <fragment
         android:id="@+id/myProfileFragment"
-        android:name="com.example.foodhub.MyProfileFragment"
+        android:name="com.example.foodhub.user.MyProfileFragment"
         android:label="fragment_my_profile"
         tools:layout="@layout/fragment_my_profile" />
     <fragment
         android:id="@+id/donateFragment"
-        android:name="com.example.foodhub.DonateFragment"
+        android:name="com.example.foodhub.user.DonateFragment"
         android:label="fragment_donate"
         tools:layout="@layout/fragment_donate" />
     <fragment
         android:id="@+id/latestNewsFragment"
-        android:name="com.example.foodhub.LatestNewsFragment"
+        android:name="com.example.foodhub.user.LatestNewsFragment"
         android:label="fragment_latest_news"
         tools:layout="@layout/fragment_latest_news" />
     <fragment
         android:id="@+id/edigestFragment"
-        android:name="com.example.foodhub.EdigestFragment"
+        android:name="com.example.foodhub.user.EdigestFragment"
         android:label="fragment_edigest"
         tools:layout="@layout/fragment_edigest" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.foodhub.SettingsFragment"
+        android:name="com.example.foodhub.user.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

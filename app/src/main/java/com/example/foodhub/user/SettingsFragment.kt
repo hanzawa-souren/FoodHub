@@ -1,4 +1,4 @@
-package com.example.foodhub
+package com.example.foodhub.user
 
 import android.content.Context
 
@@ -13,6 +13,7 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.example.foodhub.R
 
 import com.example.foodhub.databinding.FragmentSettingsBinding
 
@@ -30,7 +31,13 @@ class SettingsFragment : Fragment() {
     private class CustomAdapter(context:Context) : BaseAdapter() {
         val settingOptions = arrayOf("Username","Profile Picture","Phone Number","Email","Password")
 
-        val optionImage = arrayOf(R.drawable.setting_ic_username,R.drawable.setting_ic_profilepic,R.drawable.setting_ic_call,R.drawable.setting_ic_email,R.drawable.setting_ic_password)
+        val optionImage = arrayOf(
+            R.drawable.setting_ic_username,
+            R.drawable.setting_ic_profilepic,
+            R.drawable.setting_ic_call,
+            R.drawable.setting_ic_email,
+            R.drawable.setting_ic_password
+        )
         private val myContext:Context
         init {
             myContext = context
@@ -66,7 +73,8 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_settings, container, false)
 
-        bindingSettings = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
+        bindingSettings = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_settings, container, false)
         return bindingSettings.root
         // calling the action bar
 

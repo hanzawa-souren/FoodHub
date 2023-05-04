@@ -1,4 +1,4 @@
-package com.example.foodhub
+package com.example.foodhub.user
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.foodhub.R
 
 class NearMeAdapter(private val mList: List<NearMeModel>) : RecyclerView.Adapter<NearMeAdapter.ViewHolder>() {
 
@@ -16,7 +17,7 @@ class NearMeAdapter(private val mList: List<NearMeModel>) : RecyclerView.Adapter
         val location: TextView = itemView.findViewById(R.id.near_me_card_location)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NearMeAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.preview_card_near_me, parent, false)
         return ViewHolder(view)
     }

@@ -1,14 +1,14 @@
-package com.example.foodhub
+package com.example.foodhub.user
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.foodhub.R
 
-class EdigestAdapter(private val mList: List<EdigestModel>) : RecyclerView.Adapter<EdigestAdapter.ViewHolder>() {
+class LatestNewsAdapter(private val mList: List<LatestNewsModel>) : RecyclerView.Adapter<LatestNewsAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.bulletin_card_image)
@@ -16,7 +16,7 @@ class EdigestAdapter(private val mList: List<EdigestModel>) : RecyclerView.Adapt
         val date: TextView = itemView.findViewById(R.id.bulletin_card_date)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EdigestAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.preview_card_bulletin, parent, false)
         return ViewHolder(view)
     }

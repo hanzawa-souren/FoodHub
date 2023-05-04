@@ -1,4 +1,4 @@
-package com.example.foodhub
+package com.example.foodhub.user
 
 import android.graphics.Color
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
+import com.example.foodhub.R
 import com.example.foodhub.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +32,13 @@ class MainActivity : AppCompatActivity() {
         bindingMain.fabDonate.setColorFilter(Color.rgb(255, 255, 255))
 
         navController = findNavController(R.id.myNavHostFragment)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.nearMeFragment, R.id.donateFragment, R.id.helplinesFragment, R.id.myProfileFragment))
+        appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.homeFragment,
+            R.id.nearMeFragment,
+            R.id.donateFragment,
+            R.id.helplinesFragment,
+            R.id.myProfileFragment
+        ))
 
         setSupportActionBar(bindingMain.topToolbar)
 

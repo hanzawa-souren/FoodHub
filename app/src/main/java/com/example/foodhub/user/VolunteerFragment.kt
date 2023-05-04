@@ -1,12 +1,12 @@
-package com.example.foodhub
+package com.example.foodhub.user
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
+import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentVolunteerBinding
 
 class VolunteerFragment : Fragment() {
@@ -25,7 +25,8 @@ class VolunteerFragment : Fragment() {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_volunteer, container, false)
 
-        bindingVolunteer = DataBindingUtil.inflate(inflater, R.layout.fragment_volunteer, container, false)
+        bindingVolunteer = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_volunteer, container, false)
         return bindingVolunteer.root
     }
 
