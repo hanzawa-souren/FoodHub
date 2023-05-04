@@ -26,7 +26,8 @@
     </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Other style items -->
-
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
     </style>
     <style name="CategoryCardStyle">
         <item name="android:layout_width">90dp</item>

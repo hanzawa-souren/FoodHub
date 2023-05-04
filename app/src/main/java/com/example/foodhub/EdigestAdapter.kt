@@ -25,8 +25,8 @@ class EdigestAdapter(private val mList: List<EdigestModel>) : RecyclerView.Adapt
         val ItemsViewModel = mList[position]
 
         holder.image.setImageResource(ItemsViewModel.image)
-        holder.title.text = ItemsViewModel.text1
-        holder.date.text = ItemsViewModel.text2
+        holder.title.text = ItemsViewModel.title
+        holder.date.text = ItemsViewModel.date
     }
 
     override fun getItemCount(): Int {
