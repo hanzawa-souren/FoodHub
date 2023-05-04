@@ -26,4 +26,16 @@
     <string name="placeholder_date">Date Posted</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loginIDTVS">Name</string>
+    <string name="preLogTitleTV">Are You Ready To Join Us?</string>
+    <string name="RegisterButton">Register</string>
+    <string name="LoginButton">Login</string>
+    <string name="LoginNameTV">User</string>
+    <string name="passwordTVS">Password</string>
+    <string name="phoneTV">Phone Number</string>
+
+    <string-array name="phone_Country">
+        <item>+60</item>
+        <item>+1</item>
+    </string-array>
 </resources>
