@@ -28,8 +28,8 @@ class VolunteerAdapter(private val mList: List<VolunteerModel>) : RecyclerView.A
         //Sets image to ImageView from itemHolder class
         holder.image.setImageResource(ItemsViewModel.image)
         //Sets text to TextView from itemHolder class
-        holder.title.text = ItemsViewModel.text1
-        holder.location.text = ItemsViewModel.text2
+//        holder.title.text = ItemsViewModel.text1
+//        holder.location.text = ItemsViewModel.text2
     }
 
     override fun getItemCount(): Int {

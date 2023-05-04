@@ -26,4 +26,11 @@
     <string name="placeholder_date">Date Posted</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="states">
+        <item>Kuala Lumpur</item>
+        <item>Johor Bahru</item>
+        <item>Pulau Pinang</item>
+        <item>Selangor</item>
+
+    </string-array>
 </resources>

@@ -1,4 +1,6 @@
 package com.example.foodhub
 
-data class NearMeModel(val image: Int, val text1: String, val text2: String, val text3: String) {
+import android.widget.ImageView
+
+data class NearMeModel(val image: Int, val title: String, val facility: String, val location: String) {
 }
