@@ -45,26 +45,26 @@ class LoginFragment : Fragment() {
     private fun validateUser() {
         val readID = binding.loginIDTE.text.toString()
         val readPW = binding.loginPWTE.text.toString()
+        val user = mUserViewModel.getUser(readID)
         if (inputCheck(readID, readPW)){
-            val readUser = mUserViewModel.getUser(readID)
-            if (readID == readUser.loginID && readID != "admin"){
-                if (readPW == readUser.password){
-                    requireActivity().run{
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
+                if (readID == user.loginID && readID != "admin") {
+                    if (readPW == user.password) {
+                        requireActivity().run {
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
+                        }
                     }
-                }
-            }else if (readID == readUser.loginID && readID == "admin"){
-                if (readPW == readUser.password){
-                    requireActivity().run{
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
+                } else if (readID == user.loginID && readID == "admin") {
+                    if (readPW == user.password) {
+                        requireActivity().run {
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
+                        }
                     }
+                } else {
+                    Toast.makeText(requireContext(), "Wrong ID or Password", Toast.LENGTH_LONG)
+                        .show()
                 }
-            }
-            else {
-                Toast.makeText(requireContext(), "Wrong ID or Password", Toast.LENGTH_LONG).show()
-            }
         }else {
             Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_LONG).show()
         }

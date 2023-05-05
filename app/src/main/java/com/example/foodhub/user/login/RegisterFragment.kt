@@ -23,8 +23,6 @@ class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 
-    private val context = getActivity()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

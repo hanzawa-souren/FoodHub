@@ -8,8 +8,8 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application): AndroidViewModel(application) {
 
-    private var readUser: User = User("", "")
     private val repository: UserRepository
+    private var readUser : User = User("", "")
 
     init {
         val userDao = AppDatabase.getDatabase(application).userDao()
@@ -22,9 +22,9 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun getUser(id: String): User{
+    fun getUser(id: String): User {
         viewModelScope.launch(Dispatchers.IO) {
-            readUser = repository.readUser(id)
+            readUser = repository.getUser(id)
         }
         return readUser
     }
