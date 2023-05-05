@@ -22,11 +22,11 @@ class LatestNewsAdapter(private val mList: List<LatestNewsModel>) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val ItemsViewModel = mList[position]
+        val itemsViewModel = mList[position]
 
-        holder.image.setImageResource(ItemsViewModel.image)
-        holder.title.text = ItemsViewModel.text1
-        holder.date.text = ItemsViewModel.text2
+        holder.image.setImageResource(itemsViewModel.image)
+        holder.title.text = itemsViewModel.title
+        holder.date.text = itemsViewModel.date
     }
 
     override fun getItemCount(): Int {

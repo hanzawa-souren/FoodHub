@@ -4,26 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".user.HelplinesFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="wrap_content">
+        <include android:id="@+id/include"
+            layout="@layout/orange_backdrop" />
+        <TextView
+            android:id="@+id/helpline_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Helplines"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/searchbar_background"
+            android:drawableStart="@drawable/search"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/poppins"
+            android:hint="Search"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="24sp"
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:layout_constraintEnd_toEndOf="@+id/helpline_title"
+            app:layout_constraintStart_toStartOf="@id/helpline_title"
+            app:layout_constraintTop_toBottomOf="@id/helpline_title" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Helplines"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBar" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -23,12 +23,12 @@ class NearMeAdapter(private val mList: List<NearMeModel>) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val ItemsViewModel = mList[position]
-
-        holder.image.setImageResource(ItemsViewModel.image)
-        holder.title.text = ItemsViewModel.text1
-        holder.facility.text = ItemsViewModel.text2
-        holder.location.text = ItemsViewModel.text3
+//        val ItemsViewModel = mList[position]
+//
+//        holder.image.setImageResource(ItemsViewModel.image)
+//        holder.title.text = ItemsViewModel.text1
+//        holder.facility.text = ItemsViewModel.text2
+//        holder.location.text = ItemsViewModel.text3
     }
 
     override fun getItemCount(): Int {
