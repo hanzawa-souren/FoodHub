@@ -1,21 +1,20 @@
 package com.example.foodhub.user.login
 
 import android.content.Context
-import android.service.autofill.UserData
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [User::class], version = 1, exportSchema = false)
-abstract class UserDatabase: RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDAO
 
     companion object{
         @Volatile
-        private var INSTANCE: UserDatabase? = null
+        private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): UserDatabase{
+        fun getDatabase(context: Context): AppDatabase{
             val tempInstance = INSTANCE
             if(tempInstance != null){
                 return tempInstance
@@ -23,8 +22,8 @@ abstract class UserDatabase: RoomDatabase() {
             synchronized(this){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    UserDatabase::class.java,
-                    "user_database"
+                    AppDatabase::class.java,
+                    "app_database"
                 ).build()
                 INSTANCE = instance
                 return instance

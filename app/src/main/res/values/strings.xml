@@ -33,4 +33,15 @@
         <item>Selangor</item>
 
     </string-array>
+    <string-array name="phone_Country">
+        <item>+60</item>
+        <item>+1</item>
+    </string-array>
+
+    <string name="loginIDTVS">Name</string>
+    <string name="passwordTVS">Password</string>
+    <string name="LoginButton">Login</string>
+    <string name="RegisterButton">Register</string>
+    <string name="phoneTV">Phone Number</string>
+    <string name="preLogTitleTV">Are You Ready To Join Us?</string>
 </resources>

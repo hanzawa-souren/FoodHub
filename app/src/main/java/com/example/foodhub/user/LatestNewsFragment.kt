@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.databinding.FragmentLatestNewsBinding
+import com.example.foodhub.user.LatestNewsAdapter
+import com.example.foodhub.user.LatestNewsModel
 
 class LatestNewsFragment : Fragment() {
 

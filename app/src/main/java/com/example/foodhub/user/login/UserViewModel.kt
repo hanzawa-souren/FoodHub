@@ -1,7 +1,6 @@
 package com.example.foodhub.user.login
 
 import android.app.Application
-import android.service.autofill.UserData
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +12,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     private val repository: UserRepository
 
     init {
-        val userDao = UserDatabase.getDatabase(application).userDao()
+        val userDao = AppDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
     }
 

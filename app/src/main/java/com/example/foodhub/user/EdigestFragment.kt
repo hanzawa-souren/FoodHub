@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.databinding.FragmentEdigestBinding
+import com.example.foodhub.user.EdigestAdapter
+import com.example.foodhub.user.EdigestModel
 
 class EdigestFragment : Fragment() {
 

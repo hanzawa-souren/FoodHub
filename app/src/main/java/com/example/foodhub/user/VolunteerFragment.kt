@@ -13,6 +13,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.foodhub.databinding.FragmentVolunteerBinding
+import com.example.foodhub.user.VolunteerModel
 
 class VolunteerFragment : Fragment() {
 
