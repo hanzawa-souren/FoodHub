@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/adminHomeFragment"
+        android:title="@string/home"
+        android:icon="@drawable/ic_admin_home" />
+
+    <item android:id="@+id/adminVolunteerFragment"
+        android:title="@string/volunteer"
+        android:icon="@drawable/ic_admin_volunteer" />
+
+    <item android:id="@+id/adminNearMeFragment"
+        android:title="@string/near_me"
+        android:icon="@drawable/ic_admin_near_me" />
+
+    <item android:id="@+id/adminHelplinesFragment"
+        android:title="@string/helplines"
+        android:icon="@drawable/ic_admin_helplines" />
+
+    <item android:id="@+id/adminBulletinFragment"
+        android:title="@string/bulletin"
+        android:icon="@drawable/ic_admin_bulletin" />
+
+</menu>

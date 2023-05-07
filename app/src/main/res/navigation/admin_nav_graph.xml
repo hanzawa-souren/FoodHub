@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_nav_graph"
+    app:startDestination="@id/adminHomeFragment">
+
+    <fragment
+        android:id="@+id/adminHomeFragment"
+        android:name="com.example.foodhub.admin.fragments.AdminHomeFragment"
+        android:label="fragment_admin_home"
+        tools:layout="@layout/fragment_admin_home" />
+    <fragment
+        android:id="@+id/adminVolunteerFragment"
+        android:name="com.example.foodhub.admin.fragments.list.AdminVolunteerFragment"
+        android:label="fragment_admin_volunteer"
+        tools:layout="@layout/fragment_admin_volunteer" >
+        <action
+            android:id="@+id/action_adminVolunteerFragment_to_adminAddVolunteerFragment"
+            app:destination="@id/adminAddVolunteerFragment" />
+        <action
+            android:id="@+id/action_adminVolunteerFragment_to_adminUpdateVolunteerFragment"
+            app:destination="@id/adminUpdateVolunteerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminAddVolunteerFragment"
+        android:name="com.example.foodhub.admin.fragments.add.AdminAddVolunteerFragment"
+        android:label="fragment_admin_add_volunteer"
+        tools:layout="@layout/fragment_admin_add_volunteer" >
+        <action
+            android:id="@+id/action_adminAddVolunteerFragment_to_adminVolunteerFragment"
+            app:destination="@id/adminVolunteerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminUpdateVolunteerFragment"
+        android:name="com.example.foodhub.admin.fragments.update.AdminUpdateVolunteerFragment"
+        android:label="fragment_admin_update_volunteer"
+        tools:layout="@layout/fragment_admin_update_volunteer" >
+        <action
+            android:id="@+id/action_adminUpdateVolunteerFragment_to_adminVolunteerFragment"
+            app:destination="@id/adminVolunteerFragment" />
+        <argument
+            android:name="currentWork"
+            app:argType="com.example.foodhub.database.tables.VoluntaryWork" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminNearMeFragment"
+        android:name="com.example.foodhub.admin.fragments.list.AdminNearMeFragment"
+        android:label="fragment_admin_near_me"
+        tools:layout="@layout/fragment_admin_near_me" >
+        <action
+            android:id="@+id/action_adminNearMeFragment_to_adminAddNearMeFragment"
+            app:destination="@id/adminAddNearMeFragment" />
+        <action
+            android:id="@+id/action_adminNearMeFragment_to_adminUpdateNearMeFragment"
+            app:destination="@id/adminUpdateNearMeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminAddNearMeFragment"
+        android:name="com.example.foodhub.admin.fragments.add.AdminAddNearMeFragment"
+        android:label="fragment_admin_add_near_me"
+        tools:layout="@layout/fragment_admin_add_near_me" >
+        <action
+            android:id="@+id/action_adminAddNearMeFragment_to_adminNearMeFragment"
+            app:destination="@id/adminNearMeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminUpdateNearMeFragment"
+        android:name="com.example.foodhub.admin.fragments.update.AdminUpdateNearMeFragment"
+        android:label="fragment_admin_update_near_me"
+        tools:layout="@layout/fragment_admin_update_near_me" >
+        <action
+            android:id="@+id/action_adminUpdateNearMeFragment_to_adminNearMeFragment"
+            app:destination="@id/adminNearMeFragment" />
+        <argument
+            android:name="currentFacility"
+            app:argType="com.example.foodhub.database.tables.Facility" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminHelplinesFragment"
+        android:name="com.example.foodhub.admin.fragments.list.AdminHelplinesFragment"
+        android:label="fragment_admin_helplines"
+        tools:layout="@layout/fragment_admin_helplines" >
+        <action
+            android:id="@+id/action_adminHelplinesFragment_to_adminUpdateHelplineFragment"
+            app:destination="@id/adminUpdateHelplineFragment" />
+        <action
+            android:id="@+id/action_adminHelplinesFragment_to_adminAddHelplineFragment"
+            app:destination="@id/adminAddHelplineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminAddHelplineFragment"
+        android:name="com.example.foodhub.admin.fragments.add.AdminAddHelplineFragment"
+        android:label="fragment_admin_add_helpline"
+        tools:layout="@layout/fragment_admin_add_helpline" >
+        <action
+            android:id="@+id/action_adminAddHelplineFragment_to_adminHelplinesFragment"
+            app:destination="@id/adminHelplinesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminUpdateHelplineFragment"
+        android:name="com.example.foodhub.admin.fragments.update.AdminUpdateHelplineFragment"
+        android:label="fragment_admin_update_helpline"
+        tools:layout="@layout/fragment_admin_update_helpline" >
+        <action
+            android:id="@+id/action_adminUpdateHelplineFragment_to_adminHelplinesFragment"
+            app:destination="@id/adminHelplinesFragment" />
+        <argument
+            android:name="currentHelpline"
+            app:argType="com.example.foodhub.database.tables.Helpline" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminLatestNewsFragment"
+        android:name="com.example.foodhub.admin.fragments.list.AdminLatestNewsFragment"
+        android:label="fragment_admin_latest_news"
+        tools:layout="@layout/fragment_admin_latest_news" />
+    <fragment
+        android:id="@+id/adminAddNewsFragment"
+        android:name="com.example.foodhub.admin.fragments.add.AdminAddNewsFragment"
+        android:label="fragment_admin_add_news"
+        tools:layout="@layout/fragment_admin_add_news" >
+        <action
+            android:id="@+id/action_adminAddNewsFragment_to_adminBulletinFragment"
+            app:destination="@id/adminBulletinFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminUpdateNewsFragment"
+        android:name="com.example.foodhub.admin.fragments.update.AdminUpdateNewsFragment"
+        android:label="fragment_admin_update_news"
+        tools:layout="@layout/fragment_admin_update_news" >
+        <argument
+            android:name="currentNews"
+            app:argType="com.example.foodhub.database.tables.LatestNews" />
+        <action
+            android:id="@+id/action_adminUpdateNewsFragment_to_adminBulletinFragment"
+            app:destination="@id/adminBulletinFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminEDigestFragment"
+        android:name="com.example.foodhub.admin.fragments.list.AdminEDigestFragment"
+        android:label="fragment_admin_e_digest"
+        tools:layout="@layout/fragment_admin_e_digest" />
+    <fragment
+        android:id="@+id/adminAddDigestFragment"
+        android:name="com.example.foodhub.admin.fragments.add.AdminAddDigestFragment"
+        android:label="fragment_admin_add_digest"
+        tools:layout="@layout/fragment_admin_add_digest" >
+        <action
+            android:id="@+id/action_adminAddDigestFragment_to_adminBulletinFragment"
+            app:destination="@id/adminBulletinFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminUpdateDigestFragment"
+        android:name="com.example.foodhub.admin.fragments.update.AdminUpdateDigestFragment"
+        android:label="fragment_admin_update_digest"
+        tools:layout="@layout/fragment_admin_update_digest" >
+        <argument
+            android:name="currentDigest"
+            app:argType="com.example.foodhub.database.tables.EDigest" />
+        <action
+            android:id="@+id/action_adminUpdateDigestFragment_to_adminBulletinFragment"
+            app:destination="@id/adminBulletinFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminSettingsFragment"
+        android:name="com.example.foodhub.admin.fragments.AdminSettingsFragment"
+        android:label="fragment_admin_settings"
+        tools:layout="@layout/fragment_admin_settings" />
+    <fragment
+        android:id="@+id/adminBulletinFragment"
+        android:name="com.example.foodhub.admin.fragments.list.AdminBulletinFragment"
+        android:label="fragment_admin_bulletin"
+        tools:layout="@layout/fragment_admin_bulletin" >
+        <action
+            android:id="@+id/action_adminBulletinFragment_to_adminUpdateNewsFragment"
+            app:destination="@id/adminUpdateNewsFragment" />
+        <action
+            android:id="@+id/action_adminBulletinFragment_to_adminAddNewsFragment"
+            app:destination="@id/adminAddNewsFragment" />
+        <action
+            android:id="@+id/action_adminBulletinFragment_to_adminAddDigestFragment"
+            app:destination="@id/adminAddDigestFragment" />
+        <action
+            android:id="@+id/action_adminBulletinFragment_to_adminUpdateDigestFragment"
+            app:destination="@id/adminUpdateDigestFragment" />
+    </fragment>
+</navigation>

@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".admin.AdminMainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/adminNavHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/admin_toolbar"
+            app:layout_constraintBottom_toTopOf="@id/admin_bottom_nav_view"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/admin_nav_graph"/>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/admin_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/salmon"
+            android:theme="@style/ActionBarThemeOverlay"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/admin_toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/screen_title"
+                android:textAlignment="center"
+                style="@style/TopToolbarLabelStyle" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/admin_bottom_nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/admin_bottom_nav_menu"
+            app:labelVisibilityMode="labeled"
+            app:itemTextColor="@drawable/bottom_nav_bar_color"
+            app:itemIconTint="@drawable/bottom_nav_bar_color"
+            app:itemIconSize="28dp"
+            app:itemPaddingBottom="5dp"
+            app:itemTextAppearanceActive="@style/BottomNavLabelStyle"
+            app:itemTextAppearanceInactive="@style/BottomNavLabelStyle"
+            app:itemRippleColor="@color/salmonAndVanilla" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

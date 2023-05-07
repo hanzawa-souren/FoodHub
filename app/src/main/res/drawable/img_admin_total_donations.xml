@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="oval"
+            android:tint="@color/white" />
+    </item>
+    <item android:drawable="@drawable/ic_admin_total_donations"
+        android:top="@dimen/margin"
+        android:bottom="@dimen/margin"
+        android:left="@dimen/margin"
+        android:right="@dimen/margin" />
+
+</layer-list>

@@ -24,8 +24,7 @@
     <string name="placeholder_location">Location</string>
     <string name="placeholder_facility">Facility</string>
     <string name="placeholder_date">Date Posted</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string-array name="states">
         <item>Kuala Lumpur</item>
         <item>Johor Bahru</item>
@@ -44,4 +43,40 @@
     <string name="RegisterButton">Register</string>
     <string name="phoneTV">Phone Number</string>
     <string name="preLogTitleTV">Are You Ready To Join Us?</string>
+
+    <string name="bulletin">Bulletin</string>
+    <string name="e_digest">E-Digest</string>
+    <string name="delete_all">Delete All</string>
+    <string name="delete">Delete</string>
+    <string name="screen_title">Screen Title</string>
+
+    <string-array name="facility_types">
+        <item>Food Bank</item>
+        <item>Farmers\' Market</item>
+    </string-array>
+
+    <string name="author">Author</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="publish">Publish</string>
+    <string name="contact_number">Contact number</string>
+    <string name="description">Description</string>
+    <string name="website_url">Website URL</string>
+    <string name="name">Name</string>
+    <string name="street_address">Street address</string>
+    <string name="city">City</string>
+    <string name="postcode">Postcode</string>
+    <string name="state">State</string>
+    <string name="country">Country</string>
+    <string name="waze_url">Waze URL</string>
+    <string name="google_maps_url">Google Maps URL</string>
+    <string name="registration_url">Registration URL</string>
+    <string name="total_users">TOTAL USERS</string>
+    <string name="total_donations">TOTAL DONATIONS</string>
+    <string name="total_nvoluntary_nworks">TOTAL\nVOLUNTARY\nWORKS</string>
+    <string name="total_nfacilities_n">TOTAL\nFACILITIES\n</string>
+    <string name="total_nhelplines_n">TOTAL\nHELPLINES\n</string>
+    <string name="total_nnews_narticles">TOTAL\nNEWS\nARTICLES</string>
+    <string name="total_ne_digest_narticles">TOTAL\nE-DIGEST\nARTICLES</string>
+    <string name="update">Update</string>
 </resources>
