@@ -33,6 +33,7 @@ class VolunteerFragment : Fragment() {
         bindingVolunteer = DataBindingUtil.inflate(inflater, R.layout.fragment_volunteer, container, false)
         return bindingVolunteer.root
     }
+    var onItemClick : ((VolunteerModel)-> Unit)? = null
     private class CustomAdapterVol(context: Context, var arraylist : ArrayList<VolunteerModel>) : BaseAdapter(){
         private val myContext: Context
 
@@ -92,13 +93,9 @@ class VolunteerFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
 
         val grid = bindingVolunteer.gridView
-        grid.adapter = CustomAdapterVol(requireContext(), setDataList())
-        
-    }
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.title = ""
-        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
+        val adapter1 = CustomAdapterVol(requireContext(), setDataList())
+        grid.adapter = adapter1
+
     }
 
 }

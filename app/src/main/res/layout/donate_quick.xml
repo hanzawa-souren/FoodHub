@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payment_card_container"
+    android:layout_width="150dp"
+    android:layout_height="100dp"
+    android:layout_margin="8dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="@dimen/category_ic_radius"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bulletin_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <ImageView
+            android:id="@+id/paymentImg"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/touch__n_go_logo_1" />
+
+        <TextView
+            android:id="@+id/card_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+60** **** ****"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingBottom="10dp"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/profile_row_img" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -192,12 +192,13 @@
                 android:id="@+id/volunteer_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none"
-                android:paddingHorizontal="8dp"
                 android:clipToPadding="false"
-                app:layout_constraintTop_toBottomOf="@id/volunteer_preview_title"
-                app:layout_constraintStart_toStartOf="parent"
+                android:paddingHorizontal="8dp"
+                android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/volunteer_preview_title"
                 tools:listitem="@layout/preview_card_volunteer" />
 
             <TextView

@@ -50,4 +50,12 @@
         android:name="com.example.foodhub.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/donateConfirmFragment"
+        android:name="com.example.foodhub.DonateConfirmFragment"
+        android:label="DonateConfirmFragment" />
+    <fragment
+        android:id="@+id/volunteerDetailsFragment"
+        android:name="com.example.foodhub.VolunteerDetailsFragment"
+        android:label="VolunteerDetailsFragment" />
 </navigation>
