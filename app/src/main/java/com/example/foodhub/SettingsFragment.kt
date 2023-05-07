@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 
@@ -40,7 +37,7 @@ class SettingsFragment : Fragment() {
         }
 
         override fun getItem(p0: Int): Any {
-            return "empty"
+            return settingOptions[p0]
         }
 
         override fun getItemId(p0: Int): Long {
@@ -75,9 +72,17 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val settingMenu : ListView = bindingSettings.settingMenu
+
         settingMenu.adapter = CustomAdapter(requireContext())
+
         (activity as AppCompatActivity).supportActionBar?.title = ""
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
+        settingMenu.setOnItemClickListener { parent, view, position, id ->
+            // Do something with the clicked item
+            val selectedItem = parent.getItemAtPosition(position)
+            Toast.makeText(requireContext(), "Selected item: $selectedItem", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     override fun onResume() {

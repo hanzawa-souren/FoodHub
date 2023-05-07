@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.databinding.FragmentHelplinesBinding
 
@@ -36,7 +37,13 @@ class HelplinesFragment : Fragment() {
         val rview = bindingHelplines.recycleView
         rview.layoutManager = LinearLayoutManager(requireContext())
         rview.setHasFixedSize(true)
-        rview.adapter = HelpLineAdapter(setDataList())
+        var adapter1 = HelpLineAdapter(setDataList())
+        rview.adapter = adapter1
+
+        adapter1.onItemClick={
+            HelpLineModel ->
+            view.findNavController().navigate(R.id.helplineDetailsFragment)
+        }
     }
     private fun setDataList() : ArrayList<HelpLineModel>{
         var arrayList : ArrayList<HelpLineModel> = ArrayList()

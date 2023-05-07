@@ -58,4 +58,8 @@
         android:id="@+id/volunteerDetailsFragment"
         android:name="com.example.foodhub.VolunteerDetailsFragment"
         android:label="VolunteerDetailsFragment" />
+    <fragment
+        android:id="@+id/helplineDetailsFragment"
+        android:name="com.example.foodhub.HelplineDetailsFragment"
+        android:label="HelplineDetailsFragment" />
 </navigation>
