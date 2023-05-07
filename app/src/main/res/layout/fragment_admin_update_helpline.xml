@@ -25,7 +25,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_title"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -34,7 +34,7 @@
                     android:id="@+id/update_h_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="@string/title"
                     android:inputType="text"
                     android:maxLines="1"
                     android:scrollHorizontally="false"
@@ -65,7 +65,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_phone"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -74,7 +74,7 @@
                     android:id="@+id/update_h_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Contact number"
+                    android:hint="@string/contact_number"
                     android:inputType="phone"
                     style="@style/AddUpdateFieldStyle" />
 
@@ -102,7 +102,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_link"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -111,7 +111,7 @@
                     android:id="@+id/update_h_website"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Website URL"
+                    android:hint="@string/website_url"
                     android:inputType="textMultiLine"
                     android:minLines="1"
                     android:maxLines="3"
@@ -143,7 +143,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_desc"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -152,7 +152,7 @@
                     android:id="@+id/update_h_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Description"
+                    android:hint="@string/description"
                     android:inputType="textMultiLine"
                     android:minLines="1"
                     android:maxLines="10"
@@ -168,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:layout_marginVertical="@dimen/margin_double"
-                android:text="Update"
+                android:text="@string/update"
                 android:backgroundTint="@color/darkCyan"
                 app:layout_constraintTop_toBottomOf="@id/h_desc_field"/>
 

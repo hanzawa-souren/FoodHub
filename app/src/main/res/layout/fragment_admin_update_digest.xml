@@ -10,7 +10,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/margin">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/update_e_image_card"
@@ -43,7 +44,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_author"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -52,7 +53,7 @@
                     android:id="@+id/update_e_author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Author"
+                    android:hint="@string/author"
                     android:inputType="text"
                     android:maxLines="1"
                     android:scrollHorizontally="false"
@@ -83,7 +84,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_title"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -92,7 +93,7 @@
                     android:id="@+id/update_e_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="@string/title"
                     android:inputType="textMultiLine"
                     android:minLines="1"
                     android:maxLines="3"
@@ -124,7 +125,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_desc"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -133,7 +134,7 @@
                     android:id="@+id/update_e_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Content"
+                    android:hint="@string/content"
                     android:inputType="textMultiLine"
                     android:minLines="1"
                     android:maxLines="30"
@@ -149,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:layout_marginVertical="@dimen/margin_double"
-                android:text="Publish"
+                android:text="@string/publish"
                 android:backgroundTint="@color/darkCyan"
                 app:layout_constraintTop_toBottomOf="@id/e_content_field"/>
 

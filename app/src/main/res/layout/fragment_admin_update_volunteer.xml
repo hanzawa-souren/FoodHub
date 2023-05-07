@@ -44,7 +44,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_title"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -54,7 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
-                    android:hint="Title"
+                    android:hint="@string/title"
                     android:textSize="14sp"
                     android:fontFamily="@font/poppins"
                     android:inputType="text"
@@ -86,7 +86,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_desc"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
-                    android:hint="Description"
+                    android:hint="@string/description"
                     android:textSize="14sp"
                     android:fontFamily="@font/poppins"
                     android:inputType="textMultiLine"
@@ -129,7 +129,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_location"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -144,7 +144,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-                        android:hint="Street address"
+                        android:hint="@string/street_address"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins"
                         android:inputType="textMultiLine"
@@ -165,7 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-                        android:hint="City"
+                        android:hint="@string/city"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins"
                         android:inputType="text" />
@@ -182,7 +182,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-                        android:hint="Postcode"
+                        android:hint="@string/postcode"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins"
                         android:inputType="number" />
@@ -199,7 +199,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-                        android:hint="State"
+                        android:hint="@string/state"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins"
                         android:inputType="textMultiLine"
@@ -220,7 +220,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-                        android:hint="Country"
+                        android:hint="@string/country"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins"
                         android:inputType="text" />
@@ -251,7 +251,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_phone"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -261,7 +261,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
-                    android:hint="Contact number"
+                    android:hint="@string/contact_number"
                     android:textSize="14sp"
                     android:fontFamily="@font/poppins"
                     android:inputType="phone" />
@@ -290,7 +290,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_link"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -305,7 +305,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-                        android:hint="Website URL"
+                        android:hint="@string/website_url"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins"
                         android:inputType="textMultiLine"
@@ -326,7 +326,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-                        android:hint="Registration URL"
+                        android:hint="@string/registration_url"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins"
                         android:inputType="textMultiLine"
@@ -347,7 +347,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-                        android:hint="Google Maps URL"
+                        android:hint="@string/google_maps_url"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins"
                         android:inputType="textMultiLine"
@@ -368,7 +368,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-                        android:hint="Waze URL"
+                        android:hint="@string/waze_url"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins"
                         android:inputType="textMultiLine"
@@ -387,7 +387,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:layout_marginVertical="@dimen/margin_double"
-                android:text="Update"
+                android:text="@string/update"
                 android:backgroundTint="@color/darkCyan"
                 app:layout_constraintTop_toBottomOf="@id/update_link_fields"/>
 

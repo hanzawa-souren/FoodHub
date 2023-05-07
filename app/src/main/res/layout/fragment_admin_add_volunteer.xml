@@ -44,7 +44,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_title"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -53,7 +53,7 @@
                     android:id="@+id/edit_v_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="@string/title"
                     android:inputType="text"
                     android:maxLines="1"
                     android:scrollHorizontally="false"
@@ -84,7 +84,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_desc"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -93,7 +93,7 @@
                     android:id="@+id/edit_v_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Description"
+                    android:hint="@string/description"
                     android:inputType="textMultiLine"
                     android:minLines="1"
                     android:maxLines="10"
@@ -125,7 +125,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_location"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -139,7 +139,7 @@
                         android:id="@+id/edit_v_street"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Street address"
+                        android:hint="@string/street_address"
                         android:inputType="textMultiLine"
                         android:minLines="1"
                         android:maxLines="3"
@@ -158,7 +158,7 @@
                         android:id="@+id/edit_v_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="City"
+                        android:hint="@string/city"
                         android:inputType="text"
                         style="@style/AddUpdateFieldStyle" />
 
@@ -173,7 +173,7 @@
                         android:id="@+id/edit_v_postcode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Postcode"
+                        android:hint="@string/postcode"
                         android:inputType="number"
                         style="@style/AddUpdateFieldStyle" />
 
@@ -188,7 +188,7 @@
                         android:id="@+id/edit_v_state"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="State"
+                        android:hint="@string/state"
                         android:inputType="textMultiLine"
                         android:minLines="1"
                         android:maxLines="3"
@@ -207,7 +207,7 @@
                         android:id="@+id/edit_v_country"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Country"
+                        android:hint="@string/country"
                         android:inputType="text"
                         style="@style/AddUpdateFieldStyle" />
 
@@ -237,7 +237,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_phone"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -246,7 +246,7 @@
                     android:id="@+id/edit_v_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Contact number"
+                    android:hint="@string/contact_number"
                     android:inputType="phone"
                     style="@style/AddUpdateFieldStyle" />
 
@@ -274,7 +274,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|left"
+                    android:layout_gravity="top|start"
                     android:src="@drawable/ic_admin_edit_link"
                     android:paddingEnd="@dimen/margin"
                     app:tint="@color/darkGray" />
@@ -288,7 +288,7 @@
                         android:id="@+id/edit_v_website"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Website URL"
+                        android:hint="@string/website_url"
                         android:inputType="textMultiLine"
                         android:minLines="1"
                         android:maxLines="3"
@@ -307,7 +307,7 @@
                         android:id="@+id/edit_v_reglink"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Registration URL"
+                        android:hint="@string/registration_url"
                         android:inputType="textMultiLine"
                         android:minLines="1"
                         android:maxLines="3"
@@ -326,7 +326,7 @@
                         android:id="@+id/edit_v_maps"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Google Maps URL"
+                        android:hint="@string/google_maps_url"
                         android:inputType="textMultiLine"
                         android:minLines="1"
                         android:maxLines="3"
@@ -345,7 +345,7 @@
                         android:id="@+id/edit_v_waze"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Waze URL"
+                        android:hint="@string/waze_url"
                         android:inputType="textMultiLine"
                         android:minLines="1"
                         android:maxLines="3"
@@ -363,7 +363,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:layout_marginVertical="@dimen/margin_double"
-                android:text="Publish"
+                android:text="@string/publish"
                 android:backgroundTint="@color/darkCyan"
                 app:layout_constraintTop_toBottomOf="@id/link_fields"/>
 

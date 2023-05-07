@@ -38,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="1dp"
-                android:drawableLeft="@drawable/ic_admin_card_phone"
                 android:drawablePadding="@dimen/card_drawable_pad"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -47,7 +46,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/helpline_title"
-                tools:text="Contact number"/>
+                tools:text="Contact number"
+                app:drawableLeftCompat="@drawable/ic_admin_card_phone" />
 
             <TextView
                 android:id="@+id/helpline_desc"

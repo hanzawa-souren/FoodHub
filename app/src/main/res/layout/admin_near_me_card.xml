@@ -22,6 +22,7 @@
                 android:background="@color/vanilla"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
+                android:contentDescription="Near me image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -49,7 +50,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="1dp"
-                android:drawableLeft="@drawable/ic_admin_card_location"
                 android:drawablePadding="@dimen/card_drawable_pad"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -58,7 +58,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/near_me_image"
                 app:layout_constraintTop_toBottomOf="@id/near_me_name"
-                tools:text="Location" />
+                tools:text="Location"
+                app:drawableLeftCompat="@drawable/ic_admin_card_location" />
 
             <TextView
                 android:id="@+id/near_me_facility"
@@ -67,7 +68,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="1dp"
-                android:drawableLeft="@drawable/ic_admin_card_facility"
                 android:drawablePadding="@dimen/card_drawable_pad"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -76,7 +76,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/near_me_image"
                 app:layout_constraintTop_toBottomOf="@id/near_me_location"
-                tools:text="Type" />
+                tools:text="Type"
+                app:drawableLeftCompat="@drawable/ic_admin_card_facility" />
 
             <TextView
                 android:id="@+id/near_me_desc"
