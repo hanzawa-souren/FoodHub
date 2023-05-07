@@ -66,6 +66,11 @@ class LoginFragment : Fragment() {
                     if (readPW == user.password) {
                         warn = false
                         requireActivity().run {
+                            val sharedPreference =  getSharedPreferences("tempUser",Context.MODE_PRIVATE)
+                            val editor = sharedPreference.edit()
+                            editor.putString("Username",user.loginID.toString())
+                            editor.putString("Password",user.password.toString())
+                            editor.apply()
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()
                         }

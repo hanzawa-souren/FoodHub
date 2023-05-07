@@ -14,6 +14,18 @@ class UserRepository(private val userDao : UserDAO) {
         userDao.addUser(user)
     }
 
+    suspend fun updateUsername(id: String, logID : String){
+        userDao.updateUser(id, logID)
+    }
+
+    suspend fun updatePassword(id: String, password : String){
+        userDao.updatePassword(id, password)
+    }
+
+    suspend fun deleteUser(id: String){
+        userDao.deleleUser(id)
+    }
+
     suspend fun addDonation(donation: Donation) {
         userDao.addDonation(donation)
     }
