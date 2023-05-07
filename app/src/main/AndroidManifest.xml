@@ -12,31 +12,26 @@
         android:theme="@style/Theme.FoodHub"
         tools:targetApi="31">
         <activity
-            android:name=".user.login.LoginActivity"
+            android:name=".AdminMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-
-            >
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".user.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-
-            >
-        </activity>
-
-
+            android:windowSoftInputMode="adjustNothing"></activity>
     </application>
 
 </manifest>
