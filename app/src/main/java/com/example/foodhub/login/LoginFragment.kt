@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.foodhub.R
+import com.example.foodhub.admin.AdminMainActivity
 import com.example.foodhub.databinding.FragmentLoginBinding
 import com.example.foodhub.user.MainActivity
 import kotlinx.coroutines.Dispatchers
@@ -75,7 +76,7 @@ class LoginFragment : Fragment() {
                     if (readPW == user.password) {
                         warn = false
                         requireActivity().run {
-                            startActivity(Intent(this, MainActivity::class.java))
+                            startActivity(Intent(this, AdminMainActivity::class.java))
                             finish()
                         }
                     }

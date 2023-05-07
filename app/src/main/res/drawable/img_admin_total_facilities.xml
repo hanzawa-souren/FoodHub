@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="oval"
+            android:tint="@color/darkCyanAndSalmon" />
+    </item>
+    <item android:drawable="@drawable/ic_admin_total_facilities"
+        android:top="@dimen/margin_half"
+        android:bottom="@dimen/margin_half"
+        android:left="@dimen/margin_half"
+        android:right="@dimen/margin_half" />
+
+</layer-list>
