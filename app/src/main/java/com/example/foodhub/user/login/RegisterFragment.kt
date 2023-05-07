@@ -48,10 +48,11 @@ class RegisterFragment : Fragment() {
     }
 
     private fun insertUser() {
+        val id = 2
         val loginID = binding.regIDTE.text.toString()
         val pw = binding.regPWTE.text.toString()
         if (inputCheck(loginID, pw)){
-            val user = User(loginID, pw)
+            val user = User(id, loginID, pw)
             mUserViewModel.addUser(user)
             findNavController().navigate(R.id.action_registerFragment_to_preLogin)
         }

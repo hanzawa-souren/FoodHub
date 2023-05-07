@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class UserViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository: UserRepository
-    private var readUser : User = User("", "")
+    private var readUser : User = User(0, "", "")
 
     init {
         val userDao = AppDatabase.getDatabase(application).userDao()
