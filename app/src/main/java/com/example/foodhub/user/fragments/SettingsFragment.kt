@@ -94,9 +94,4 @@ class SettingsFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
         (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).visibility = View.GONE
     }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).visibility = View.VISIBLE
-    }
 }

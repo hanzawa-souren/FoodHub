@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 if (navController.currentDestination?.id != R.id.donateFragment) {
                     Navigation.findNavController(this@MainActivity, R.id.myNavHostFragment)
                         .navigate(R.id.donateFragment)
-                    bindingMain.bottomNavView.uncheckAllItems()
+                    //bindingMain.bottomNavView.uncheckAllItems()
                 }
             }
         })
@@ -72,14 +72,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
-    }
-
-    private fun BottomNavigationView.uncheckAllItems() {
-        menu.setGroupCheckable(0, true, false)
-        for (i in 0 until menu.size()) {
-            menu.getItem(i).isChecked = false
-        }
-        menu.setGroupCheckable(0, true, true)
     }
 }
 
