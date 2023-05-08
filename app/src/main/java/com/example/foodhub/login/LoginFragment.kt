@@ -52,50 +52,62 @@ class LoginFragment : Fragment() {
     }
 
     private fun validateUser() {
-        var warn : Boolean = false
+        var tries = 0
+        var wrong: Boolean = false
+        var nouser : Boolean = false
         val readID = binding.loginIDTE.text.toString()
         val readPW = binding.loginPWTE.text.toString()
-        var user = mUserViewModel.getUser(readID)
-        if (inputCheck(readID, readPW)){
+        if (inputCheck(readID, readPW)) {
             binding.loadingOverlay.visibility = View.VISIBLE
-            binding.loadingProgress.visibility = View.VISIBLE
-            var retry = 0
-            while (user.loginID != readID || retry <= 2) {
-                user = mUserViewModel.getUser(readID)
-                if (readID == user.loginID && readID != "admin") {
-                    if (readPW == user.password) {
-                        warn = false
-                        requireActivity().run {
-                            startActivity(Intent(this, MainActivity::class.java))
-                            finish()
+                binding.loadingProgress.visibility = View.VISIBLE
+                while (tries <= 30) {
+                    var user :User? = mUserViewModel.getUser(readID)
+                    if (user != null) {
+                    if (readID == user.loginID && readID != "admin") {
+                        if (readPW == user.password) {
+                            wrong = false
+                            requireActivity().run {
+                                val intent = Intent(this, MainActivity::class.java)
+                                intent.putExtra("User", user)
+                                startActivity(intent)
+                                finish()
+                            }
                         }
-                    }else {
-                        warn = true
-                    }
-                } else if (readID == user.loginID && readID == "admin") {
-                    if (readPW == user.password) {
-                        warn = false
-                        requireActivity().run {
-                            startActivity(Intent(this, AdminMainActivity::class.java))
-                            finish()
+                        else {
+                            wrong = true
+                        }
+                    } else if (readID == user.loginID && readID == "admin") {
+                        if (readPW == user.password) {
+                            wrong = false
+                            requireActivity().run {
+                                startActivity(Intent(this, AdminMainActivity::class.java))
+                                finish()
+                            }
+                        }
+                        else {
+                            wrong = true
                         }
                     }
-                    else {
-                        warn = true
+                } else  {
+                    nouser = true
                     }
-                }
-                else{
-                    warn = true
-                }
-                retry++
+                    tries++
             }
-            if (warn) {
+            if (wrong) {
                 binding.loadingOverlay.visibility = View.INVISIBLE
                 binding.loadingProgress.visibility = View.INVISIBLE
-                Toast.makeText(requireContext(), "Wrong Password or Name", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Wrong Password or Name", Toast.LENGTH_SHORT)
+                    .show()
             }
-        }else {
-            Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            if (nouser){
+                binding.loadingOverlay.visibility = View.INVISIBLE
+                binding.loadingProgress.visibility = View.INVISIBLE
+                Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            binding.loadingOverlay.visibility = View.INVISIBLE
+            binding.loadingProgress.visibility = View.INVISIBLE
+            Toast.makeText(requireContext(), "Please input all fields", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -105,7 +117,9 @@ class LoginFragment : Fragment() {
     }
 
     private fun inputCheck(id: String, pw: String): Boolean {
-        return !(TextUtils.isEmpty(id) && TextUtils.isEmpty(pw))
+        var decision : Boolean
+        decision = !(TextUtils.isEmpty(id) && TextUtils.isEmpty(pw))
+        return decision
     }
 
     fun Fragment.hideKeyboard() {

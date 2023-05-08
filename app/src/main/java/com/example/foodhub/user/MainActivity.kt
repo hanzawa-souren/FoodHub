@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration : AppBarConfiguration
 
+    private lateinit var userName : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
             R.id.helplinesFragment,
             R.id.myProfileFragment
         ))
+
+
 
         setSupportActionBar(bindingMain.topToolbar)
 
@@ -82,9 +86,11 @@ class MainActivity : AppCompatActivity() {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
+
     /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_toolbar_menu, menu)
         return true
     }*/
 }
+
 

@@ -46,7 +46,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun insertUser() {
-        val id = 2
+        val id = 0
         val loginID = binding.regIDTE.text.toString()
         val pw = binding.regPWTE.text.toString()
         if (inputCheck(loginID, pw)){

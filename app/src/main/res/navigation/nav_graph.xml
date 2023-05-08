@@ -50,4 +50,18 @@
         android:name="com.example.foodhub.user.fragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/usernameSetting"
+        android:name="com.example.foodhub.user.settings.UsernameSetting"
+        android:label="fragment_username_setting"
+        tools:layout="@layout/fragment_username_setting" >
+        <argument
+            android:name="currentUser"
+            app:argType="com.example.foodhub.login.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordSettings"
+        android:name="com.example.foodhub.user.settings.passwordSettings"
+        android:label="fragment_password_settings"
+        tools:layout="@layout/fragment_password_settings" />
 </navigation>
