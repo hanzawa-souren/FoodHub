@@ -35,14 +35,14 @@ class SettingsFragment : Fragment() {
 
     }
     private class CustomAdapter(context:Context) : BaseAdapter() {
-        val settingOptions = arrayOf("Username","Profile Picture","Phone Number","Email","Password")
+        val settingOptions = arrayOf("Username","Profile Picture","Phone Number","Password","Logout")
 
         val optionImage = arrayOf(
             R.drawable.setting_ic_username,
             R.drawable.setting_ic_profilepic,
             R.drawable.setting_ic_call,
-            R.drawable.setting_ic_email,
-            R.drawable.setting_ic_password
+            R.drawable.setting_ic_password,
+            R.drawable.setting_ic_logout
         )
         private val myContext:Context
         init {
@@ -84,10 +84,7 @@ class SettingsFragment : Fragment() {
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         bindingSettings.button.setOnClickListener{
             deleteUser()
-            requireActivity().run {
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-            }
+            backToLogin()
         }
         return bindingSettings.root
         // calling the action bar
@@ -108,6 +105,7 @@ class SettingsFragment : Fragment() {
             when (selectedItem) {
                 "Username" -> view.findNavController().navigate(R.id.usernameSetting)
                 "Password" -> view.findNavController().navigate(R.id.passwordSettings)
+                "Logout" -> backToLogin()
             }
         }
     }
@@ -128,6 +126,13 @@ class SettingsFragment : Fragment() {
 
         }
         mUserViewModel.deleteUser(userID)
+    }
+
+    fun backToLogin() {
+        requireActivity().run {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 
 }

@@ -5,7 +5,7 @@ import com.example.foodhub.database.tables.Donation
 
 class UserRepository(private val userDao : UserDAO) {
 
-    fun getUser(id: String): User {
+    fun getUser(id: String): User? {
         val readUser = userDao.getUser(id)
         return readUser
     }

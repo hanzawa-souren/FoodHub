@@ -11,12 +11,15 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.example.foodhub.R
 import com.example.foodhub.databinding.ActivityMainBinding
+import com.example.foodhub.user.settings.UsernameSetting
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bindingMain: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration : AppBarConfiguration
+
+    private lateinit var userName : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -39,6 +42,8 @@ class MainActivity : AppCompatActivity() {
             R.id.helplinesFragment,
             R.id.myProfileFragment
         ))
+
+
 
         setSupportActionBar(bindingMain.topToolbar)
 
@@ -82,9 +87,11 @@ class MainActivity : AppCompatActivity() {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
+
     /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_toolbar_menu, menu)
         return true
     }*/
 }
+
 

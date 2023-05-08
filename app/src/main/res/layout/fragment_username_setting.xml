@@ -41,14 +41,14 @@
         app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.206"
+        app:layout_constraintVertical_bias="0.18"
         app:layout_goneMarginBottom="0dp" />
 
     <TextView
         android:id="@+id/usernameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="New Name"
         android:textColor="#000000"
@@ -63,6 +63,7 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:fontFamily="@font/poppins"
+        android:hint="New Username"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/usernameTV"
         app:layout_constraintTop_toBottomOf="@+id/usernameTV" />

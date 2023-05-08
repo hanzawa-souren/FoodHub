@@ -24,7 +24,7 @@ interface UserDAO {
     @Query("DELETE FROM user_table WHERE loginID = :id")
     fun deleleUser(id: String)
     @Query("SELECT * FROM user_table WHERE loginID = :id")
-    fun getUser(id: String): User
+    fun getUser(id: String): User?
 
     @Insert
     suspend fun addDonation(donation: Donation)
