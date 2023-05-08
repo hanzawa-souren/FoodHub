@@ -7,7 +7,7 @@
 
     <style name="GrayTextStyle">
         <item name="android:fontFamily">@font/poppins</item>
-        <item name="android:textColor">@color/gray</item>
+        <item name="android:textColor">@color/darkGray</item>
     </style>
 
     <style name="WhiteTextStyle">

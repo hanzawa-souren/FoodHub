@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentEdigestBinding
 import com.example.foodhub.user.adapters.EdigestAdapter
-import com.example.foodhub.user.viewmodels.EdigestModel
+import com.example.foodhub.user.models.EdigestModel
 
 class EdigestFragment : Fragment() {
 

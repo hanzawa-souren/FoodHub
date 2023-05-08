@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentLatestNewsBinding
 import com.example.foodhub.user.adapters.LatestNewsAdapter
-import com.example.foodhub.user.viewmodels.LatestNewsModel
+import com.example.foodhub.user.models.LatestNewsModel
 
 class LatestNewsFragment : Fragment() {
 

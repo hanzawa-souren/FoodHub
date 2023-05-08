@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.R
-import com.example.foodhub.user.viewmodels.LatestNewsModel
+import com.example.foodhub.user.models.LatestNewsModel
 
 class LatestNewsAdapter(private val mList: List<LatestNewsModel>) : RecyclerView.Adapter<LatestNewsAdapter.ViewHolder>() {
 

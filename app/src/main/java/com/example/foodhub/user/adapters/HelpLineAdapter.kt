@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.R
-import com.example.foodhub.user.viewmodels.HelpLineModel
+import com.example.foodhub.user.models.HelpLineModel
 
 class HelpLineAdapter(private val mList: List<HelpLineModel>) : RecyclerView.Adapter<HelpLineAdapter.ViewHolder>() {
 

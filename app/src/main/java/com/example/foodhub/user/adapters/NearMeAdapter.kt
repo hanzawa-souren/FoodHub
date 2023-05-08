@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.R
-import com.example.foodhub.user.viewmodels.NearMeModel
+import com.example.foodhub.user.models.NearMeModel
 
 class NearMeAdapter(private val mList: List<NearMeModel>) : RecyclerView.Adapter<NearMeAdapter.ViewHolder>() {
 

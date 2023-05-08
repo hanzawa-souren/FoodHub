@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentNearMeBinding
-import com.example.foodhub.user.viewmodels.NearMeModel
+import com.example.foodhub.user.models.NearMeModel
 
 class NearMeFragment : Fragment() {
 

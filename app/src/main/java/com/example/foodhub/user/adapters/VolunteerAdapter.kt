@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.R
-import com.example.foodhub.user.viewmodels.VolunteerModel
+import com.example.foodhub.user.models.VolunteerModel
 
 class VolunteerAdapter(private val mList: List<VolunteerModel>) : RecyclerView.Adapter<VolunteerAdapter.ViewHolder>() {
 

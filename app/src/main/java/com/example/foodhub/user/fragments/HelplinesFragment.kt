@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentHelplinesBinding
 import com.example.foodhub.user.adapters.HelpLineAdapter
-import com.example.foodhub.user.viewmodels.HelpLineModel
+import com.example.foodhub.user.models.HelpLineModel
 
 class HelplinesFragment : Fragment() {
 

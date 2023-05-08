@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentMyProfileBinding
 import com.example.foodhub.user.adapters.ProfileAdapter
-import com.example.foodhub.user.viewmodels.ProfileModel
+import com.example.foodhub.user.models.ProfileModel
 
 class MyProfileFragment : Fragment() {
 

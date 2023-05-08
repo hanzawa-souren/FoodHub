@@ -1,75 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/near_me_card_container"
-    android:layout_width="170dp"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardElevation="5dp"
-    app:cardCornerRadius="@dimen/category_ic_radius"
-    android:clickable="true"
-    android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/near_me_card"
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/near_me_card_container"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="8dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="@dimen/category_ic_radius"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
-        <ImageView
-            android:id="@+id/near_me_card_image"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/placeholder_image"
-            android:src="@mipmap/image_placeholder"
-            android:background="@color/gray"
-            android:paddingBottom="0.5dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"/>
-
-        <TextView
-            android:id="@+id/near_me_card_title"
+        <LinearLayout
+            android:id="@+id/near_me_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:contentDescription="@string/placeholder_title"
-            android:text="@string/placeholder_title"
-            android:textSize="@dimen/card_title"
-            android:padding="@dimen/card_text_pad"
-            style="@style/BlackTextStyle" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/near_me_card_facility"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:contentDescription="@string/placeholder_facility"
-            android:drawableLeft="@drawable/ic_card_facility"
-            android:drawablePadding="@dimen/card_drawable_pad"
-            android:text="@string/placeholder_facility"
-            android:textSize="@dimen/card_desc"
-            android:gravity="center_vertical"
-            android:paddingTop="@dimen/card_drawable_pad"
-            android:paddingHorizontal="@dimen/card_text_pad"
-            style="@style/GrayTextStyle" />
+            <ImageView
+                android:id="@+id/near_me_card_image"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/placeholder_image"
+                android:src="@mipmap/image_placeholder"
+                android:background="@color/gray"
+                android:paddingBottom="0.5dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"/>
 
-        <TextView
-            android:id="@+id/near_me_card_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:contentDescription="@string/placeholder_location"
-            android:drawableLeft="@drawable/ic_card_location"
-            android:drawablePadding="@dimen/card_drawable_pad"
-            android:text="@string/placeholder_location"
-            android:textSize="@dimen/card_desc"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="@dimen/card_text_pad"
-            android:paddingBottom="@dimen/card_drawable_pad"
-            style="@style/GrayTextStyle" />
+            <TextView
+                android:id="@+id/near_me_card_title"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="left"
+                android:contentDescription="@string/placeholder_title"
+                android:text="@string/placeholder_title"
+                android:textSize="@dimen/card_title"
+                android:padding="@dimen/card_text_pad"
+                android:maxLines="2"
+                android:ellipsize="end"
+                style="@style/BlackTextStyle" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/near_me_card_facility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:contentDescription="@string/placeholder_facility"
+                android:drawableLeft="@drawable/ic_card_facility"
+                android:drawablePadding="@dimen/card_drawable_pad"
+                android:text="@string/placeholder_facility"
+                android:textSize="@dimen/card_desc"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/card_drawable_pad"
+                android:paddingHorizontal="@dimen/card_text_pad"
+                android:maxLines="1"
+                android:ellipsize="end"
+                style="@style/GrayTextStyle" />
 
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/near_me_card_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:contentDescription="@string/placeholder_location"
+                android:drawableLeft="@drawable/ic_card_location"
+                android:drawablePadding="@dimen/card_drawable_pad"
+                android:text="@string/placeholder_location"
+                android:textSize="@dimen/card_desc"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/card_text_pad"
+                android:paddingBottom="@dimen/card_drawable_pad"
+                android:maxLines="1"
+                android:ellipsize="end"
+                style="@style/GrayTextStyle" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
