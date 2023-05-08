@@ -11,7 +11,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.example.foodhub.R
 import com.example.foodhub.databinding.ActivityMainBinding
-import com.example.foodhub.user.settings.UsernameSetting
 
 class MainActivity : AppCompatActivity() {
 
