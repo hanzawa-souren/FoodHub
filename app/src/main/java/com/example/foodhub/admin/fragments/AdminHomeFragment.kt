@@ -67,6 +67,8 @@ class AdminHomeFragment : Fragment(), MenuProvider {
 
         userViewModel.getUserCount().observe(viewLifecycleOwner, Observer { totalUser ->
             if (totalUser != null) {
+                var totalUser = totalUser
+                --totalUser        // Remove admin from total registered users
                 bindingAdminHome.usersCount.text = totalUser.toString()
             }
         })

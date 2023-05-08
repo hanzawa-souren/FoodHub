@@ -9,14 +9,6 @@
         android:layout_height="match_parent"
         tools:ignore="ExtraText">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/top_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/salmon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/top_toolbar_menu" />
-
         <fragment
             android:id="@+id/myNavHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -25,6 +17,25 @@
             app:layout_constraintTop_toBottomOf="@id/top_toolbar"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/top_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/salmon"
+            android:theme="@style/ActionBarThemeOverlay"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/top_toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/screen_title"
+                android:textAlignment="center"
+                style="@style/TopToolbarLabelStyle" />
+
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/root_container"

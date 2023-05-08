@@ -12,17 +12,17 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/nearMeFragment"
-        android:name="com.example.foodhub.user.fragments.NearMeFragment"
+        android:name="com.example.foodhub.user.fragments.list.NearMeFragment"
         android:label="fragment_near_me"
         tools:layout="@layout/fragment_near_me" />
     <fragment
         android:id="@+id/volunteerFragment"
-        android:name="com.example.foodhub.user.fragments.VolunteerFragment"
+        android:name="com.example.foodhub.user.fragments.list.VolunteerFragment"
         android:label="fragment_volunteer"
         tools:layout="@layout/fragment_volunteer" />
     <fragment
         android:id="@+id/helplinesFragment"
-        android:name="com.example.foodhub.user.fragments.HelplinesFragment"
+        android:name="com.example.foodhub.user.fragments.list.HelplinesFragment"
         android:label="fragment_helplines"
         tools:layout="@layout/fragment_helplines" />
     <fragment
@@ -37,12 +37,12 @@
         tools:layout="@layout/fragment_donate" />
     <fragment
         android:id="@+id/latestNewsFragment"
-        android:name="com.example.foodhub.user.fragments.LatestNewsFragment"
+        android:name="com.example.foodhub.user.fragments.list.LatestNewsFragment"
         android:label="fragment_latest_news"
         tools:layout="@layout/fragment_latest_news" />
     <fragment
         android:id="@+id/edigestFragment"
-        android:name="com.example.foodhub.user.fragments.EdigestFragment"
+        android:name="com.example.foodhub.user.fragments.list.EdigestFragment"
         android:label="fragment_edigest"
         tools:layout="@layout/fragment_edigest" />
     <fragment

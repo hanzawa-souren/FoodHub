@@ -8,15 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.database.tables.Facility
 import com.example.foodhub.databinding.PreviewCardNearMeBinding
 
-class NearMeHomeAdapter: RecyclerView.Adapter<NearMeHomeAdapter.NearMePreviewViewHolder>() {
+class NearMeListAdapter: RecyclerView.Adapter<NearMeListAdapter.NearMeListViewHolder>() {
 
     private var facilityList = emptyList<Facility>()
-    private val limit = 4
 
-    class NearMePreviewViewHolder(val binding: PreviewCardNearMeBinding): RecyclerView.ViewHolder(binding.root) { }
+    class NearMeListViewHolder(val binding: PreviewCardNearMeBinding): RecyclerView.ViewHolder(binding.root) { }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NearMePreviewViewHolder {
-        return NearMePreviewViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NearMeListViewHolder {
+        return NearMeListViewHolder(
             PreviewCardNearMeBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -26,15 +25,10 @@ class NearMeHomeAdapter: RecyclerView.Adapter<NearMeHomeAdapter.NearMePreviewVie
     }
 
     override fun getItemCount(): Int {
-        if (facilityList.size > limit) {
-            return limit
-        }
-        else {
-            return facilityList.size
-        }
+        return facilityList.size
     }
 
-    override fun onBindViewHolder(holder: NearMePreviewViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NearMeListViewHolder, position: Int) {
         val currentItem = facilityList[position]
 
         holder.binding.nearMeCardImage.setImageURI(Uri.parse(currentItem.nImage))

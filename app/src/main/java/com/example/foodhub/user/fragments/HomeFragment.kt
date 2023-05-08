@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
@@ -57,6 +58,9 @@ class HomeFragment : Fragment() {
         bindingHome = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         voluntaryWorkViewModel = ViewModelProvider(this).get(VoluntaryWorkViewModel::class.java)
+        facilityViewModel = ViewModelProvider(this).get(FacilityViewModel::class.java)
+        latestNewsViewModel = ViewModelProvider(this).get(LatestNewsViewModel::class.java)
+        eDigestViewModel = ViewModelProvider(this).get(EDigestViewModel::class.java)
 
         return bindingHome.root
     }

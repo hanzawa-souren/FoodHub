@@ -1,4 +1,4 @@
-package com.example.foodhub.user.fragments
+package com.example.foodhub.user.fragments.list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

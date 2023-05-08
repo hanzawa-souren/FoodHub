@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
 
         bindingMain = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setContentView(bindingMain.root)
@@ -42,13 +41,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(bindingMain.topToolbar)
 
-        /*bindingMain.fabDonate.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                Navigation.findNavController(this@MainActivity, R.id.myNavHostFragment)
-                    .navigate(R.id.donateFragment)
-            }
-        })*/
-
         bindingMain.fabDonate.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 if (navController.currentDestination?.id != R.id.donateFragment) {
@@ -59,8 +51,6 @@ class MainActivity : AppCompatActivity() {
         })
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        /*bindingMain.bottomNavView.setupWithNavController(navController)*/
 
         bindingMain.bottomNavView.apply {
             navController.let { navController ->
@@ -74,17 +64,10 @@ class MainActivity : AppCompatActivity() {
                 navController.popBackStack(destinationId = it.itemId, inclusive = false)
             }
         }
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.myNavHostFragment)
         return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
-
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_toolbar_menu, menu)
-        return true
-    }*/
 }
 

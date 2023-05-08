@@ -1,0 +1,47 @@
+package com.example.foodhub.user.adapters
+
+import android.net.Uri
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.foodhub.database.tables.LatestNews
+import com.example.foodhub.databinding.PreviewCardBulletinBinding
+
+class LatestNewsListAdapter: RecyclerView.Adapter<LatestNewsListAdapter.LatestNewsListViewHolder>() {
+
+    private var newsList = emptyList<LatestNews>()
+
+    class LatestNewsListViewHolder(val binding: PreviewCardBulletinBinding): RecyclerView.ViewHolder(binding.root) { }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LatestNewsListViewHolder {
+        return LatestNewsListViewHolder(
+            PreviewCardBulletinBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun getItemCount(): Int {
+        return newsList.size
+    }
+
+    override fun onBindViewHolder(holder: LatestNewsListViewHolder, position: Int) {
+        val currentItem = newsList[position]
+
+        holder.binding.bulletinCardImage.setImageURI(Uri.parse(currentItem.lnImage))
+        holder.binding.bulletinCardTitle.text = currentItem.lnTitle
+        holder.binding.bulletinCardDate.text = currentItem.lnDate
+
+        holder.binding.bulletinCardContainer.setOnClickListener { view: View ->
+            TODO("Redirect to latest news details page.")
+        }
+    }
+
+    fun setData(latestNews: List<LatestNews>) {
+        this.newsList = latestNews
+        notifyDataSetChanged()
+    }
+}

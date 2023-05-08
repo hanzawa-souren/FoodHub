@@ -27,7 +27,6 @@
             android:layout_alignParentTop="true"
             android:background="@color/salmon"
             android:theme="@style/ActionBarThemeOverlay"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
