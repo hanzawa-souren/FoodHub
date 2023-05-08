@@ -4,54 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".user.fragments.list.HelplinesFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <include android:id="@+id/include"
-            layout="@layout/orange_backdrop" />
-        <TextView
-            android:id="@+id/helpline_title"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/helplines_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="@dimen/margin_half"
+                android:paddingBottom="100dp"
+                android:paddingTop="62dp"
+                android:clipToPadding="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:listitem="@layout/preview_card_helplines" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/user_helplines_appbar_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Helplines"
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            android:layout_marginTop="20dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <EditText
-            android:id="@+id/searchBar"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/searchbar_background"
-            android:drawableStart="@drawable/search"
-            android:drawablePadding="10dp"
-            android:fontFamily="@font/poppins"
-            android:hint="Search"
-            android:inputType="textPersonName"
-            android:paddingLeft="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="24sp"
+            android:orientation="vertical"
+            android:background="@color/transparent"
+            app:elevation="0dp">
 
-            app:layout_constraintEnd_toEndOf="@+id/helpline_title"
-            app:layout_constraintStart_toStartOf="@id/helpline_title"
-            app:layout_constraintTop_toBottomOf="@id/helpline_title" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/user_helplines_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/orange_backdrop"
+                app:layout_scrollFlags="scroll|enterAlways">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleView"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/user_helplines_searchview"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@drawable/searchview_unfocused"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginHorizontal="@dimen/margin"
+                    android:layout_marginBottom="@dimen/margin"
+                    app:queryHint="Search"
+                    app:queryBackground="@color/transparent"
+                    app:iconifiedByDefault="false"
+                    android:theme="@style/SearchViewStyle" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

@@ -1,107 +1,81 @@
 package com.example.foodhub.user.fragments.list
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodhub.R
+import com.example.foodhub.admin.viewmodels.FacilityViewModel
 import com.example.foodhub.databinding.FragmentNearMeBinding
-import com.example.foodhub.user.models.NearMeModel
+import com.example.foodhub.user.adapters.NearMeListAdapter
 
-class NearMeFragment : Fragment() {
+class NearMeFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private lateinit var bindingNearMe: FragmentNearMeBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var facilityViewModel: FacilityViewModel
+    private lateinit var adapter: NearMeListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_near_me, container, false)
+
         bindingNearMe = DataBindingUtil.inflate(inflater,
             R.layout.fragment_near_me, container, false)
+        facilityViewModel = ViewModelProvider(this).get(FacilityViewModel::class.java)
         return bindingNearMe.root
-
-
-
     }
-    private class CustomAdapter(context: Context ,var arraylist : ArrayList<NearMeModel>) : BaseAdapter(){
-        private val myContext:Context
 
-        init {
-            myContext = context
-        }
-        override fun getCount(): Int {
-            return arraylist.size
-        }
-
-        override fun getItem(p0: Int): Any {
-            return arraylist[p0]
-        }
-
-        override fun getItemId(p0: Int): Long {
-            return p0.toLong()
-        }
-
-        override fun getView(position: Int, p1: View?, viewGroup: ViewGroup?): View {
-            val layoutInflater = LayoutInflater.from(myContext)
-            val rowMain = layoutInflater.inflate(R.layout.preview_card_near_me,viewGroup,false)
-            var item : NearMeModel = arraylist[position]
-            var images = rowMain.findViewById<ImageView>(R.id.near_me_card_image)
-            var name = rowMain.findViewById<TextView>(R.id.near_me_card_title)
-            var location = rowMain.findViewById<TextView>(R.id.near_me_card_location)
-            var facility = rowMain.findViewById<TextView>(R.id.near_me_card_facility)
-
-            images.setImageResource(item.image)
-            name.text = item.title
-            location.text = item.location
-            facility.text = item.facility
-
-            return rowMain
-        }
-    }
-    private fun setDataList() : ArrayList<NearMeModel>{
-        var arrayList : ArrayList<NearMeModel> = ArrayList()
-        arrayList.add(NearMeModel(R.drawable.arrow_forward_ios,"testing 1","Farmer's market","Kuala Lumpur"))
-        arrayList.add(NearMeModel(R.drawable.ic_salmon_about_us,"testing 2","Farmer's ","Johor Bahru"))
-        arrayList.add(NearMeModel(R.drawable.deactivate,"testing 3","market","Selangor"))
-        arrayList.add(NearMeModel(R.drawable.arrow_forward_ios,"testing 1","Farmer's market","Kuala Lumpur"))
-        arrayList.add(NearMeModel(R.drawable.ic_salmon_about_us,"testing 2","Farmer's ","Johor Bahru"))
-        arrayList.add(NearMeModel(R.drawable.deactivate,"testing 3","market","Selangor"))
-        arrayList.add(NearMeModel(R.drawable.arrow_forward_ios,"testing 1","Farmer's market","Kuala Lumpur"))
-        arrayList.add(NearMeModel(R.drawable.ic_salmon_about_us,"testing 2","Farmer's ","Johor Bahru"))
-        arrayList.add(NearMeModel(R.drawable.deactivate,"testing 3","market","Selangor"))
-        return arrayList
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.title = ""
-        (activity as AppCompatActivity).supportActionBar?.hide()
-        val grid = bindingNearMe.gridView
 
-        grid.adapter = CustomAdapter(requireContext(),setDataList())
+        adapter = NearMeListAdapter()
+        bindingNearMe.nearMeList.adapter = adapter
+        bindingNearMe.nearMeList.layoutManager = GridLayoutManager(requireContext(), 2)
 
+        facilityViewModel.getAllFacility.observe(viewLifecycleOwner, Observer { facility ->
+            adapter.setData(facility)
+        })
 
+        bindingNearMe.userNearMeSearchview.isSubmitButtonEnabled = true
+        bindingNearMe.userNearMeSearchview.setOnQueryTextListener(this)
     }
 
-
-    override fun onPause() {
-        super.onPause()
-        (activity as AppCompatActivity).supportActionBar?.title = ""
-        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            searchWorks(query)
+        }
+        return true
     }
 
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if (newText != null) {
+            searchWorks(newText)
+        }
+        return true
+    }
 
+    private fun searchWorks(searchQuery: String) {
+        var searchQuery = searchQuery
+        searchQuery = "%$searchQuery%"
 
+        facilityViewModel.searchFacilities(searchQuery = searchQuery).observe(viewLifecycleOwner, Observer { list ->
+            list?.let {
+                adapter.setData(list)
+            }
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = "Near Me"
+    }
 }

@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.database.tables.Facility
-import com.example.foodhub.databinding.PreviewCardNearMeBinding
+import com.example.foodhub.databinding.ListCardNearMeBinding
 
 class NearMeListAdapter: RecyclerView.Adapter<NearMeListAdapter.NearMeListViewHolder>() {
 
     private var facilityList = emptyList<Facility>()
 
-    class NearMeListViewHolder(val binding: PreviewCardNearMeBinding): RecyclerView.ViewHolder(binding.root) { }
+    class NearMeListViewHolder(val binding: ListCardNearMeBinding): RecyclerView.ViewHolder(binding.root) { }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NearMeListViewHolder {
         return NearMeListViewHolder(
-            PreviewCardNearMeBinding.inflate(
+            ListCardNearMeBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

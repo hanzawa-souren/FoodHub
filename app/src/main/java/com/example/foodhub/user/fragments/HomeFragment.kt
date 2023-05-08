@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.admin.viewmodels.EDigestViewModel
@@ -24,6 +25,7 @@ import com.example.foodhub.user.adapters.EDigestHomeAdapter
 import com.example.foodhub.user.adapters.LatestNewsHomeAdapter
 import com.example.foodhub.user.adapters.NearMeHomeAdapter
 import com.example.foodhub.user.viewmodels.VoluntaryWorkHomeAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
 
@@ -87,6 +89,20 @@ class HomeFragment : Fragment() {
         setNearMePreviewScroll()
         setLatestNewsPreviewScroll()
         setEDigestPreviewScroll()
+
+        bindingHome.volunteerPreviewTitle.setOnClickListener { view: View ->
+            findNavController().navigate(R.id.volunteerFragment)
+        }
+        bindingHome.nearMePreviewTitle.setOnClickListener { view: View ->
+            //findNavController().navigate(R.id.nearMeFragment)
+            (activity as AppCompatActivity?)!!.findViewById<BottomNavigationView>(R.id.bottom_nav_view).selectedItemId = R.id.nearMeFragment
+        }
+        bindingHome.latestNewsPreviewTitle.setOnClickListener { view: View ->
+            findNavController().navigate(R.id.latestNewsFragment)
+        }
+        bindingHome.edigestPreviewTitle.setOnClickListener { view: View ->
+            findNavController().navigate(R.id.edigestFragment)
+        }
     }
 
     private fun setVolunteerPreviewScroll() {

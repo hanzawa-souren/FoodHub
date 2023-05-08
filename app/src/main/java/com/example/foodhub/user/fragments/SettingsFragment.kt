@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import com.example.foodhub.R
 
@@ -90,9 +91,12 @@ class SettingsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.title = ""
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).visibility = View.GONE
     }
 
-
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).visibility = View.VISIBLE
+    }
 }

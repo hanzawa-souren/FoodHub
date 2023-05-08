@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.database.tables.LatestNews
-import com.example.foodhub.databinding.PreviewCardBulletinBinding
+import com.example.foodhub.databinding.ListCardBulletinBinding
 
 class LatestNewsListAdapter: RecyclerView.Adapter<LatestNewsListAdapter.LatestNewsListViewHolder>() {
 
     private var newsList = emptyList<LatestNews>()
 
-    class LatestNewsListViewHolder(val binding: PreviewCardBulletinBinding): RecyclerView.ViewHolder(binding.root) { }
+    class LatestNewsListViewHolder(val binding: ListCardBulletinBinding): RecyclerView.ViewHolder(binding.root) { }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LatestNewsListViewHolder {
         return LatestNewsListViewHolder(
-            PreviewCardBulletinBinding.inflate(
+            ListCardBulletinBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

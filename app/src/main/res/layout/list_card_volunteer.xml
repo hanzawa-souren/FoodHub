@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/bulletin_card_container"
-        android:layout_width="300dp"
+        android:id="@+id/volunteer_card_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:cardElevation="5dp"
@@ -14,13 +14,13 @@
         android:foreground="?android:attr/selectableItemBackground">
 
         <LinearLayout
-            android:id="@+id/bulletin_card"
+            android:id="@+id/volunteer_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/bulletin_card_image"
+                android:id="@+id/volunteer_card_image"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
@@ -29,10 +29,10 @@
                 android:background="@color/gray"
                 android:paddingBottom="0.5dp"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop" />
 
             <TextView
-                android:id="@+id/bulletin_card_title"
+                android:id="@+id/volunteer_card_title"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="left"
@@ -45,14 +45,14 @@
                 style="@style/BlackTextStyle" />
 
             <TextView
-                android:id="@+id/bulletin_card_date"
+                android:id="@+id/volunteer_card_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:contentDescription="@string/placeholder_date"
-                android:drawableLeft="@drawable/ic_card_date_posted"
+                android:contentDescription="@string/placeholder_location"
+                android:drawableLeft="@drawable/ic_card_location"
                 android:drawablePadding="@dimen/card_drawable_pad"
-                android:text="@string/placeholder_date"
+                android:text="@string/placeholder_location"
                 android:textSize="@dimen/card_desc"
                 android:gravity="center_vertical"
                 android:padding="@dimen/card_text_pad"

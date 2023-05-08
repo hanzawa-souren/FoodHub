@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.database.tables.VoluntaryWork
-import com.example.foodhub.databinding.PreviewCardVolunteerBinding
+import com.example.foodhub.databinding.ListCardVolunteerBinding
 
 class VoluntaryWorkListAdapter: RecyclerView.Adapter<VoluntaryWorkListAdapter.VoluntaryWorkListViewHolder>() {
 
     private var vWorkList = emptyList<VoluntaryWork>()
 
-    class VoluntaryWorkListViewHolder(val binding: PreviewCardVolunteerBinding): RecyclerView.ViewHolder(binding.root) { }
+    class VoluntaryWorkListViewHolder(val binding: ListCardVolunteerBinding): RecyclerView.ViewHolder(binding.root) { }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VoluntaryWorkListViewHolder {
         return VoluntaryWorkListViewHolder(
-            PreviewCardVolunteerBinding.inflate(
+            ListCardVolunteerBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
