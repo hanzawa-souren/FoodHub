@@ -17,7 +17,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:paddingHorizontal="@dimen/margin_half"
-                android:paddingBottom="@dimen/margin"
+                android:paddingBottom="100dp"
                 android:paddingTop="65dp"
                 android:clipToPadding="false"
                 app:layout_constraintStart_toStartOf="parent"

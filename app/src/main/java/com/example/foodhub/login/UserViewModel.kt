@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class UserViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository: UserRepository
-    private var readUser : User? = User(0, "", "")
+    private var readUser : User = User(0, "", "")
     private var userCount: LiveData<Int>
 
     init {
@@ -27,29 +27,11 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun getUser(id: String): User? {
+    fun getUser(id: String): User {
         viewModelScope.launch(Dispatchers.IO) {
             readUser = repository.getUser(id)
         }
         return readUser
-    }
-
-    fun updateUsername(id: String, logID : String){
-        viewModelScope.launch(Dispatchers.IO){
-            repository.updateUsername(id, logID)
-        }
-    }
-
-    fun updatePassword(id: String, password : String){
-        viewModelScope.launch(Dispatchers.IO){
-            repository.updatePassword(id, password)
-        }
-    }
-
-    fun deleteUser(id: String){
-        viewModelScope.launch(Dispatchers.IO){
-            repository.deleteUser(id)
-        }
     }
 
     fun addDonation(donation: Donation) {

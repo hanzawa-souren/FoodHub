@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/near_me_card_container"
-        android:layout_width="170dp"
+        android:id="@+id/bulletin_card_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:cardElevation="5dp"
@@ -14,13 +14,13 @@
         android:foreground="?android:attr/selectableItemBackground">
 
         <LinearLayout
-            android:id="@+id/near_me_card"
+            android:id="@+id/bulletin_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/near_me_card_image"
+                android:id="@+id/bulletin_card_image"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
@@ -32,7 +32,7 @@
                 android:scaleType="centerCrop"/>
 
             <TextView
-                android:id="@+id/near_me_card_title"
+                android:id="@+id/bulletin_card_title"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="left"
@@ -45,35 +45,17 @@
                 style="@style/BlackTextStyle" />
 
             <TextView
-                android:id="@+id/near_me_card_facility"
+                android:id="@+id/bulletin_card_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:contentDescription="@string/placeholder_facility"
-                android:drawableLeft="@drawable/ic_card_facility"
+                android:contentDescription="@string/placeholder_date"
+                android:drawableLeft="@drawable/ic_card_date_posted"
                 android:drawablePadding="@dimen/card_drawable_pad"
-                android:text="@string/placeholder_facility"
+                android:text="@string/placeholder_date"
                 android:textSize="@dimen/card_desc"
                 android:gravity="center_vertical"
-                android:paddingTop="@dimen/card_drawable_pad"
-                android:paddingHorizontal="@dimen/card_text_pad"
-                android:maxLines="1"
-                android:ellipsize="end"
-                style="@style/GrayTextStyle" />
-
-            <TextView
-                android:id="@+id/near_me_card_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:contentDescription="@string/placeholder_location"
-                android:drawableLeft="@drawable/ic_card_location"
-                android:drawablePadding="@dimen/card_drawable_pad"
-                android:text="@string/placeholder_location"
-                android:textSize="@dimen/card_desc"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="@dimen/card_text_pad"
-                android:paddingBottom="@dimen/card_drawable_pad"
+                android:padding="@dimen/card_text_pad"
                 android:maxLines="1"
                 android:ellipsize="end"
                 style="@style/GrayTextStyle" />

@@ -9,22 +9,36 @@
         android:layout_height="match_parent"
         tools:ignore="ExtraText">
 
+        <fragment
+            android:id="@+id/myNavHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/top_toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/top_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:background="@color/salmon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/top_toolbar_menu" />
+            android:theme="@style/ActionBarThemeOverlay"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <fragment
-            android:id="@+id/myNavHostFragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/top_toolbar"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph" />
+            <TextView
+                android:id="@+id/top_toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/screen_title"
+                android:textAlignment="center"
+                style="@style/TopToolbarLabelStyle" />
+
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/root_container"
@@ -51,14 +65,14 @@
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/bottom_nav_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
                     android:background="@color/transparent"
                     android:paddingBottom="5dp"
                     app:menu="@menu/bottom_nav_menu"
                     app:labelVisibilityMode="labeled"
                     app:itemTextColor="@drawable/bottom_nav_bar_color"
                     app:itemIconTint="@drawable/bottom_nav_bar_color"
-                    app:itemIconSize="30dp"
+                    app:itemIconSize="28dp"
                     app:itemPaddingBottom="5dp"
                     app:itemTextAppearanceActive="@style/BottomNavLabelStyle"
                     app:itemTextAppearanceInactive="@style/BottomNavLabelStyle"

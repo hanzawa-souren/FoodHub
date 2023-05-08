@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentMyProfileBinding
 import com.example.foodhub.user.adapters.ProfileAdapter
-import com.example.foodhub.user.viewmodels.ProfileModel
+import com.example.foodhub.user.models.ProfileModel
 
 class MyProfileFragment : Fragment() {
 
@@ -35,8 +36,7 @@ class MyProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.title = ""
-        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
+
         val rview = bindingProfile.profileStats
         rview.layoutManager = LinearLayoutManager(requireContext())
         rview.setHasFixedSize(true)
@@ -51,6 +51,17 @@ class MyProfileFragment : Fragment() {
 
 
         return arrayList
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.findViewById<Toolbar>(R.id.top_toolbar).visibility = View.GONE
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity?)!!.findViewById<Toolbar>(R.id.top_toolbar).visibility = View.VISIBLE
     }
 
 }

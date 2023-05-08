@@ -2,59 +2,65 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".user.fragments.LatestNewsFragment">
+    tools:context=".user.fragments.list.LatestNewsFragment">
 
-
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <include android:id="@+id/include"
-                layout="@layout/orange_backdrop" />
-            <TextView
-                android:id="@+id/Latest_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Latest News"
-                android:textColor="@color/white"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <EditText
-                android:id="@+id/searchBar"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/searchbar_background"
-                android:drawableStart="@drawable/search"
-                android:drawablePadding="10dp"
-                android:fontFamily="@font/poppins"
-                android:hint="Search"
-                android:inputType="textPersonName"
-                android:paddingLeft="10dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="24sp"
-
-                app:layout_constraintEnd_toEndOf="@+id/Latest_title"
-                app:layout_constraintStart_toStartOf="@id/Latest_title"
-                app:layout_constraintTop_toBottomOf="@id/Latest_title" />
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycleView"
-                android:layout_width="wrap_content"
-                android:layout_height="450dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/latest_news_list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:paddingHorizontal="@dimen/margin_half"
+                android:paddingBottom="100dp"
+                android:paddingTop="62dp"
+                android:clipToPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:listitem="@layout/list_card_bulletin"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/user_latest_news_appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/transparent"
+            app:elevation="0dp">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/user_latest_news_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/orange_backdrop"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/user_latest_news_searchview"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@drawable/searchview_unfocused"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginHorizontal="@dimen/margin"
+                    android:layout_marginBottom="@dimen/margin"
+                    app:queryHint="Search"
+                    app:queryBackground="@color/transparent"
+                    app:iconifiedByDefault="false"
+                    android:theme="@style/SearchViewStyle" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

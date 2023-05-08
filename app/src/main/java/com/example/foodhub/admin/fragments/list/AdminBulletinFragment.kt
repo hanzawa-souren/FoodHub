@@ -1,13 +1,15 @@
 package com.example.foodhub.admin.fragments.list
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentAdminBulletinBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -20,8 +22,7 @@ class AdminBulletinFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_bulletin, container, false)
+
         bindingAdminBulletin = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_bulletin, container, false)
         return bindingAdminBulletin.root
     }

@@ -16,7 +16,7 @@
                 android:id="@+id/volunteer_recycler"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:paddingHorizontal="@dimen/margin"
+                android:paddingHorizontal="@dimen/margin_half"
                 android:paddingBottom="@dimen/margin"
                 android:paddingTop="70dp"
                 android:clipToPadding="false"
