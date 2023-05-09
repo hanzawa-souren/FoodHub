@@ -2,6 +2,8 @@ package com.example.foodhub.admin.fragments.update
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -20,12 +22,17 @@ import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodhub.R
 import com.example.foodhub.admin.viewmodels.VoluntaryWorkViewModel
+import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.database.tables.VoluntaryWork
 import com.example.foodhub.databinding.FragmentAdminUpdateVolunteerBinding
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
 
@@ -33,7 +40,7 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
     private val args by navArgs<AdminUpdateVolunteerFragmentArgs>()
     private lateinit var voluntaryWorkViewModel: VoluntaryWorkViewModel
     private lateinit var uploadedImage: Uri
-    //private lateinit var imageBitmap: Bitmap
+    private var imageBitmap: Bitmap? = null
     private var imageUriNull = true
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -56,12 +63,9 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_update_volunteer, container, false)
+
         bindingUpdateVolunteer = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_update_volunteer, container, false)
-
         voluntaryWorkViewModel = ViewModelProvider(this).get(VoluntaryWorkViewModel::class.java)
-
         return bindingUpdateVolunteer.root
     }
 
@@ -76,7 +80,10 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
-        bindingUpdateVolunteer.updateVImage.setImageURI(Uri.parse(args.currentWork.vImage))
+        val imageFileName = args.currentWork.vImage.substring(args.currentWork.vImage.lastIndexOf("/")+1)
+        Log.d("UpdateVolunteerFragment", imageFileName)
+        imageBitmap = ImageStorageManager.getImageFromInternalStorage(requireContext(), imageFileName)
+        bindingUpdateVolunteer.updateVImage.setImageBitmap(imageBitmap)
 
         bindingUpdateVolunteer.updateVTitle.setText(args.currentWork.vTitle)
         bindingUpdateVolunteer.updateVDesc.setText(args.currentWork.vDesc)
@@ -91,20 +98,11 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         bindingUpdateVolunteer.updateVMaps.setText(args.currentWork.vMaps)
         bindingUpdateVolunteer.updateVWaze.setText(args.currentWork.vWaze)
 
-        bindingUpdateVolunteer.vUpdateButton.setOnClickListener {
-            updateItem()
-        }
+        bindingUpdateVolunteer.vUpdateButton.setOnClickListener { updateItem() }
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun updateItem() {
-
-        val vImage: String
-        if (!imageUriNull) {
-            vImage = uploadedImage.toString()
-        }
-        else {
-            vImage = args.currentWork.vImage
-        }
 
         val vTitle = bindingUpdateVolunteer.updateVTitle.text.toString()
         val vDesc = bindingUpdateVolunteer.updateVDesc.text.toString()
@@ -119,7 +117,34 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         val vMaps = bindingUpdateVolunteer.updateVMaps.text.toString()
         val vWaze = bindingUpdateVolunteer.updateVWaze.text.toString()
 
-        if (inputCheck(vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vPhone, vWebsite, vReglink, vMaps, vWaze)) {
+        if (inputCheck(vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vPhone, vWebsite, vReglink, vMaps, vWaze)) {
+
+            val currentTime = Calendar.getInstance().time
+            val formatter = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
+            val timestamp = formatter.format(currentTime).toString()
+            val imageFileName = "v_work_img_$timestamp"
+
+            var vImage = ""
+            var success: Boolean = false
+            if (!imageUriNull) {
+                val imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireActivity().contentResolver, uploadedImage))
+
+                // Save the new image file into internal storage
+                viewLifecycleOwner.lifecycleScope.launch {
+                    vImage = ImageStorageManager.saveToInternalStorage(requireContext(), imageBitmap, imageFileName)
+                }
+
+                // Remove the old image file from internal storage
+                viewLifecycleOwner.lifecycleScope.launch {
+                    success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentWork.vImage.substring(args.currentWork.vImage.lastIndexOf("/")+1))
+                }
+            }
+            else {
+                vImage = args.currentWork.vImage
+            }
+            Log.d("Update new pic", "File absolute path: $vImage")
+            Log.d("Delete old pic", "Successful?: $success")
+
             val voluntaryWork = VoluntaryWork(args.currentWork.vId, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze)
             voluntaryWorkViewModel.updateWork(voluntaryWork)
             Toast.makeText(requireContext(), "Successfully updated!", Toast.LENGTH_SHORT).show()
@@ -130,8 +155,8 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         }
     }
 
-    private fun inputCheck(vImage: String, vTitle: String, vDesc: String, vStreet: String, vCity: String, vPostcode: String, vState: String, vCountry: String, vPhone: String, vWebsite: String, vReglink: String, vMaps: String, vWaze: String): Boolean {
-        return !(TextUtils.isEmpty(vImage) || TextUtils.isEmpty(vTitle) || TextUtils.isEmpty(vDesc) || TextUtils.isEmpty(vStreet) || TextUtils.isEmpty(vCity) || TextUtils.isEmpty(vPostcode) || TextUtils.isEmpty(vState) || TextUtils.isEmpty(vCountry) || TextUtils.isEmpty(vPhone) || TextUtils.isEmpty(vWebsite) || TextUtils.isEmpty(vReglink) || TextUtils.isEmpty(vMaps) || TextUtils.isEmpty(vWaze))
+    private fun inputCheck(vTitle: String, vDesc: String, vStreet: String, vCity: String, vPostcode: String, vState: String, vCountry: String, vPhone: String, vWebsite: String, vReglink: String, vMaps: String, vWaze: String): Boolean {
+        return !(TextUtils.isEmpty(vTitle) || TextUtils.isEmpty(vDesc) || TextUtils.isEmpty(vStreet) || TextUtils.isEmpty(vCity) || TextUtils.isEmpty(vPostcode) || TextUtils.isEmpty(vState) || TextUtils.isEmpty(vCountry) || TextUtils.isEmpty(vPhone) || TextUtils.isEmpty(vWebsite) || TextUtils.isEmpty(vReglink) || TextUtils.isEmpty(vMaps) || TextUtils.isEmpty(vWaze))
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -148,6 +173,14 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
     private fun deleteWork() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { _, _ ->
+
+            Log.d("Photo to-be-deleted", "File path: ${args.currentWork.vImage}")
+            var success: Boolean = false
+            viewLifecycleOwner.lifecycleScope.launch {
+                success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentWork.vImage.substring(args.currentWork.vImage.lastIndexOf("/")+1))
+            }
+            Log.d("Deletion successful?", "File path: $success")
+
             voluntaryWorkViewModel.deleteWork(args.currentWork)
             Toast.makeText(
                 requireContext(),

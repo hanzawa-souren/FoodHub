@@ -1,12 +1,15 @@
 package com.example.foodhub.admin.adapters
 
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.admin.fragments.list.AdminBulletinFragmentDirections
+import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.database.tables.LatestNews
 import com.example.foodhub.databinding.AdminBulletinCardBinding
 
@@ -33,7 +36,14 @@ class AdminLatestNewsAdapter: RecyclerView.Adapter<AdminLatestNewsAdapter.Latest
     override fun onBindViewHolder(holder: LatestNewsViewHolder, position: Int) {
         val currentItem = newsList[position]
 
-        holder.binding.bulletinImage.setImageURI(Uri.parse(currentItem.lnImage))
+        val imageFileName = currentItem.lnImage.substring(currentItem.lnImage.lastIndexOf("/")+1)
+        Log.d("LatestNewsAdapter", imageFileName)
+        val imageBitmap = ImageStorageManager.getImageFromInternalStorage(holder.binding.bulletinImage.context, imageFileName)
+
+        if (imageBitmap != null) {
+            holder.binding.bulletinImage.setImageBitmap(imageBitmap)
+        }
+
         holder.binding.bulletinTitle.text = currentItem.lnTitle
         holder.binding.bulletinDate.text = currentItem.lnDate
         holder.binding.bulletinContent.text = currentItem.lnContent

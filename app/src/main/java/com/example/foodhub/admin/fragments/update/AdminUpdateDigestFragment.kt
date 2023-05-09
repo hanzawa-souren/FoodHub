@@ -2,6 +2,8 @@ package com.example.foodhub.admin.fragments.update
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -20,12 +22,15 @@ import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodhub.R
 import com.example.foodhub.admin.viewmodels.EDigestViewModel
+import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.database.tables.EDigest
 import com.example.foodhub.databinding.FragmentAdminUpdateDigestBinding
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,6 +40,7 @@ class AdminUpdateDigestFragment : Fragment(), MenuProvider {
     private val args by navArgs<AdminUpdateDigestFragmentArgs>()
     private lateinit var eDigestViewModel: EDigestViewModel
     private lateinit var uploadedImage: Uri
+    private var imageBitmap: Bitmap? = null
     private var imageUriNull = true
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -57,12 +63,9 @@ class AdminUpdateDigestFragment : Fragment(), MenuProvider {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_update_digest, container, false)
+
         bindingUpdateDigest = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_update_digest, container, false)
-
         eDigestViewModel = ViewModelProvider(this).get(EDigestViewModel::class.java)
-
         return bindingUpdateDigest.root
     }
 
@@ -77,7 +80,11 @@ class AdminUpdateDigestFragment : Fragment(), MenuProvider {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
-        bindingUpdateDigest.updateEImage.setImageURI(Uri.parse(args.currentDigest.eImage))
+        val imageFileName = args.currentDigest.eImage.substring(args.currentDigest.eImage.lastIndexOf("/")+1)
+        Log.d("UpdateDigestFragment", imageFileName)
+        imageBitmap = ImageStorageManager.getImageFromInternalStorage(requireContext(), imageFileName)
+        bindingUpdateDigest.updateEImage.setImageBitmap(imageBitmap)
+
         bindingUpdateDigest.updateEAuthor.setText(args.currentDigest.eAuthor)
         bindingUpdateDigest.updateETitle.setText(args.currentDigest.eTitle)
         bindingUpdateDigest.updateEContent.setText(args.currentDigest.eContent)
@@ -85,21 +92,40 @@ class AdminUpdateDigestFragment : Fragment(), MenuProvider {
         bindingUpdateDigest.eUpdateButton.setOnClickListener { updateItem() }
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun updateItem() {
-
-        val eImage: String
-        if (!imageUriNull) {
-            eImage = uploadedImage.toString()
-        }
-        else {
-            eImage = args.currentDigest.eImage
-        }
 
         val eAuthor = bindingUpdateDigest.updateEAuthor.text.toString()
         val eTitle = bindingUpdateDigest.updateETitle.text.toString()
         val eContent = bindingUpdateDigest.updateEContent.text.toString()
 
-        if (inputCheck(eImage, eAuthor, eTitle, eContent)) {
+        if (inputCheck(eAuthor, eTitle, eContent)) {
+
+            val currentTime2 = Calendar.getInstance().time
+            val formatter2 = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
+            val timestamp = formatter2.format(currentTime2).toString()
+            val imageFileName = "e_digest_img_$timestamp"
+
+            var eImage = ""
+            var success: Boolean = false
+            if (!imageUriNull) {
+                val imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireActivity().contentResolver, uploadedImage))
+
+                // Save the new image file into internal storage
+                viewLifecycleOwner.lifecycleScope.launch {
+                    eImage = ImageStorageManager.saveToInternalStorage(requireContext(), imageBitmap, imageFileName)
+                }
+
+                // Remove the old image file from internal storage
+                viewLifecycleOwner.lifecycleScope.launch {
+                    success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentDigest.eImage.substring(args.currentDigest.eImage.lastIndexOf("/")+1))
+                }
+            }
+            else {
+                eImage = args.currentDigest.eImage
+            }
+            Log.d("Update new pic", "File absolute path: $eImage")
+            Log.d("Delete old pic", "Successful?: $success")
 
             val eDate: String
             if (verifyChanges(eImage, eAuthor, eTitle, eContent)) {
@@ -126,8 +152,8 @@ class AdminUpdateDigestFragment : Fragment(), MenuProvider {
         return !((eImage == args.currentDigest.eImage) && (eAuthor == args.currentDigest.eAuthor) && (eTitle == args.currentDigest.eTitle) && (eContent == args.currentDigest.eContent))
     }
 
-    private fun inputCheck(eImage: String, eAuthor: String, eTitle: String, eContent: String): Boolean {
-        return !(TextUtils.isEmpty(eImage) || TextUtils.isEmpty(eAuthor) || TextUtils.isEmpty(eTitle) || TextUtils.isEmpty(eContent))
+    private fun inputCheck(eAuthor: String, eTitle: String, eContent: String): Boolean {
+        return !(imageUriNull || TextUtils.isEmpty(eAuthor) || TextUtils.isEmpty(eTitle) || TextUtils.isEmpty(eContent))
     }
 
     override fun onResume() {
