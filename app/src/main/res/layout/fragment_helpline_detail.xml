@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:id="@+id/home_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/helpline_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="MIASA Crisis Helpline"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/helpline_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#80000000"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/poppins"
+                android:layout_marginTop="10dp"
+                android:text="Monday\n
+Tuesday\n
+Wednesday\n
+Thursday\n
+Friday\n
+Saturday\n
+Sunday"
+                app:layout_constraintStart_toEndOf="@+id/imageView9"
+                app:layout_constraintTop_toBottomOf="@+id/helpline_detail_title" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+
+                app:layout_constraintStart_toStartOf="@+id/helpline_detail_title"
+                app:layout_constraintTop_toTopOf="@+id/helpline_schedule"
+                app:srcCompat="@drawable/pace" />
+
+            <TextView
+                android:id="@+id/helpline_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/add_call__1_"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginTop="20dp"
+                android:drawablePadding="10dp"
+                android:text="1-800-820066"
+                android:textColor="#4A9798"
+                android:textSize="16sp"
+
+                app:layout_constraintStart_toStartOf="@+id/imageView9"
+                app:layout_constraintTop_toBottomOf="@+id/helpline_schedule" />
+
+            <TextView
+                android:id="@+id/website_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:drawableLeft="@drawable/language__1_"
+                android:text="miasa.org.my"
+                android:textSize="16dp"
+                android:textColor="#4A9798"
+                android:drawablePadding="10dp"
+
+                app:layout_constraintStart_toStartOf="@+id/helpline_number"
+                app:layout_constraintTop_toBottomOf="@+id/helpline_number" />
+
+            <ImageView
+                android:id="@+id/call_now_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                app:layout_constraintStart_toStartOf="@+id/website_link"
+                app:layout_constraintTop_toBottomOf="@+id/website_link"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/click_to_call" />
+
+            <ImageView
+                android:id="@+id/chat_now_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/call_now_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/call_now_img"
+                android:layout_marginRight="100dp"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/click_to_chat" />
+
+            <TextView
+                android:id="@+id/call_now_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="#4A9798"
+                android:text="CALL NOW"
+                app:layout_constraintEnd_toEndOf="@+id/call_now_img"
+                app:layout_constraintStart_toStartOf="@+id/call_now_img"
+                app:layout_constraintTop_toBottomOf="@+id/call_now_img" />
+
+            <TextView
+                android:id="@+id/chat_now_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="MAIL NOW"
+                android:textColor="#4A9798"
+                app:layout_constraintEnd_toEndOf="@+id/chat_now_img"
+                app:layout_constraintStart_toStartOf="@+id/chat_now_img"
+                app:layout_constraintTop_toBottomOf="@+id/chat_now_img" />
+
+            <TextView
+                android:id="@+id/description_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@+id/website_link"
+                app:layout_constraintTop_toBottomOf="@+id/call_now_title" />
+
+            <TextView
+                android:id="@+id/description_content"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins"
+                android:text="MIASA Crisis Helpline provides 24/7, free and confidential support by phone. We are here for everyone in Malaysia who may be struggling or looking for support with abuse and domestic violence, anxiety, bullying, dementia and Alzheimers, depression, eating and body image, family, gambling, gender and sexual identity, loneliness, parenting, pregnancy and abortion, trauma and PTSD, relationships, school and work, self-harm, stress, substance use, suicidal thoughts, supporting others, grief and loss, and physical illness. We are dedicated to preventing suicide. If you're contemplating suicide or you're worried about warning signs in someone else, please reach out to us for help.  When you reach out to us you will talk with one of our friendly and supportive peers or volunteers who have experience in how to help people with similar experiences to your own. They will listen, express empathy and understanding, and assist you to find a way through your situation. Anyone can call and receive free support. We exist to help everyone regardless of age, gender, beliefs or ethnicity. We recognise that difficult mental health or crisis experiences can happen at any time, so we are available 24 hours a day, every day of the week."
+                android:textColor="#80000000"
+                app:layout_constraintStart_toStartOf="@+id/description_title"
+                app:layout_constraintTop_toBottomOf="@+id/description_title" />
+
+            <TextView
+                android:textColor="#80000000"
+                android:id="@+id/schedule_time"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/poppins"
+
+                android:text="00:00 - 23:59\n
+00:00 - 23:59\n
+00:00 - 23:59\n
+00:00 - 23:59\n
+00:00 - 23:59\n
+00:00 - 23:59\n
+00:00 - 23:59"
+                app:layout_constraintStart_toEndOf="@+id/helpline_schedule"
+                app:layout_constraintTop_toTopOf="@+id/helpline_schedule" />
+
+            <TextView
+                android:id="@+id/bottom_space"
+                android:layout_width="wrap_content"
+                android:layout_height="165dp"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

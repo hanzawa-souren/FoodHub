@@ -31,11 +31,6 @@
         android:label="fragment_my_profile"
         tools:layout="@layout/fragment_my_profile" />
     <fragment
-        android:id="@+id/donateFragment"
-        android:name="com.example.foodhub.user.fragments.DonateFragment"
-        android:label="fragment_donate"
-        tools:layout="@layout/fragment_donate" />
-    <fragment
         android:id="@+id/latestNewsFragment"
         android:name="com.example.foodhub.user.fragments.list.LatestNewsFragment"
         android:label="fragment_latest_news"
@@ -50,4 +45,25 @@
         android:name="com.example.foodhub.user.fragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/donateConfirmFragment"
+        android:name="com.example.foodhub.user.fragments.DonateConfirmFragment"
+        android:label="DonateConfirmFragment" />
+    <fragment
+        android:id="@+id/volunteerDetailsFragment"
+        android:name="com.example.foodhub.VolunteerDetailsFragment"
+        android:label="VolunteerDetailsFragment" />
+    <fragment
+        android:id="@+id/donateFragment2"
+        android:name="com.example.foodhub.DonateFragment"
+        android:label="fragment_donate"
+        tools:layout="@layout/fragment_donate" />
+    <fragment
+        android:id="@+id/termsAndConditionFragment"
+        android:name="com.example.foodhub.user.fragments.TermsAndConditionFragment"
+        android:label="TermsAndConditionFragment" />
+    <fragment
+        android:id="@+id/donateSuccessFragment"
+        android:name="com.example.foodhub.DonateSuccessFragment"
+        android:label="DonateSuccessFragment" />
 </navigation>

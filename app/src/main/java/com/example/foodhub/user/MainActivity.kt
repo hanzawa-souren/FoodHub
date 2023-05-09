@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(setOf(
             R.id.homeFragment,
             R.id.nearMeFragment,
-            R.id.donateFragment,
+            R.id.donateFragment2,
             R.id.helplinesFragment,
             R.id.myProfileFragment
         ))
@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity() {
 
         bindingMain.fabDonate.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                if (navController.currentDestination?.id != R.id.donateFragment) {
+                if (navController.currentDestination?.id != R.id.donateFragment2) {
                     Navigation.findNavController(this@MainActivity, R.id.myNavHostFragment)
-                        .navigate(R.id.donateFragment)
+                        .navigate(R.id.donateFragment2)
                     bindingMain.bottomNavView.uncheckAllItems()
                 }
             }

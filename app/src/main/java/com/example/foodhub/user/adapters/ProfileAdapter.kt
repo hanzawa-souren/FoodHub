@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.R
-import com.example.foodhub.user.models.ProfileModel
+import com.example.foodhub.models.ProfileModel
 
 class ProfileAdapter(private val mList: List<ProfileModel>) : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
 
