@@ -2,6 +2,7 @@ package com.example.foodhub.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.window.OnBackInvokedDispatcher
 import androidx.core.view.MenuHost
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -48,5 +49,9 @@ class AdminMainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
+    }
+
+    override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
+        return super.getOnBackInvokedDispatcher()
     }
 }

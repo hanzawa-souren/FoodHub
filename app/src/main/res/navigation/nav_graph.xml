@@ -56,7 +56,7 @@
         android:label="VolunteerDetailsFragment" />
     <fragment
         android:id="@+id/donateFragment2"
-        android:name="com.example.foodhub.DonateFragment"
+        android:name="com.example.foodhub.user.fragments.DonateFragment"
         android:label="fragment_donate"
         tools:layout="@layout/fragment_donate" />
     <fragment
@@ -65,7 +65,7 @@
         android:label="TermsAndConditionFragment" />
     <fragment
         android:id="@+id/donateSuccessFragment"
-        android:name="com.example.foodhub.DonateSuccessFragment"
+        android:name="com.example.foodhub.user.fragments.DonateSuccessFragment"
         android:label="DonateSuccessFragment" />
     <fragment
         android:id="@+id/passwordSettings"
