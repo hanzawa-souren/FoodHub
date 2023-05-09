@@ -186,6 +186,14 @@ class AdminUpdateNearMeFragment : Fragment(), MenuProvider, AdapterView.OnItemSe
     private fun deleteFacility() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { _, _ ->
+
+            Log.d("Photo to-be-deleted", "File path: ${args.currentFacility.nImage}")
+            var success: Boolean = false
+            viewLifecycleOwner.lifecycleScope.launch {
+                success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentFacility.nImage.substring(args.currentFacility.nImage.lastIndexOf("/")+1))
+            }
+            Log.d("Deletion successful?", "File path: $success")
+
             facilityViewModel.deleteFacility(args.currentFacility)
             Toast.makeText(
                 requireContext(),
