@@ -112,11 +112,13 @@ class DonateConfirmFragment : Fragment() {
         bindingDonateConfirm.termsAndCondition.setOnClickListener{
             var user = mUserViewModel.getUser(viewModel.userID.value?:"")
             if (number != null) {
-                mUserViewModel.addDonation(Donation(
-                    dId = 0,
-                    uId = user.loginID,
-                    dMethod=paymentMethodNames[paymentMethodImageNum(paymentMethodName)],
-                    dAmount = number.toDouble()))
+                if (user != null) {
+                    mUserViewModel.addDonation(Donation(
+                        dId = 0,
+                        uId = user.loginID,
+                        dMethod=paymentMethodNames[paymentMethodImageNum(paymentMethodName)],
+                        dAmount = number.toDouble()))
+                }
             }
             view.findNavController().navigate(R.id.termsAndConditionFragment)
         }
