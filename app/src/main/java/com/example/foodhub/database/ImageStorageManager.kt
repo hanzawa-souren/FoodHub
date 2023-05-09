@@ -41,7 +41,6 @@ class ImageStorageManager {
             val directory = context.filesDir
             var count = 0
             for (imageFileName in imageFileNames) {
-                Log.d("ImageStorageManager", "Image ${count+1}: $imageFileName")
                 val file = File(directory, imageFileName)
                 val success = file.delete()
                 if (success) {
