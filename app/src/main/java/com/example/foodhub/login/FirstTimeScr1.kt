@@ -44,7 +44,7 @@ class FirstTimeScr1 : Fragment() {
             prefEditor.putBoolean("firstTime", false)
             prefEditor.apply()
         } else {
-            findNavController().navigate(R.id.preLogin)
+            findNavController().navigate(R.id.action_firstTimeScr1_to_preLogin)
         }
 
         binding.firstNextBtn.setOnClickListener {
