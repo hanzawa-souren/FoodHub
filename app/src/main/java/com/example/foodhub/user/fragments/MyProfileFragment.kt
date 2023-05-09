@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -48,24 +49,26 @@ class MyProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val rview = bindingProfile.profileStats
-        rview.layoutManager = LinearLayoutManager(requireContext())
-        rview.setHasFixedSize(true)
+
         mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         (activity as AppCompatActivity).supportActionBar?.hide()
+        val rview = bindingProfile.profileStats
 
         var user = mUserViewModel.getUser(viewModel.userID.value?:"")
-        if (user != null) {
-            bindingProfile.profileName.text = user.loginID
-        }
 
-        var day : String= user?.day.toString()
+        bindingProfile.profileName.text = user?.loginID
         val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
+        rview.layoutManager = LinearLayoutManager(requireContext())
+        rview.setHasFixedSize(true)
+        var day : String= user?.day.toString()
+
         var year : String= user?.year.toString()
         var month: String = months[user?.month!!]
         var dateJoined = "$day $month $year"
+        Toast.makeText(requireContext(), "$dateJoined", Toast.LENGTH_SHORT).show()
         rview.adapter = ProfileAdapter(setDataList(),dateJoined)
+
 
 
     }

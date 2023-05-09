@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -47,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(bindingMain.topToolbar)
 
         bindingMain.fabDonate.setOnClickListener(object : View.OnClickListener {
-
             override fun onClick(view: View?) {
                 if (navController.currentDestination?.id != R.id.donateFragment2) {
                     Navigation.findNavController(this@MainActivity, R.id.myNavHostFragment)
@@ -55,7 +53,6 @@ class MainActivity : AppCompatActivity() {
                     bindingMain.bottomNavView.uncheckAllItems()
                 }
             }
-
         })
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -75,10 +72,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
         val viewModel = ViewModelProvider(this)[DonateViewModal::class.java]
-        val ID = intent.getStringExtra("userID")
-        viewModel.setString(ID?:"")
-
-
+        var userID = intent.getStringExtra("userID")
+        viewModel.setString(userID?:"")
     }
 
     override fun onSupportNavigateUp(): Boolean {
