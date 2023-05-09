@@ -55,12 +55,14 @@ class MyProfileFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         var user = mUserViewModel.getUser(viewModel.userID.value?:"")
-        bindingProfile.profileName.text = user.loginID
+        if (user != null) {
+            bindingProfile.profileName.text = user.loginID
+        }
 
-        var day : String= user.day.toString()
+        var day : String= user?.day.toString()
         val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
-        var year : String= user.year.toString()
-        var month: String = months[user.month]
+        var year : String= user?.year.toString()
+        var month: String = months[user?.month!!]
         var dateJoined = "$day $month $year"
         rview.adapter = ProfileAdapter(setDataList(),dateJoined)
 
