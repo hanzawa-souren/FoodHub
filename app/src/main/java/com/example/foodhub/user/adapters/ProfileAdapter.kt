@@ -1,15 +1,22 @@
 package com.example.foodhub.user.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.R
-import com.example.foodhub.user.models.ProfileModel
+import com.example.foodhub.login.UserViewModel
+import com.example.foodhub.models.ProfileModel
+import com.example.foodhub.user.viewmodels.DonateViewModal
 
-class ProfileAdapter(private val mList: List<ProfileModel>) : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
+class ProfileAdapter(private val mList: List<ProfileModel>,var dateJoined : String) : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
+
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.profile_row_title)
@@ -26,9 +33,18 @@ class ProfileAdapter(private val mList: List<ProfileModel>) : RecyclerView.Adapt
         val ItemsViewModel = mList[position]
 
 
-        holder.title.text = ItemsViewModel.title
-        holder.content.text = ItemsViewModel.content
-        holder.image.setImageResource(ItemsViewModel.image)
+
+
+        if(position == 0){
+            holder.title.text = ItemsViewModel.title
+            holder.content.text = dateJoined
+            holder.image.setImageResource(ItemsViewModel.image)
+        }else{
+            holder.title.text = ItemsViewModel.title
+            holder.content.text = ItemsViewModel.content
+            holder.image.setImageResource(ItemsViewModel.image)
+        }
+
     }
 
 

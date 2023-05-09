@@ -1,23 +1,30 @@
 package com.example.foodhub.user.fragments
 
+import android.content.Intent.getIntent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentMyProfileBinding
+import com.example.foodhub.login.UserViewModel
+import com.example.foodhub.models.ProfileModel
 import com.example.foodhub.user.adapters.ProfileAdapter
-import com.example.foodhub.user.models.ProfileModel
+import com.example.foodhub.user.viewmodels.DonateViewModal
+
 
 class MyProfileFragment : Fragment() {
 
     private lateinit var bindingProfile: FragmentMyProfileBinding
-
+    private lateinit var mUserViewModel: UserViewModel
+    private val viewModel: DonateViewModal by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -32,6 +39,9 @@ class MyProfileFragment : Fragment() {
         bindingProfile = DataBindingUtil.inflate(inflater,
             R.layout.fragment_my_profile, container, false)
         return bindingProfile.root
+
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,8 +50,21 @@ class MyProfileFragment : Fragment() {
         val rview = bindingProfile.profileStats
         rview.layoutManager = LinearLayoutManager(requireContext())
         rview.setHasFixedSize(true)
-        rview.adapter = ProfileAdapter(setDataList())
+        mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+
         (activity as AppCompatActivity).supportActionBar?.hide()
+
+        var user = mUserViewModel.getUser(viewModel.userID.value?:"")
+        bindingProfile.profileName.text = user.loginID
+
+        var day : String= user.day.toString()
+        val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
+        var year : String= user.year.toString()
+        var month: String = months[user.month]
+        var dateJoined = "$day $month $year"
+        rview.adapter = ProfileAdapter(setDataList(),dateJoined)
+
+
     }
     private fun setDataList() : ArrayList<ProfileModel>{
         var arrayList : ArrayList<ProfileModel> = ArrayList()

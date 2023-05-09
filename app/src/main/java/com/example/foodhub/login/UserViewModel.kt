@@ -12,7 +12,9 @@ import kotlinx.coroutines.launch
 class UserViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository: UserRepository
-    private var readUser : User? = User(0, "", "")
+
+    private var readUser : User = User(0, "", "",0,0,0)
+
     private var userCount: LiveData<Int>
 
     init {
@@ -63,6 +65,9 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
             userCount = repository.getUserCount()
         }
         return userCount
+    }
+    fun getUserDonation(id: String):LiveData<Int>{
+        return repository.getUserDonation(id)
     }
 
 }

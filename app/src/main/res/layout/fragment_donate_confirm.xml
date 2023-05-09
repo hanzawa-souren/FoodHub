@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <ScrollView
+        android:id="@+id/home_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/reload_amount_title"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/white"
+                android:text="Reload Amount"
+                android:background="@drawable/orange_background"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/donationAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="0"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/white"
+                android:layout_marginEnd="30dp"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/reload_amount_title"
+                app:layout_constraintEnd_toEndOf="@+id/reload_amount_title"
+                app:layout_constraintTop_toTopOf="@+id/reload_amount_title" />
+
+            <TextView
+                android:id="@+id/safe_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/orange_light_background"
+                android:paddingTop="5dp"
+                android:fontFamily="@font/poppins"
+                android:drawablePadding="10dp"
+                android:paddingLeft="10dp"
+                android:drawableLeft="@drawable/verified_user"
+                android:text="Don't worry, your data is kept accordance to the law and is protected by us!"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/reload_amount_title"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/reload_amount_title"
+                app:layout_constraintTop_toBottomOf="@+id/reload_amount_title" />
+
+            <ImageView
+                android:id="@+id/donatePaymentImage"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/safe_text"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/safe_text"
+                app:layout_constraintTop_toBottomOf="@+id/safe_text"
+                app:srcCompat="@drawable/touch__n_go_logo_1" />
+
+            <EditText
+                android:id="@+id/cardNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:paddingBottom="20dp"
+                android:textColorHint="#33000000"
+                android:backgroundTint="#33000000"
+                android:hint="Card Number"
+                android:layout_marginTop="20dp"
+                android:inputType="numberSigned"
+                app:layout_constraintEnd_toEndOf="@+id/safe_text"
+                app:layout_constraintStart_toStartOf="@+id/safe_text"
+                app:layout_constraintTop_toBottomOf="@+id/donatePaymentImage" />
+
+            <EditText
+                android:id="@+id/monthExpiry"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Month of Expiration"
+                android:paddingLeft="10dp"
+                android:paddingBottom="20dp"
+                android:textColorHint="#33000000"
+                android:backgroundTint="#33000000"
+                android:inputType="numberSigned"
+                app:layout_constraintStart_toStartOf="@+id/cardNumber"
+                app:layout_constraintTop_toBottomOf="@+id/cardNumber" />
+
+            <EditText
+                android:id="@+id/yearExpiry"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingBottom="20dp"
+                android:textColorHint="#33000000"
+                android:backgroundTint="#33000000"
+                android:ems="10"
+                android:hint="Year of Expiration"
+                android:inputType="numberSigned"
+                app:layout_constraintEnd_toEndOf="@+id/cardNumber"
+                app:layout_constraintStart_toEndOf="@+id/monthExpiry"
+                app:layout_constraintTop_toBottomOf="@+id/cardNumber" />
+
+            <EditText
+                android:id="@+id/cvv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:paddingBottom="20dp"
+                android:textColorHint="#33000000"
+                android:backgroundTint="#33000000"
+                android:hint="CVV/CVV2"
+                android:inputType="numberSigned"
+                app:layout_constraintEnd_toEndOf="@+id/safe_text"
+                app:layout_constraintStart_toStartOf="@+id/safe_text"
+                app:layout_constraintTop_toBottomOf="@+id/monthExpiry" />
+
+            <TextView
+                android:id="@+id/termsAndCondition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins"
+                android:text="Terms and conditions"
+                android:textColor="#FC7753"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/cvv"
+                app:layout_constraintTop_toBottomOf="@+id/cvv" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="By ticking, you have agreed to the terms and condition of FoodHub's donation's terms &amp; condition and policies"
+                app:layout_constraintStart_toStartOf="@+id/termsAndCondition"
+                app:layout_constraintTop_toBottomOf="@+id/termsAndCondition" />
+
+            <Button
+                android:id="@+id/confirmDonation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Confirm"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/confirm_donate_button"
+                android:fontFamily="@font/poppins_semibold"
+
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="@+id/safe_text"
+                app:layout_constraintStart_toStartOf="@+id/safe_text"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirmDonation" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

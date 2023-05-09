@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    >
+    <ScrollView
+        android:id="@+id/home_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+
+                android:id="@+id/imageView10"
+                android:layout_width="170dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="220dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/food" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="200dp"
+                android:layout_height="220dp"
+                android:layout_marginLeft="10dp"
+
+                app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+                app:layout_constraintStart_toEndOf="@+id/imageView10"
+                app:layout_constraintTop_toTopOf="@+id/imageView10"
+                app:srcCompat="@drawable/hub_background" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginBottom="1dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+                app:layout_constraintEnd_toEndOf="@+id/imageView11"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11"
+                app:srcCompat="@drawable/hub" />
+
+            <TextView
+                android:id="@+id/tnc_title"
+                android:textColor="#FC7753"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Donation"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+            <TextView
+                android:id="@+id/tnc_title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FC7753"
+                android:fontFamily="@font/poppins_semibold"
+                android:contentDescription="fragment_tnc"
+                android:text="General Terms and Conditions"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tnc_title"
+                app:layout_constraintStart_toStartOf="@+id/tnc_title"
+                app:layout_constraintTop_toBottomOf="@+id/tnc_title" />
+            <androidx.core.widget.NestedScrollView
+                android:background="@drawable/black_box"
+                android:id="@+id/tnc"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tnc_title2">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tnc2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/poppins"
+                        android:paddingLeft="10dp"
+                        android:layout_marginTop="10dp"
+
+                        android:text="@string/donation_terms_text"
+                        android:textColor="@color/black"
+
+                        />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+            <Button
+                android:id="@+id/button_return"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Accept"
+
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@id/tnc_title2"
+                app:layout_constraintEnd_toEndOf="@id/tnc_title2"
+                app:layout_constraintTop_toBottomOf="@+id/tnc" />
+
+            <TextView
+                android:id="@+id/space"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text=""
+                app:layout_constraintStart_toStartOf="@id/tnc_title2"
+                app:layout_constraintEnd_toEndOf="@id/tnc_title2"
+                app:layout_constraintTop_toBottomOf="@+id/button_return" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
+</layout>
