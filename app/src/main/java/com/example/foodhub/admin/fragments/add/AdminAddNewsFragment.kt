@@ -1,6 +1,7 @@
 package com.example.foodhub.admin.fragments.add
 
 import android.content.Intent
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -18,11 +19,14 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.foodhub.R
 import com.example.foodhub.admin.viewmodels.LatestNewsViewModel
+import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.database.tables.LatestNews
 import com.example.foodhub.databinding.FragmentAdminAddNewsBinding
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -53,12 +57,9 @@ class AdminAddNewsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_add_news, container, false)
+
         bindingAddNews = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_add_news, container, false)
-
         latestNewsViewModel = ViewModelProvider(this).get(LatestNewsViewModel::class.java)
-
         return bindingAddNews.root
     }
 
@@ -73,15 +74,8 @@ class AdminAddNewsFragment : Fragment() {
         bindingAddNews.lnPublishButton.setOnClickListener { insertItem() }
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun insertItem() {
-
-        val lnImage: String
-        if (!imageUriNull) {
-            lnImage = uploadedImage.toString()
-        }
-        else {
-            lnImage = ""
-        }
 
         val lnAuthor = bindingAddNews.editLnAuthor.text.toString()
         val lnTitle = bindingAddNews.editLnTitle.text.toString()
@@ -93,7 +87,24 @@ class AdminAddNewsFragment : Fragment() {
 
         val lnContent = bindingAddNews.editLnContent.text.toString()
 
-        if (inputCheck(lnImage, lnAuthor, lnTitle, lnContent)) {
+        if (inputCheck(lnAuthor, lnTitle, lnContent)) {
+
+            val currentTime2 = Calendar.getInstance().time
+            val formatter2 = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
+            val timestamp = formatter2.format(currentTime2).toString()
+            val imageFileName = "l_news_img_$timestamp"
+
+            var lnImage = ""
+            val imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireActivity().contentResolver, uploadedImage))
+
+            // Create a bitmap copy of the admin-selected image and save it into the application storage
+            // The image file absolute path is stored inside ROOM
+            viewLifecycleOwner.lifecycleScope.launch {
+                lnImage = ImageStorageManager.saveToInternalStorage(requireContext(), imageBitmap, imageFileName)
+            }
+            Log.d("AddNewsFragment", "Image file name: $imageFileName")
+            Log.d("AddNewsFragment", "File absolute path: $lnImage")
+
             val latestNews = LatestNews(0, lnImage, lnAuthor, lnTitle, lnDate, lnContent)
             latestNewsViewModel.insertNews(latestNews)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
@@ -104,8 +115,8 @@ class AdminAddNewsFragment : Fragment() {
         }
     }
 
-    private fun inputCheck(lnImage: String, lnAuthor: String, lnTitle: String, lnContent: String): Boolean {
-        return !(TextUtils.isEmpty(lnImage) || TextUtils.isEmpty(lnAuthor) || TextUtils.isEmpty(lnTitle) || TextUtils.isEmpty(lnContent))
+    private fun inputCheck(lnAuthor: String, lnTitle: String, lnContent: String): Boolean {
+        return !(imageUriNull || TextUtils.isEmpty(lnAuthor) || TextUtils.isEmpty(lnTitle) || TextUtils.isEmpty(lnContent))
     }
 
     override fun onResume() {

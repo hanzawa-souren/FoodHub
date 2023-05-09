@@ -69,7 +69,7 @@ class AdminHelplinesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextL
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-
+        menuInflater.inflate(R.menu.admin_delete_all_menu, menu)
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

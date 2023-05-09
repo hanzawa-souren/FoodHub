@@ -11,12 +11,16 @@ import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.admin.adapters.AdminEDigestAdapter
 import com.example.foodhub.admin.viewmodels.EDigestViewModel
+import com.example.foodhub.database.ImageStorageManager
+import com.example.foodhub.database.tables.EDigest
 import com.example.foodhub.databinding.FragmentAdminEDigestBinding
+import kotlinx.coroutines.launch
 
 class AdminEDigestFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -51,12 +55,25 @@ class AdminEDigestFragment : Fragment(), SearchView.OnQueryTextListener {
 
         bindingAdminEDigest.adminEDigestSearchview.isSubmitButtonEnabled = true
         bindingAdminEDigest.adminEDigestSearchview.setOnQueryTextListener(this)
-
     }
 
     private fun deleteAllDigest() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { _, _ ->
+
+            // Delete image files from internal storage upon entry removal from ROOM
+            var digestList = emptyList<EDigest>()
+            val imageFileNames: MutableList<String> = mutableListOf()
+            eDigestViewModel.getAllDigest.observe(viewLifecycleOwner, Observer { list ->
+                digestList = list
+            })
+            for (item in digestList) {
+                imageFileNames.add(item.eImage.substring(item.eImage.lastIndexOf("/")+1))
+            }
+            viewLifecycleOwner.lifecycleScope.launch {
+                ImageStorageManager.deleteAllImagesFromInternalStorage(requireContext(), imageFileNames)
+            }
+
             eDigestViewModel.deleteAllDigest()
             Toast.makeText(
                 requireContext(),
@@ -94,5 +111,4 @@ class AdminEDigestFragment : Fragment(), SearchView.OnQueryTextListener {
             }
         })
     }
-
 }

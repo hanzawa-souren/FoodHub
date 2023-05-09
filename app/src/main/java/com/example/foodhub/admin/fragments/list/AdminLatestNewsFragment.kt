@@ -6,16 +6,19 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.admin.adapters.AdminLatestNewsAdapter
 import com.example.foodhub.admin.viewmodels.LatestNewsViewModel
+import com.example.foodhub.database.ImageStorageManager
+import com.example.foodhub.database.tables.LatestNews
 import com.example.foodhub.databinding.FragmentAdminLatestNewsBinding
+import kotlinx.coroutines.launch
 
 class AdminLatestNewsFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -50,12 +53,25 @@ class AdminLatestNewsFragment : Fragment(), SearchView.OnQueryTextListener {
 
         bindingAdminLatestNews.adminLatestNewsSearchview.isSubmitButtonEnabled = true
         bindingAdminLatestNews.adminLatestNewsSearchview.setOnQueryTextListener(this)
-
     }
 
     private fun deleteAllNews() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { _, _ ->
+
+            // Delete image files from internal storage upon entry removal from ROOM
+            var newsList = emptyList<LatestNews>()
+            val imageFileNames: MutableList<String> = mutableListOf()
+            latestNewsViewModel.getAllNews.observe(viewLifecycleOwner, Observer { list ->
+                newsList = list
+            })
+            for (item in newsList) {
+                imageFileNames.add(item.lnImage.substring(item.lnImage.lastIndexOf("/")+1))
+            }
+            viewLifecycleOwner.lifecycleScope.launch {
+                ImageStorageManager.deleteAllImagesFromInternalStorage(requireContext(), imageFileNames)
+            }
+
             latestNewsViewModel.deleteAllNews()
             Toast.makeText(
                 requireContext(),
