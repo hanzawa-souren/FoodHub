@@ -14,12 +14,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.admin.adapters.AdminVoluntaryWorkAdapter
 import com.example.foodhub.admin.viewmodels.VoluntaryWorkViewModel
+import com.example.foodhub.database.ImageStorageManager
+import com.example.foodhub.database.tables.VoluntaryWork
 import com.example.foodhub.databinding.FragmentAdminVolunteerBinding
+import kotlinx.coroutines.launch
 
 class AdminVolunteerFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener  {
 
@@ -31,13 +35,10 @@ class AdminVolunteerFragment : Fragment(), MenuProvider, SearchView.OnQueryTextL
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_volunteer, container, false)
+
         bindingAdminVolunteer = DataBindingUtil.inflate(inflater,
             R.layout.fragment_admin_volunteer, container, false)
-
         voluntaryWorkViewModel = ViewModelProvider(this).get(VoluntaryWorkViewModel::class.java)
-
         return bindingAdminVolunteer.root
     }
 
@@ -59,10 +60,9 @@ class AdminVolunteerFragment : Fragment(), MenuProvider, SearchView.OnQueryTextL
             adapter.setData(voluntaryWork)
         })
 
-        //Search from adapter
+        // Search from adapter
         bindingAdminVolunteer.adminVolunteerSearchview.isSubmitButtonEnabled = true
         bindingAdminVolunteer.adminVolunteerSearchview.setOnQueryTextListener(this)
-
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -79,6 +79,20 @@ class AdminVolunteerFragment : Fragment(), MenuProvider, SearchView.OnQueryTextL
     private fun deleteAllWork() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { _, _ ->
+
+            // Delete image files from internal storage upon entry removal from ROOM
+            var vWorkList = emptyList<VoluntaryWork>()
+            val imageFileNames: MutableList<String> = mutableListOf()
+            voluntaryWorkViewModel.getAllWork.observe(viewLifecycleOwner, Observer { list ->
+                vWorkList = list
+            })
+            for (item in vWorkList) {
+                imageFileNames.add(item.vImage.substring(item.vImage.lastIndexOf("/")+1))
+            }
+            viewLifecycleOwner.lifecycleScope.launch {
+                ImageStorageManager.deleteAllImagesFromInternalStorage(requireContext(), imageFileNames)
+            }
+
             voluntaryWorkViewModel.deleteAllWork()
             Toast.makeText(
                 requireContext(),

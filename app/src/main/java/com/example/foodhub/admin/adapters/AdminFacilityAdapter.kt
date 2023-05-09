@@ -1,12 +1,15 @@
 package com.example.foodhub.admin.adapters
 
+import android.graphics.Bitmap
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.admin.fragments.list.AdminNearMeFragmentDirections
+import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.database.tables.Facility
 import com.example.foodhub.databinding.AdminNearMeCardBinding
 
@@ -33,7 +36,14 @@ class AdminFacilityAdapter: RecyclerView.Adapter<AdminFacilityAdapter.FacilityVi
     override fun onBindViewHolder(holder: FacilityViewHolder, position: Int) {
         val currentItem = facilityList[position]
 
-        holder.binding.nearMeImage.setImageURI(Uri.parse(currentItem.nImage))
+        val imageFileName = currentItem.nImage.substring(currentItem.nImage.lastIndexOf("/")+1)
+        Log.d("FacilityAdapter", imageFileName)
+        val imageBitmap: Bitmap? = ImageStorageManager.getImageFromInternalStorage(holder.binding.nearMeImage.context, imageFileName)
+
+        if (imageBitmap != null) {
+            holder.binding.nearMeImage.setImageBitmap(imageBitmap)
+        }
+
         holder.binding.nearMeName.text = currentItem.nName
         holder.binding.nearMeLocation.text = currentItem.nCity
         holder.binding.nearMeFacility.text = currentItem.nFacility

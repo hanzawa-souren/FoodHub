@@ -1,6 +1,7 @@
 package com.example.foodhub.admin.fragments.add
 
 import android.content.Intent
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -18,11 +19,14 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.foodhub.R
 import com.example.foodhub.admin.viewmodels.EDigestViewModel
+import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.database.tables.EDigest
 import com.example.foodhub.databinding.FragmentAdminAddDigestBinding
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -53,12 +57,9 @@ class AdminAddDigestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_add_digest, container, false)
+
         bindingAddDigest = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_add_digest, container, false)
-
         eDigestViewModel = ViewModelProvider(this).get(EDigestViewModel::class.java)
-
         return bindingAddDigest.root
     }
 
@@ -73,15 +74,8 @@ class AdminAddDigestFragment : Fragment() {
         bindingAddDigest.ePublishButton.setOnClickListener { insertItem() }
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun insertItem() {
-
-        val eImage: String
-        if (!imageUriNull) {
-            eImage = uploadedImage.toString()
-        }
-        else {
-            eImage = ""
-        }
 
         val eAuthor = bindingAddDigest.editEAuthor.text.toString()
         val eTitle = bindingAddDigest.editETitle.text.toString()
@@ -93,7 +87,24 @@ class AdminAddDigestFragment : Fragment() {
 
         val eContent = bindingAddDigest.editEContent.text.toString()
 
-        if (inputCheck(eImage, eAuthor, eTitle, eContent)) {
+        if (inputCheck(eAuthor, eTitle, eContent)) {
+
+            val currentTime2 = Calendar.getInstance().time
+            val formatter2 = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
+            val timestamp = formatter2.format(currentTime2).toString()
+            val imageFileName = "e_digest_img_$timestamp"
+
+            var eImage = ""
+            val imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireActivity().contentResolver, uploadedImage))
+
+            // Create a bitmap copy of the admin-selected image and save it into the application storage
+            // The image file absolute path is stored inside ROOM
+            viewLifecycleOwner.lifecycleScope.launch {
+                eImage = ImageStorageManager.saveToInternalStorage(requireContext(), imageBitmap, imageFileName)
+            }
+            Log.d("AddDigestFragment", "Image file name: $imageFileName")
+            Log.d("AddDigestFragment", "File absolute path: $eImage")
+
             val digest = EDigest(0, eImage, eAuthor, eTitle, eDate, eContent)
             eDigestViewModel.insertDigest(digest)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
@@ -104,8 +115,8 @@ class AdminAddDigestFragment : Fragment() {
         }
     }
 
-    private fun inputCheck(eImage: String, eAuthor: String, eTitle: String, eContent: String): Boolean {
-        return !(TextUtils.isEmpty(eImage) || TextUtils.isEmpty(eAuthor) || TextUtils.isEmpty(eTitle) || TextUtils.isEmpty(eContent))
+    private fun inputCheck(eAuthor: String, eTitle: String, eContent: String): Boolean {
+        return !(imageUriNull || TextUtils.isEmpty(eAuthor) || TextUtils.isEmpty(eTitle) || TextUtils.isEmpty(eContent))
     }
 
     override fun onResume() {
