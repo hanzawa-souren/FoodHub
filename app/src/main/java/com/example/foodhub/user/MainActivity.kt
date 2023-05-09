@@ -1,20 +1,16 @@
 package com.example.foodhub.user
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.example.foodhub.R
 import com.example.foodhub.databinding.ActivityMainBinding
-import com.example.foodhub.user.viewmodels.DonateViewModal
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(setOf(
             R.id.homeFragment,
             R.id.nearMeFragment,
-            R.id.donateFragment2,
+            R.id.donateFragment,
             R.id.helplinesFragment,
             R.id.myProfileFragment
         ))
@@ -47,15 +43,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(bindingMain.topToolbar)
 
         bindingMain.fabDonate.setOnClickListener(object : View.OnClickListener {
-
             override fun onClick(view: View?) {
-                if (navController.currentDestination?.id != R.id.donateFragment2) {
+                if (navController.currentDestination?.id != R.id.donateFragment) {
                     Navigation.findNavController(this@MainActivity, R.id.myNavHostFragment)
-                        .navigate(R.id.donateFragment2)
+                        .navigate(R.id.donateFragment)
                     bindingMain.bottomNavView.uncheckAllItems()
                 }
             }
-
         })
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -74,11 +68,6 @@ class MainActivity : AppCompatActivity() {
                 navController.popBackStack(destinationId = it.itemId, inclusive = false)
             }
         }
-        val viewModel = ViewModelProvider(this)[DonateViewModal::class.java]
-        val ID = intent.getStringExtra("userID")
-        viewModel.setString(ID?:"")
-
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
