@@ -5,23 +5,8 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.PreLogin" >
+    tools:context=".login.PreLogin">
 
-    <Button
-        android:id="@+id/preloginScrBackBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="#00FFFFFF"
-        android:text="Back"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:icon="@drawable/arrow_back_ios_fill0_wght400_grad0_opsz48"
-        app:iconPadding="0dp"
-        app:iconTint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
@@ -78,12 +63,13 @@
         app:layout_constraintStart_toStartOf="@+id/preLogRegButton" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:src="@tools:sample/avatars" />
+        android:id="@+id/imageView4"
+        android:layout_width="357dp"
+        android:layout_height="518dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="184dp"
+        android:src="@drawable/ic_prelogin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
