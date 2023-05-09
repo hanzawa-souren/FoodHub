@@ -2,6 +2,8 @@ package com.example.foodhub.admin.fragments.update
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -20,12 +22,15 @@ import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodhub.R
 import com.example.foodhub.admin.viewmodels.LatestNewsViewModel
+import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.database.tables.LatestNews
 import com.example.foodhub.databinding.FragmentAdminUpdateNewsBinding
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,6 +40,7 @@ class AdminUpdateNewsFragment : Fragment(), MenuProvider {
     private val args by navArgs<AdminUpdateNewsFragmentArgs>()
     private lateinit var latestNewsViewModel: LatestNewsViewModel
     private lateinit var uploadedImage: Uri
+    private var imageBitmap: Bitmap? = null
     private var imageUriNull = true
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -57,12 +63,9 @@ class AdminUpdateNewsFragment : Fragment(), MenuProvider {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_update_news, container, false)
+
         bindingUpdateNews = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_update_news, container, false)
-
         latestNewsViewModel = ViewModelProvider(this).get(LatestNewsViewModel::class.java)
-
         return bindingUpdateNews.root
     }
 
@@ -77,7 +80,11 @@ class AdminUpdateNewsFragment : Fragment(), MenuProvider {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
-        bindingUpdateNews.updateLnImage.setImageURI(Uri.parse(args.currentNews.lnImage))
+        val imageFileName = args.currentNews.lnImage.substring(args.currentNews.lnImage.lastIndexOf("/")+1)
+        Log.d("UpdateNewsFragment", imageFileName)
+        imageBitmap = ImageStorageManager.getImageFromInternalStorage(requireContext(), imageFileName)
+        bindingUpdateNews.updateLnImage.setImageBitmap(imageBitmap)
+
         bindingUpdateNews.updateLnAuthor.setText(args.currentNews.lnAuthor)
         bindingUpdateNews.updateLnTitle.setText(args.currentNews.lnTitle)
         bindingUpdateNews.updateLnContent.setText(args.currentNews.lnContent)
@@ -85,21 +92,40 @@ class AdminUpdateNewsFragment : Fragment(), MenuProvider {
         bindingUpdateNews.lnUpdateButton.setOnClickListener { updateItem() }
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun updateItem() {
-
-        val lnImage: String
-        if (!imageUriNull) {
-            lnImage = uploadedImage.toString()
-        }
-        else {
-            lnImage = args.currentNews.lnImage
-        }
 
         val lnAuthor = bindingUpdateNews.updateLnAuthor.text.toString()
         val lnTitle = bindingUpdateNews.updateLnTitle.text.toString()
         val lnContent = bindingUpdateNews.updateLnContent.text.toString()
 
-        if (inputCheck(lnImage, lnAuthor, lnTitle, lnContent)) {
+        if (inputCheck(lnAuthor, lnTitle, lnContent)) {
+
+            val currentTime2 = Calendar.getInstance().time
+            val formatter2 = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
+            val timestamp = formatter2.format(currentTime2).toString()
+            val imageFileName = "l_news_img_$timestamp"
+
+            var lnImage = ""
+            var success: Boolean = false
+            if (!imageUriNull) {
+                val imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireActivity().contentResolver, uploadedImage))
+
+                // Save the new image file into internal storage
+                viewLifecycleOwner.lifecycleScope.launch {
+                    lnImage = ImageStorageManager.saveToInternalStorage(requireContext(), imageBitmap, imageFileName)
+                }
+
+                // Remove the old image file from internal storage
+                viewLifecycleOwner.lifecycleScope.launch {
+                    success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentNews.lnImage.substring(args.currentNews.lnImage.lastIndexOf("/")+1))
+                }
+            }
+            else {
+                lnImage = args.currentNews.lnImage
+            }
+            Log.d("Update new pic", "File absolute path: $lnImage")
+            Log.d("Delete old pic", "Successful?: $success")
 
             val lnDate: String
             if (verifyChanges(lnImage, lnAuthor, lnTitle, lnContent)) {
@@ -122,8 +148,8 @@ class AdminUpdateNewsFragment : Fragment(), MenuProvider {
         }
     }
 
-    private fun inputCheck(lnImage: String, lnAuthor: String, lnTitle: String, lnContent: String): Boolean {
-        return !(TextUtils.isEmpty(lnImage) || TextUtils.isEmpty(lnAuthor) || TextUtils.isEmpty(lnTitle) || TextUtils.isEmpty(lnContent))
+    private fun inputCheck(lnAuthor: String, lnTitle: String, lnContent: String): Boolean {
+        return !(imageUriNull || TextUtils.isEmpty(lnAuthor) || TextUtils.isEmpty(lnTitle) || TextUtils.isEmpty(lnContent))
     }
 
     private fun verifyChanges(lnImage: String, lnAuthor: String, lnTitle: String, lnContent: String): Boolean {
