@@ -179,6 +179,14 @@ class AdminUpdateDigestFragment : Fragment(), MenuProvider {
     private fun deleteDigest() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { _, _ ->
+
+            Log.d("Photo to-be-deleted", "File path: ${args.currentDigest.eImage}")
+            var success: Boolean = false
+            viewLifecycleOwner.lifecycleScope.launch {
+                success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentDigest.eImage.substring(args.currentDigest.eImage.lastIndexOf("/")+1))
+            }
+            Log.d("Deletion successful?", "File path: $success")
+
             eDigestViewModel.deleteDigest(args.currentDigest)
             Toast.makeText(
                 requireContext(),

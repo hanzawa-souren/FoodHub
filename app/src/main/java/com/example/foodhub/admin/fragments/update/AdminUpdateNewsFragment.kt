@@ -179,6 +179,14 @@ class AdminUpdateNewsFragment : Fragment(), MenuProvider {
     private fun deleteNews() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { _, _ ->
+
+            Log.d("Photo to-be-deleted", "File path: ${args.currentNews.lnImage}")
+            var success: Boolean = false
+            viewLifecycleOwner.lifecycleScope.launch {
+                success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentNews.lnImage.substring(args.currentNews.lnImage.lastIndexOf("/")+1))
+            }
+            Log.d("Deletion successful?", "File path: $success")
+
             latestNewsViewModel.deleteNews(args.currentNews)
             Toast.makeText(
                 requireContext(),
