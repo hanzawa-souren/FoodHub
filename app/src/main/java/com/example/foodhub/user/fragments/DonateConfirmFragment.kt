@@ -18,13 +18,15 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.admin.viewmodels.DonationViewModel
+import com.example.foodhub.database.tables.Donation
 import com.example.foodhub.databinding.FragmentDonateBinding
 import com.example.foodhub.databinding.FragmentDonateConfirmBinding
+import com.example.foodhub.login.UserViewModel
 import com.example.foodhub.user.viewmodels.DonateViewModal
 import java.util.Calendar
 
 class DonateConfirmFragment : Fragment() {
-
+    private lateinit var mUserViewModel: UserViewModel
     private lateinit var bindingDonateConfirm: FragmentDonateConfirmBinding
     private val viewModel: DonateViewModal by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +39,7 @@ class DonateConfirmFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
+        mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         bindingDonateConfirm = DataBindingUtil.inflate(inflater, R.layout.fragment_donate_confirm, container, false)
         return bindingDonateConfirm.root
 
@@ -56,6 +58,7 @@ class DonateConfirmFragment : Fragment() {
         bindingDonateConfirm.donationAmount.text = "RM $number"
 
         var paymentMethodName = viewModel.donateMethod.value?:"error"
+        val paymentMethodNames = arrayOf("Visa","MasterCard","American Express","Union Pay")
         val paymentMethodImage = arrayOf(R.drawable.visa,R.drawable.mastercard_2,R.drawable.american_express_1,R.drawable.unionpay_seeklogo_com)
         bindingDonateConfirm.donatePaymentImage.setImageResource(paymentMethodImage[paymentMethodImageNum(paymentMethodName)])
         val calendar = Calendar.getInstance()
@@ -101,13 +104,20 @@ class DonateConfirmFragment : Fragment() {
                 bindingDonateConfirm.cvv.background = null
                 Toast.makeText(requireContext(), "Please check the terms and condition box", Toast.LENGTH_SHORT).show()
             }else{
-//
+
                 view.findNavController().navigate(R.id.donateSuccessFragment)
 
             }
         }
         bindingDonateConfirm.termsAndCondition.setOnClickListener{
-
+            var user = mUserViewModel.getUser(viewModel.userID.value?:"")
+            if (number != null) {
+                mUserViewModel.addDonation(Donation(
+                    dId = 0,
+                    uId = user.loginID,
+                    dMethod=paymentMethodNames[paymentMethodImageNum(paymentMethodName)],
+                    dAmount = number.toDouble()))
+            }
             view.findNavController().navigate(R.id.termsAndConditionFragment)
         }
 

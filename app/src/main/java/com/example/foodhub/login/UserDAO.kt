@@ -19,7 +19,8 @@ interface UserDAO {
 
     @Query("SELECT COUNT(loginID) FROM user_table")
     fun getUserCount(): LiveData<Int>
-
+    @Query("SELECT SUM(d.d_Amount) FROM donation d INNER JOIN user_table u ON u.loginID = d.u_id WHERE u.loginID = :id")
+    fun getUserDonation(id: String): LiveData<Int>
     @Transaction
     @Query("SELECT * FROM user_table")
     fun getUsersWithDonations(): LiveData<List<UserWithDonations>>

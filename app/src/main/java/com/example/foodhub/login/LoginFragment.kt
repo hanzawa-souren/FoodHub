@@ -5,26 +5,25 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.foodhub.R
 import com.example.foodhub.admin.AdminMainActivity
 import com.example.foodhub.databinding.FragmentLoginBinding
 import com.example.foodhub.user.MainActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import com.example.foodhub.user.viewmodels.DonateViewModal
 
 class LoginFragment : Fragment() {
 
     private lateinit var mUserViewModel: UserViewModel
-
+    private val viewModel: DonateViewModal by activityViewModels()
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
@@ -41,6 +40,7 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             validateUser()
             hideKeyboard()
+            userIDIntent()
 
         }
 
@@ -49,13 +49,16 @@ class LoginFragment : Fragment() {
         }
 
         return binding.root
+
     }
 
     private fun validateUser() {
         var warn : Boolean = false
         val readID = binding.loginIDTE.text.toString()
         val readPW = binding.loginPWTE.text.toString()
+
         var user = mUserViewModel.getUser(readID)
+        viewModel.userID.value = readID
         if (inputCheck(readID, readPW)){
             binding.loadingOverlay.visibility = View.VISIBLE
             binding.loadingProgress.visibility = View.VISIBLE
@@ -115,6 +118,12 @@ class LoginFragment : Fragment() {
     fun Context.hideKeyboard(view: View) {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+    fun userIDIntent() {
+        val intent = Intent(activity,MainActivity::class.java)
+        val readID = binding.loginIDTE.text.toString()
+        intent.putExtra("userID",readID)
+        startActivity(intent)
     }
 
 }

@@ -61,6 +61,7 @@ class DonateFragment : Fragment() {
         adapter1.onItemClick={
 
                 donateCardModel ->
+            Toast.makeText(requireContext(), "${viewModel.userID.value}", Toast.LENGTH_SHORT).show()
             methodCheck =1
             for (i in arrayList) {
                 if (i.name != donateCardModel.name) {
