@@ -9,22 +9,47 @@
         android:id="@+id/homeFragment"
         android:name="com.example.foodhub.user.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_volunteerDetailsFragment"
+            app:destination="@id/volunteerDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_nearMeDetailFragment"
+            app:destination="@id/nearMeDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_latestNewsDetailsFragment"
+            app:destination="@id/latestNewsDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_edigestDetailsFragment"
+            app:destination="@id/edigestDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nearMeFragment"
         android:name="com.example.foodhub.user.fragments.list.NearMeFragment"
         android:label="fragment_near_me"
-        tools:layout="@layout/fragment_near_me" />
+        tools:layout="@layout/fragment_near_me" >
+        <action
+            android:id="@+id/action_nearMeFragment_to_nearMeDetailFragment"
+            app:destination="@id/nearMeDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/volunteerFragment"
         android:name="com.example.foodhub.user.fragments.list.VolunteerFragment"
         android:label="fragment_volunteer"
-        tools:layout="@layout/fragment_volunteer" />
+        tools:layout="@layout/fragment_volunteer" >
+        <action
+            android:id="@+id/action_volunteerFragment_to_volunteerDetailsFragment"
+            app:destination="@id/volunteerDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/helplinesFragment"
         android:name="com.example.foodhub.user.fragments.list.HelplinesFragment"
         android:label="fragment_helplines"
-        tools:layout="@layout/fragment_helplines" />
+        tools:layout="@layout/fragment_helplines" >
+        <action
+            android:id="@+id/action_helplinesFragment_to_helplineDetailFragment"
+            app:destination="@id/helplineDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.example.foodhub.user.fragments.MyProfileFragment"
@@ -34,12 +59,20 @@
         android:id="@+id/latestNewsFragment"
         android:name="com.example.foodhub.user.fragments.list.LatestNewsFragment"
         android:label="fragment_latest_news"
-        tools:layout="@layout/fragment_latest_news" />
+        tools:layout="@layout/fragment_latest_news" >
+        <action
+            android:id="@+id/action_latestNewsFragment_to_latestNewsDetailsFragment"
+            app:destination="@id/latestNewsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/edigestFragment"
         android:name="com.example.foodhub.user.fragments.list.EdigestFragment"
         android:label="fragment_edigest"
-        tools:layout="@layout/fragment_edigest" />
+        tools:layout="@layout/fragment_edigest" >
+        <action
+            android:id="@+id/action_edigestFragment_to_edigestDetailsFragment"
+            app:destination="@id/edigestDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.foodhub.user.fragments.SettingsFragment"
@@ -52,8 +85,18 @@
         android:label="DonateConfirmFragment" />
     <fragment
         android:id="@+id/volunteerDetailsFragment"
-        android:name="com.example.foodhub.VolunteerDetailsFragment"
-        android:label="VolunteerDetailsFragment" />
+        android:name="com.example.foodhub.user.fragments.detail.VolunteerDetailsFragment"
+        android:label="VolunteerDetailsFragment" >
+        <action
+            android:id="@+id/action_volunteerDetailsFragment_to_volunteerFragment"
+            app:destination="@id/volunteerFragment" />
+        <argument
+            android:name="currentWork"
+            app:argType="com.example.foodhub.database.tables.VoluntaryWork" />
+        <action
+            android:id="@+id/action_volunteerDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/donateFragment2"
         android:name="com.example.foodhub.user.fragments.DonateFragment"
@@ -77,5 +120,59 @@
         android:name="com.example.foodhub.user.settings.UsernameSetting"
         android:label="fragment_username_setting"
         tools:layout="@layout/fragment_username_setting" />
+    <fragment
+        android:id="@+id/nearMeDetailFragment"
+        android:name="com.example.foodhub.user.fragments.detail.NearMeDetailFragment"
+        android:label="NearMeDetailFragment" >
+        <action
+            android:id="@+id/action_nearMeDetailFragment_to_nearMeFragment"
+            app:destination="@id/nearMeFragment" />
+        <action
+            android:id="@+id/action_nearMeDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="currentFacility"
+            app:argType="com.example.foodhub.database.tables.Facility" />
+    </fragment>
+    <fragment
+        android:id="@+id/helplineDetailFragment"
+        android:name="com.example.foodhub.user.fragments.detail.HelplineDetailFragment"
+        android:label="fragment_helpline_detail"
+        tools:layout="@layout/fragment_helpline_detail" >
+        <action
+            android:id="@+id/action_helplineDetailFragment_to_helplinesFragment"
+            app:destination="@id/helplinesFragment" />
+        <argument
+            android:name="currentHelpline"
+            app:argType="com.example.foodhub.database.tables.Helpline" />
+    </fragment>
+    <fragment
+        android:id="@+id/latestNewsDetailsFragment"
+        android:name="com.example.foodhub.user.fragments.detail.LatestNewsDetailsFragment"
+        android:label="LatestNewsDetailsFragment" >
+        <action
+            android:id="@+id/action_latestNewsDetailsFragment_to_latestNewsFragment"
+            app:destination="@id/latestNewsFragment" />
+        <action
+            android:id="@+id/action_latestNewsDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="currentNews"
+            app:argType="com.example.foodhub.database.tables.LatestNews" />
+    </fragment>
+    <fragment
+        android:id="@+id/edigestDetailsFragment"
+        android:name="com.example.foodhub.user.fragments.detail.EdigestDetailsFragment"
+        android:label="EdigestDetailsFragment" >
+        <action
+            android:id="@+id/action_edigestDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_edigestDetailsFragment_to_edigestFragment"
+            app:destination="@id/edigestFragment" />
+        <argument
+            android:name="currentDigest"
+            app:argType="com.example.foodhub.database.tables.EDigest" />
+    </fragment>
 
 </navigation>

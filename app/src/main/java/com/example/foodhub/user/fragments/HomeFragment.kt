@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +26,6 @@ import com.example.foodhub.user.*
 import com.example.foodhub.user.adapters.EDigestHomeAdapter
 import com.example.foodhub.user.adapters.LatestNewsHomeAdapter
 import com.example.foodhub.user.adapters.NearMeHomeAdapter
-import com.example.foodhub.user.viewmodels.DonateViewModal
 import com.example.foodhub.user.viewmodels.VoluntaryWorkHomeAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -48,18 +46,11 @@ class HomeFragment : Fragment() {
     private lateinit var eDigestViewModel: EDigestViewModel
     private lateinit var eDigestPreviewAdapter: EDigestHomeAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
     ): View {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_home, container, false)
 
         bindingHome = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 

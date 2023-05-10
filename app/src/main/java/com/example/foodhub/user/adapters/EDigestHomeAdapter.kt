@@ -4,9 +4,11 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.database.tables.EDigest
 import com.example.foodhub.databinding.PreviewCardBulletinBinding
+import com.example.foodhub.user.fragments.HomeFragmentDirections
 
 class EDigestHomeAdapter: RecyclerView.Adapter<EDigestHomeAdapter.EDigestPreviewViewHolder>() {
 
@@ -42,7 +44,8 @@ class EDigestHomeAdapter: RecyclerView.Adapter<EDigestHomeAdapter.EDigestPreview
         holder.binding.bulletinCardDate.text = currentItem.eDate
 
         holder.binding.bulletinCardContainer.setOnClickListener { view: View ->
-            TODO("Redirect to e-digest details page.")
+            val action = HomeFragmentDirections.actionHomeFragmentToEdigestDetailsFragment(currentItem)
+            view.findNavController().navigate(action)
         }
     }
 

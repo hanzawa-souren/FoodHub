@@ -1,6 +1,5 @@
 package com.example.foodhub.user
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
@@ -13,8 +12,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.example.foodhub.R
 import com.example.foodhub.databinding.ActivityMainBinding
-import com.example.foodhub.user.viewmodels.DonateViewModal
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,7 +47,9 @@ class MainActivity : AppCompatActivity() {
                 if (navController.currentDestination?.id != R.id.donateFragment2) {
                     Navigation.findNavController(this@MainActivity, R.id.myNavHostFragment)
                         .navigate(R.id.donateFragment2)
-                    bindingMain.bottomNavView.uncheckAllItems()
+                }
+                else {
+                    navController.navigateUp()
                 }
             }
         })
@@ -78,14 +77,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
-    }
-
-    private fun BottomNavigationView.uncheckAllItems() {
-        menu.setGroupCheckable(0, true, false)
-        for (i in 0 until menu.size()) {
-            menu.getItem(i).isChecked = false
-        }
-        menu.setGroupCheckable(0, true, true)
     }
 }
 

@@ -13,7 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentDonationSuccessBinding
-import com.example.foodhub.user.viewmodels.DonateViewModal
+import com.example.foodhub.user.DonateViewModal
 
 
 class DonateSuccessFragment : Fragment() {

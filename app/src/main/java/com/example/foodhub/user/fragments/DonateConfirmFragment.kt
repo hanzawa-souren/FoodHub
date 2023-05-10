@@ -1,7 +1,6 @@
 package com.example.foodhub.user.fragments
 
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,22 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
-import com.example.foodhub.admin.viewmodels.DonationViewModel
 import com.example.foodhub.database.tables.Donation
-import com.example.foodhub.databinding.FragmentDonateBinding
 import com.example.foodhub.databinding.FragmentDonateConfirmBinding
 import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
-import com.example.foodhub.user.viewmodels.DonateViewModal
+import com.example.foodhub.user.DonateViewModal
 import java.util.Calendar
 
 class DonateConfirmFragment : Fragment() {

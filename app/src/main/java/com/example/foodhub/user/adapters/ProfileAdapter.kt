@@ -1,20 +1,14 @@
 package com.example.foodhub.user.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.R
-import com.example.foodhub.login.UserViewModel
 
-import com.example.foodhub.user.ProfileModel
-import com.example.foodhub.user.viewmodels.DonateViewModal
+import com.example.foodhub.user.models.ProfileModel
 
 class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : String,var donateAmount:Double) : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
 
