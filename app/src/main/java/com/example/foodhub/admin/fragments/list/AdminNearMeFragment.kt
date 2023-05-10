@@ -14,12 +14,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.admin.adapters.AdminFacilityAdapter
 import com.example.foodhub.admin.viewmodels.FacilityViewModel
+import com.example.foodhub.database.ImageStorageManager
+import com.example.foodhub.database.tables.Facility
 import com.example.foodhub.databinding.FragmentAdminNearMeBinding
+import kotlinx.coroutines.launch
 
 class AdminNearMeFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener {
 
@@ -31,12 +35,9 @@ class AdminNearMeFragment : Fragment(), MenuProvider, SearchView.OnQueryTextList
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_near_me, container, false)
+
         bindingAdminNearMe = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_near_me, container, false)
-
         facilityViewModel = ViewModelProvider(this).get(FacilityViewModel::class.java)
-
         return bindingAdminNearMe.root
     }
 
@@ -60,12 +61,6 @@ class AdminNearMeFragment : Fragment(), MenuProvider, SearchView.OnQueryTextList
 
         bindingAdminNearMe.adminNearMeSearchview.isSubmitButtonEnabled = true
         bindingAdminNearMe.adminNearMeSearchview.setOnQueryTextListener(this)
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = "Facilities"
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -82,6 +77,20 @@ class AdminNearMeFragment : Fragment(), MenuProvider, SearchView.OnQueryTextList
     private fun deleteAllFacility() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { _, _ ->
+
+            // Delete image files from internal storage upon entry removal from ROOM
+            var facilityList = emptyList<Facility>()
+            val imageFileNames: MutableList<String> = mutableListOf()
+            facilityViewModel.getAllFacility.observe(viewLifecycleOwner, Observer { list ->
+                facilityList = list
+            })
+            for (item in facilityList) {
+                imageFileNames.add(item.nImage.substring(item.nImage.lastIndexOf("/")+1))
+            }
+            viewLifecycleOwner.lifecycleScope.launch {
+                ImageStorageManager.deleteAllImagesFromInternalStorage(requireContext(), imageFileNames)
+            }
+
             facilityViewModel.deleteAllFacility()
             Toast.makeText(
                 requireContext(),
@@ -117,5 +126,10 @@ class AdminNearMeFragment : Fragment(), MenuProvider, SearchView.OnQueryTextList
                 adapter.setData(list)
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = "Facilities"
     }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_nav"
-    app:startDestination="@id/firstTimeScr1">
+    app:startDestination="@id/preLogin">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -34,29 +34,5 @@
         <action
             android:id="@+id/action_preLogin_to_registerFragment"
             app:destination="@id/registerFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/firstTimeScr1"
-        android:name="com.example.foodhub.login.FirstTimeScr1"
-        android:label="fragment_first_time_scr1"
-        tools:layout="@layout/fragment_first_time_scr1" >
-        <action
-            android:id="@+id/action_firstTimeScr1_to_firstTimeScr2"
-            app:destination="@id/firstTimeScr2" />
-        <action
-            android:id="@+id/action_firstTimeScr1_to_preLogin"
-            app:destination="@id/preLogin" />
-    </fragment>
-    <fragment
-        android:id="@+id/firstTimeScr2"
-        android:name="com.example.foodhub.login.FirstTimeScr2"
-        android:label="fragment_first_time_scr2"
-        tools:layout="@layout/fragment_first_time_scr2" >
-        <action
-            android:id="@+id/action_firstTimeScr2_to_preLogin"
-            app:destination="@id/preLogin" />
-        <action
-            android:id="@+id/action_firstTimeScr2_to_firstTimeScr1"
-            app:destination="@id/firstTimeScr1" />
     </fragment>
 </navigation>

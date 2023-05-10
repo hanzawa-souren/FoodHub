@@ -1,4 +1,4 @@
-package com.example.foodhub
+package com.example.foodhub.user.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -12,11 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.foodhub.admin.viewmodels.DonationViewModel
+import com.example.foodhub.DonateCardAdapter
+import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentDonateBinding
+import com.example.foodhub.donateAmountAdapter
+import com.example.foodhub.donateAmountModel
 import com.example.foodhub.user.viewmodels.DonateCardModel
 import com.example.foodhub.user.viewmodels.DonateViewModal
 
