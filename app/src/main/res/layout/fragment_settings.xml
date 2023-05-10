@@ -14,32 +14,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include
-                android:id="@+id/include"
-                layout="@layout/orange_backdrop" />
 
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/user_volunteer_appbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:orientation="vertical"
+                app:elevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/user_volunteer_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="97dp"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/orange_backdrop"
+                    app:layout_scrollFlags="scroll|enterAlways" />
+
+            </com.google.android.material.appbar.AppBarLayout>
 
             <ListView
                 android:id="@+id/setting_menu"
                 android:layout_width="350dp"
                 android:layout_height="400dp"
                 android:background="@drawable/setting_background"
+                android:clipToPadding="true"
                 android:elevation="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.453"
-                android:clipToPadding="true"
 
-                />
+                app:layout_constraintVertical_bias="0.362" />
 
             <TextView
                 android:id="@+id/setting_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="50dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Settings"
                 android:textColor="@color/white"
@@ -68,19 +84,21 @@
                 android:id="@+id/button"
                 android:layout_width="350dp"
                 android:layout_height="65dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/deactivate"
                 android:drawableLeft="@drawable/power_settings_new"
                 android:elevation="15dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="35dp"
                 android:text="Deactivate Account"
                 android:textColor="#FF0000"
-                android:paddingLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:paddingRight="35dp"
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/setting_menu" />
+                app:layout_constraintTop_toBottomOf="@+id/setting_menu"
+                app:layout_constraintVertical_bias="0.206" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
