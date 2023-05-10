@@ -42,6 +42,11 @@ class HelplineDetailFragment : Fragment() {
             startActivity(dialIntent)
         }
 
+        bindingHelplineDetails.callNowImg.setOnClickListener {
+            val dialIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + args.currentHelpline.hPhone))
+            startActivity(dialIntent)
+        }
+
         bindingHelplineDetails.websiteLink.setOnClickListener {
             var webUrl = args.currentHelpline.hWebsite
             if (!webUrl.startsWith("http://") && !webUrl.startsWith("https://")) {

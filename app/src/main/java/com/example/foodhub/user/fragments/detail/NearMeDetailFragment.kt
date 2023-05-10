@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
 import com.example.foodhub.R
@@ -74,5 +77,31 @@ class NearMeDetailFragment : Fragment() {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(wazeUrl))
             startActivity(browserIntent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle_salmon)
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = "Near Me"
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).setTextColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.salmon
+            ))
+        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.top_toolbar).setBackgroundColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.white
+            ))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).setTextColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.white
+            ))
+        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.top_toolbar).setBackgroundColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.salmon
+            ))
     }
 }

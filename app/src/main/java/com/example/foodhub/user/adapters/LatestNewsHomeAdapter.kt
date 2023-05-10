@@ -4,6 +4,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.database.tables.LatestNews
 import com.example.foodhub.databinding.PreviewCardBulletinBinding
@@ -44,7 +45,8 @@ class LatestNewsHomeAdapter: RecyclerView.Adapter<LatestNewsHomeAdapter.LatestNe
         holder.binding.bulletinCardDate.text = currentItem.lnDate
 
         holder.binding.bulletinCardContainer.setOnClickListener { view: View ->
-            TODO("HomeFragmentDirections is buggy now, do later.")
+            val action = HomeFragmentDirections.actionHomeFragmentToLatestNewsDetailsFragment(currentItem)
+            view.findNavController().navigate(action)
         }
     }
 

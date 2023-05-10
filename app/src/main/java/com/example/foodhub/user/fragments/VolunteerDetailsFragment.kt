@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
 import com.example.foodhub.R
-import com.example.foodhub.VolunteerDetailsFragmentArgs
 import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.databinding.FragmentVolunteerDetailBinding
 
