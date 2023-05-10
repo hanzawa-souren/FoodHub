@@ -1,5 +1,6 @@
 package com.example.foodhub.admin.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import androidx.navigation.ui.NavigationUI
 import com.example.foodhub.R
 import com.example.foodhub.admin.viewmodels.*
 import com.example.foodhub.databinding.FragmentAdminHomeBinding
+import com.example.foodhub.login.LoginActivity
 import com.example.foodhub.login.UserViewModel
 
 class AdminHomeFragment : Fragment(), MenuProvider {
@@ -121,7 +123,13 @@ class AdminHomeFragment : Fragment(), MenuProvider {
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        return NavigationUI
-            .onNavDestinationSelected(menuItem, requireView().findNavController())
+        if (menuItem.itemId == R.id.menu_logout) {
+            requireActivity().run {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+        return true
     }
 }
