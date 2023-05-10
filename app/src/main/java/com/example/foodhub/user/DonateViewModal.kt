@@ -11,6 +11,8 @@ class DonateViewModal:ViewModel() {
     var donateAmount = MutableLiveData<String>()
     var tnc = MutableLiveData<Boolean>(false) // initialize with false
     var userID = MutableLiveData<String>()
+    var donateAmounts =MutableLiveData<Double>()
+
     fun updateTncValue(value: Boolean) {
         Log.d("Cbox", "True");
         tnc.value = value

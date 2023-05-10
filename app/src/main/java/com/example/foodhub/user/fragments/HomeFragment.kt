@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
@@ -20,20 +21,23 @@ import com.example.foodhub.admin.viewmodels.FacilityViewModel
 import com.example.foodhub.admin.viewmodels.LatestNewsViewModel
 import com.example.foodhub.admin.viewmodels.VoluntaryWorkViewModel
 import com.example.foodhub.databinding.FragmentHomeBinding
+import com.example.foodhub.login.User
+import com.example.foodhub.login.UserViewModel
 import com.example.foodhub.user.*
 import com.example.foodhub.user.adapters.EDigestHomeAdapter
 import com.example.foodhub.user.adapters.LatestNewsHomeAdapter
 import com.example.foodhub.user.adapters.NearMeHomeAdapter
+import com.example.foodhub.user.viewmodels.DonateViewModal
 import com.example.foodhub.user.viewmodels.VoluntaryWorkHomeAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
-
+    private val viewModel: DonateViewModal by activityViewModels()
     private var fullName = "Ali bin Abu"
     private var firstName = fullName.substring(0, fullName.indexOf(" "))
     private var phNum = "+6012-3456789"
     private val userInfo: UserInfo = UserInfo(fullName, firstName, phNum)
-
+    private lateinit var mUserViewModel: UserViewModel
     private lateinit var bindingHome: FragmentHomeBinding
     private lateinit var voluntaryWorkViewModel: VoluntaryWorkViewModel
     private lateinit var volunteerPreviewAdapter: VoluntaryWorkHomeAdapter
@@ -63,7 +67,7 @@ class HomeFragment : Fragment() {
         facilityViewModel = ViewModelProvider(this).get(FacilityViewModel::class.java)
         latestNewsViewModel = ViewModelProvider(this).get(LatestNewsViewModel::class.java)
         eDigestViewModel = ViewModelProvider(this).get(EDigestViewModel::class.java)
-
+        mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         return bindingHome.root
     }
 
@@ -103,6 +107,15 @@ class HomeFragment : Fragment() {
         bindingHome.edigestPreviewTitle.setOnClickListener { view: View ->
             findNavController().navigate(R.id.edigestFragment)
         }
+        @Suppress("DEPRECATION")
+        val name : User = activity?.intent?.getParcelableExtra("User")!!
+        var user = mUserViewModel.getUser(name.loginID)
+//        var donateAmount : Double = mUserViewModel.getUserDonation(name.loginID)
+        var donateAmount : Double = viewModel.donateAmounts.value?:0.0
+        mUserViewModel.getUserDonation(name.loginID).observe(viewLifecycleOwner, Observer { amount ->
+
+            viewModel.donateAmounts.value = amount
+        })
     }
 
     private fun setVolunteerPreviewScroll() {

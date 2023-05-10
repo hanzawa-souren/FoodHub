@@ -11,10 +11,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentMyProfileBinding
+import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
 import com.example.foodhub.user.ProfileModel
 
@@ -26,6 +28,7 @@ class MyProfileFragment : Fragment() {
 
     private lateinit var bindingProfile: FragmentMyProfileBinding
     private lateinit var mUserViewModel: UserViewModel
+    private lateinit var mDonateViewModal: DonateViewModal
     private val viewModel: DonateViewModal by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +43,10 @@ class MyProfileFragment : Fragment() {
 
         bindingProfile = DataBindingUtil.inflate(inflater,
             R.layout.fragment_my_profile, container, false)
+        mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        mDonateViewModal = ViewModelProvider(this)[DonateViewModal::class.java]
         return bindingProfile.root
+
 
 
 
@@ -50,12 +56,20 @@ class MyProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         (activity as AppCompatActivity).supportActionBar?.hide()
         val rview = bindingProfile.profileStats
+        @Suppress("DEPRECATION")
+        val name : User = activity?.intent?.getParcelableExtra("User")!!
+        var user = mUserViewModel.getUser(name.loginID)
+////        var donateAmount : Double = mUserViewModel.getUserDonation(name.loginID)
+//        var donateAmount : Double = viewModel.donateAmounts.value?:0.0
+//        mUserViewModel.getUserDonation(name.loginID).observe(viewLifecycleOwner, Observer { amount ->
+//
+//            viewModel.donateAmounts.value = amount
+//        })
 
-        var user = mUserViewModel.getUser(viewModel.userID.value?:"")
+//        Toast.makeText(requireContext(), "$donateAmount", Toast.LENGTH_SHORT).show()
 
         bindingProfile.profileName.text = user?.loginID
         val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
@@ -66,8 +80,10 @@ class MyProfileFragment : Fragment() {
         var year : String= user?.year.toString()
         var month: String = months[user?.month!!]
         var dateJoined = "$day $month $year"
-        Toast.makeText(requireContext(), "$dateJoined", Toast.LENGTH_SHORT).show()
-        rview.adapter = ProfileAdapter(setDataList(),dateJoined)
+
+
+
+        rview.adapter = ProfileAdapter(setDataList(),dateJoined,viewModel.donateAmounts.value?:0.0)
 
 
 

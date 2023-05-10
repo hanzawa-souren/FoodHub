@@ -9,8 +9,8 @@ class UserRepository(private val userDao : UserDAO) {
         val readUser = userDao.getUser(id)
         return readUser
     }
-    //hereasdkhbalidjaslkdjhaslkjan
-    fun getUserDonation(id:String):LiveData<Int>{
+
+    fun getUserDonation(id:String):LiveData<Double>{
         return userDao.getUserDonation(id)
     }
     suspend fun addUser(user: User){

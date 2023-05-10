@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,7 @@ import com.example.foodhub.admin.viewmodels.DonationViewModel
 import com.example.foodhub.database.tables.Donation
 import com.example.foodhub.databinding.FragmentDonateBinding
 import com.example.foodhub.databinding.FragmentDonateConfirmBinding
+import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
 import com.example.foodhub.user.viewmodels.DonateViewModal
 import java.util.Calendar
@@ -104,22 +106,28 @@ class DonateConfirmFragment : Fragment() {
                 bindingDonateConfirm.cvv.background = null
                 Toast.makeText(requireContext(), "Please check the terms and condition box", Toast.LENGTH_SHORT).show()
             }else{
+                @Suppress("DEPRECATION")
+                val name : User = activity?.intent?.getParcelableExtra("User")!!
+                var id : String = name.loginID
+                if (number != null) {
 
+                        mUserViewModel.addDonation(Donation(
+                            0,
+                            "$id",
+                            paymentMethodNames[paymentMethodImageNum(paymentMethodName)],
+                            number.toDouble()))
+
+                }
                 view.findNavController().navigate(R.id.donateSuccessFragment)
 
             }
+
         }
+
+
+
         bindingDonateConfirm.termsAndCondition.setOnClickListener{
-            var user = mUserViewModel.getUser(viewModel.userID.value?:"")
-            if (number != null) {
-                if (user != null) {
-                    mUserViewModel.addDonation(Donation(
-                        dId = 0,
-                        uId = user.loginID,
-                        dMethod=paymentMethodNames[paymentMethodImageNum(paymentMethodName)],
-                        dAmount = number.toDouble()))
-                }
-            }
+
             view.findNavController().navigate(R.id.termsAndConditionFragment)
         }
 
