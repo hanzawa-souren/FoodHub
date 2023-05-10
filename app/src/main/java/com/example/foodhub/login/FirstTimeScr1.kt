@@ -3,23 +3,18 @@ package com.example.foodhub.login
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentFirstTimeScr1Binding
-import com.example.foodhub.databinding.FragmentLoginBinding
 
 class FirstTimeScr1 : Fragment() {
 
-    private var _binding: FragmentFirstTimeScr1Binding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentFirstTimeScr1Binding
     private lateinit var pref: SharedPreferences
 
 
@@ -33,7 +28,7 @@ class FirstTimeScr1 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFirstTimeScr1Binding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_first_time_scr1, container, false)
 
 
         //Getting the sharedPreferences
