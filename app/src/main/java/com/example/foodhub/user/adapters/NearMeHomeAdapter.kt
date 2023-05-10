@@ -45,7 +45,8 @@ class NearMeHomeAdapter: RecyclerView.Adapter<NearMeHomeAdapter.NearMePreviewVie
         holder.binding.nearMeCardLocation.text = currentItem.nCity
 
         holder.binding.nearMeCardContainer.setOnClickListener { view: View ->
-
+            val action = HomeFragmentDirections.actionHomeFragmentToNearMeDetailFragment(currentItem)
+            view.findNavController().navigate(action)
         }
     }
 

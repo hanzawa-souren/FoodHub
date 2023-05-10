@@ -1,4 +1,4 @@
-package com.example.foodhub
+package com.example.foodhub.user.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -9,11 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
+import com.example.foodhub.R
+import com.example.foodhub.VolunteerDetailsFragmentArgs
 import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.databinding.FragmentVolunteerDetailBinding
 
@@ -27,7 +28,8 @@ class VolunteerDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        bindingVolunteerDetails = DataBindingUtil.inflate(inflater, R.layout.fragment_volunteer_detail, container, false)
+        bindingVolunteerDetails = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_volunteer_detail, container, false)
         return bindingVolunteerDetails.root
     }
 
@@ -93,13 +95,21 @@ class VolunteerDetailsFragment : Fragment() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle_salmon)
         (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = "Volunteer"
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).setTextColor(ContextCompat.getColor(requireContext(), R.color.salmon))
-        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.top_toolbar).setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).setTextColor(ContextCompat.getColor(requireContext(),
+            R.color.salmon
+        ))
+        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.top_toolbar).setBackgroundColor(ContextCompat.getColor(requireContext(),
+            R.color.white
+        ))
     }
 
     override fun onStop() {
         super.onStop()
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.top_toolbar).setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.salmon))
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).setTextColor(ContextCompat.getColor(requireContext(),
+            R.color.white
+        ))
+        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.top_toolbar).setBackgroundColor(ContextCompat.getColor(requireContext(),
+            R.color.salmon
+        ))
     }
 }

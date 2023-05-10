@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.admin.fragments.list.AdminHelplinesFragmentDirections
 import com.example.foodhub.database.tables.Helpline
 import com.example.foodhub.databinding.PreviewCardHelplinesBinding
+import com.example.foodhub.user.fragments.list.HelplinesFragmentDirections
 
 class HelplineListAdapter: RecyclerView.Adapter<HelplineListAdapter.HelplineListViewHolder>() {
 
@@ -36,7 +37,8 @@ class HelplineListAdapter: RecyclerView.Adapter<HelplineListAdapter.HelplineList
         holder.binding.helplineCardDescription.text = currentItem.hDesc
 
         holder.binding.helplineCardContainer.setOnClickListener { view: View ->
-            TODO("Redirect to helpline details page.")
+            val action = HelplinesFragmentDirections.actionHelplinesFragmentToHelplineDetailFragment(currentItem)
+            view.findNavController().navigate(action)
         }
     }
 

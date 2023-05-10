@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.database.tables.LatestNews
 import com.example.foodhub.databinding.PreviewCardBulletinBinding
+import com.example.foodhub.user.fragments.HomeFragmentDirections
+import com.example.foodhub.user.fragments.list.LatestNewsFragmentDirections
 
 class LatestNewsHomeAdapter: RecyclerView.Adapter<LatestNewsHomeAdapter.LatestNewsPreviewViewHolder>() {
 
@@ -42,7 +44,7 @@ class LatestNewsHomeAdapter: RecyclerView.Adapter<LatestNewsHomeAdapter.LatestNe
         holder.binding.bulletinCardDate.text = currentItem.lnDate
 
         holder.binding.bulletinCardContainer.setOnClickListener { view: View ->
-            TODO("Redirect to latest news details page.")
+            TODO("HomeFragmentDirections is buggy now, do later.")
         }
     }
 
