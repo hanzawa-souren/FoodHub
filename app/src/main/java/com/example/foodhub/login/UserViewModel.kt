@@ -13,7 +13,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository: UserRepository
 
-    private var readUser : User = User(0, "", "",0,0,0)
+    private var readUser : User? = User(0, "", "",0,0,0)
 
     private var userCount: LiveData<Int>
 
@@ -31,7 +31,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     fun getUser(id: String): User? {
         viewModelScope.launch(Dispatchers.IO) {
-            readUser = repository.getUser(id)!!
+            readUser = repository.getUser(id)
         }
         return readUser
     }
