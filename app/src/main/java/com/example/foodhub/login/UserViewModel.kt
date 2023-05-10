@@ -17,10 +17,13 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     private var userCount: LiveData<Int>
 
+
+
     init {
         val userDao = AppDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
         userCount = repository.getUserCount()
+
     }
 
     fun addUser(user: User){
@@ -66,8 +69,14 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
         return userCount
     }
-    fun getUserDonation(id: String):LiveData<Int>{
-        return repository.getUserDonation(id)
+    private lateinit var userDonation: LiveData<Double>
+    fun getUserDonation(id: String): LiveData<Double>{
+
+        userDonation = repository.getUserDonation(id)
+
+
+        return userDonation
     }
+
 
 }
