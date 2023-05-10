@@ -169,7 +169,7 @@
                 android:layout_marginHorizontal="@dimen/margin"
                 android:layout_marginVertical="@dimen/margin_double"
                 android:text="@string/publish"
-                android:backgroundTint="@color/darkCyan"
+                style="@style/ButtonStyle"
                 app:layout_constraintTop_toBottomOf="@id/h_desc_field"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

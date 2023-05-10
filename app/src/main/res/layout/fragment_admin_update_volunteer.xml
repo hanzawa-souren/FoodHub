@@ -388,7 +388,7 @@
                 android:layout_marginHorizontal="@dimen/margin"
                 android:layout_marginVertical="@dimen/margin_double"
                 android:text="@string/update"
-                android:backgroundTint="@color/darkCyan"
+                style="@style/ButtonStyle"
                 app:layout_constraintTop_toBottomOf="@id/update_link_fields"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
