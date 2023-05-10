@@ -1,4 +1,4 @@
-package com.example.foodhub.user.viewmodels
+package com.example.foodhub.user
 
 import android.util.Log
 import android.widget.CheckBox

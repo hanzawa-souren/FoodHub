@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.foodhub.R
 
 import com.example.foodhub.databinding.FragmentTermsAndConditionBinding
-import com.example.foodhub.user.viewmodels.DonateViewModal
+import com.example.foodhub.user.DonateViewModal
 
 class TermsAndConditionFragment: Fragment() {
     private val viewModel: DonateViewModal by activityViewModels()

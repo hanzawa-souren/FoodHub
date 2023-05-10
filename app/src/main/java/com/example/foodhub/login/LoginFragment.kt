@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 
 import androidx.fragment.app.Fragment
 
@@ -16,16 +15,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.foodhub.R
 import com.example.foodhub.admin.AdminMainActivity
 import com.example.foodhub.databinding.FragmentLoginBinding
 import com.example.foodhub.user.MainActivity
-
-import com.example.foodhub.user.viewmodels.DonateViewModal
-
 
 
 class LoginFragment : Fragment() {

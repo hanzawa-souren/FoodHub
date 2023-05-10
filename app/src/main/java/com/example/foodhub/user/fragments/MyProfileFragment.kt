@@ -1,27 +1,24 @@
 package com.example.foodhub.user.fragments
 
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentMyProfileBinding
 import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
+import com.example.foodhub.user.DonateViewModal
 import com.example.foodhub.user.models.ProfileModel
 
 import com.example.foodhub.user.adapters.ProfileAdapter
-import com.example.foodhub.user.viewmodels.DonateViewModal
 
 
 class MyProfileFragment : Fragment() {
