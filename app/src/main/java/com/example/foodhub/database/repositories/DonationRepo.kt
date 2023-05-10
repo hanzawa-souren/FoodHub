@@ -8,4 +8,7 @@ class DonationRepo(private val donationDao: DonationDao) {
     fun getTotalDonationAmount(): LiveData<Double> {
         return donationDao.getTotalDonatedAmount()
     }
+    fun getDonationCount():LiveData<Int>{
+        return donationDao.getDonationCount()
+    }
 }

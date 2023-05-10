@@ -66,7 +66,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
         return userCount
     }
-    fun getUserDonation(id: String):LiveData<Int>{
+    fun getUserDonation(id: String):LiveData<Double>{
         return repository.getUserDonation(id)
     }
 

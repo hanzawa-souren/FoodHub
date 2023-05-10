@@ -16,7 +16,7 @@ import com.example.foodhub.login.UserViewModel
 import com.example.foodhub.user.ProfileModel
 import com.example.foodhub.user.viewmodels.DonateViewModal
 
-class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : String) : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
+class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : String,var donateAmount:Double) : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
 
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -40,7 +40,13 @@ class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : Str
             holder.title.text = ItemsViewModel.title
             holder.content.text = dateJoined
             holder.image.setImageResource(ItemsViewModel.image)
-        }else{
+        }else if(position == 2){
+            holder.title.text = ItemsViewModel.title
+            holder.content.text = donateAmount.toString()
+            holder.image.setImageResource(ItemsViewModel.image)
+        }
+
+        else{
             holder.title.text = ItemsViewModel.title
             holder.content.text = ItemsViewModel.content
             holder.image.setImageResource(ItemsViewModel.image)

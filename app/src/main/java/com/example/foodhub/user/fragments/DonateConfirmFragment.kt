@@ -27,6 +27,7 @@ import java.util.Calendar
 
 class DonateConfirmFragment : Fragment() {
     private lateinit var mUserViewModel: UserViewModel
+    private lateinit var mDonationViewModel: DonationViewModel
     private lateinit var bindingDonateConfirm: FragmentDonateConfirmBinding
     private val viewModel: DonateViewModal by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ class DonateConfirmFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        mDonationViewModel = ViewModelProvider(this)[DonationViewModel::class.java]
         mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         bindingDonateConfirm = DataBindingUtil.inflate(inflater, R.layout.fragment_donate_confirm, container, false)
         return bindingDonateConfirm.root
@@ -104,22 +105,26 @@ class DonateConfirmFragment : Fragment() {
                 bindingDonateConfirm.cvv.background = null
                 Toast.makeText(requireContext(), "Please check the terms and condition box", Toast.LENGTH_SHORT).show()
             }else{
+                var user = mUserViewModel.getUser(viewModel.userID.value?:"")
 
+
+                if (number != null) {
+                    if (user != null) {
+                        mUserViewModel.addDonation(Donation(
+                            dId = 0,
+                            uId = user.loginID,
+                            dMethod=paymentMethodNames[paymentMethodImageNum(paymentMethodName)],
+                            dAmount = number.toDouble()))
+                    }
+                }
                 view.findNavController().navigate(R.id.donateSuccessFragment)
 
             }
         }
         bindingDonateConfirm.termsAndCondition.setOnClickListener{
-            var user = mUserViewModel.getUser(viewModel.userID.value?:"")
-            if (number != null) {
-                if (user != null) {
-                    mUserViewModel.addDonation(Donation(
-                        dId = 0,
-                        uId = user.loginID,
-                        dMethod=paymentMethodNames[paymentMethodImageNum(paymentMethodName)],
-                        dAmount = number.toDouble()))
-                }
-            }
+
+
+
             view.findNavController().navigate(R.id.termsAndConditionFragment)
         }
 

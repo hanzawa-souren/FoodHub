@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
@@ -26,6 +27,7 @@ class MyProfileFragment : Fragment() {
 
     private lateinit var bindingProfile: FragmentMyProfileBinding
     private lateinit var mUserViewModel: UserViewModel
+    private lateinit var mDonateViewModal: DonateViewModal
     private val viewModel: DonateViewModal by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,11 +53,14 @@ class MyProfileFragment : Fragment() {
 
 
         mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-
+        mDonateViewModal = ViewModelProvider(this)[DonateViewModal::class.java]
         (activity as AppCompatActivity).supportActionBar?.hide()
         val rview = bindingProfile.profileStats
 
         var user = mUserViewModel.getUser(viewModel.userID.value?:"")
+        var donateAmount : Double = mUserViewModel.getUserDonation(viewModel.userID.value?:"").value?:1.1
+
+        Toast.makeText(requireContext(), "$donateAmount", Toast.LENGTH_SHORT).show()
 
         bindingProfile.profileName.text = user?.loginID
         val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
@@ -66,8 +71,15 @@ class MyProfileFragment : Fragment() {
         var year : String= user?.year.toString()
         var month: String = months[user?.month!!]
         var dateJoined = "$day $month $year"
-        Toast.makeText(requireContext(), "$dateJoined", Toast.LENGTH_SHORT).show()
-        rview.adapter = ProfileAdapter(setDataList(),dateJoined)
+
+        mUserViewModel.getUserDonation(user?.loginID!!).observe(viewLifecycleOwner, Observer { totalAmount ->
+            if (totalAmount != null) {
+                Toast.makeText(requireContext(), "$totalAmount", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+
+        rview.adapter = ProfileAdapter(setDataList(),dateJoined,donateAmount)
 
 
 

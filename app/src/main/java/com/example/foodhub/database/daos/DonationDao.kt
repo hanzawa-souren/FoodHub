@@ -12,4 +12,8 @@ interface DonationDao {
 
     @Query("SELECT SUM(d_amount) FROM donation")
     fun getTotalDonatedAmount(): LiveData<Double>
+
+    @Query("SELECT COUNT(d_amount) FROM donation")
+    fun getDonationCount(): LiveData<Int>
+
 }

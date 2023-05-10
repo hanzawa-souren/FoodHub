@@ -46,7 +46,7 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             validateUser()
             hideKeyboard()
-            userIDIntent()
+
 
         }
 
@@ -78,6 +78,7 @@ class LoginFragment : Fragment() {
                             requireActivity().run {
                                 val intent = Intent(this, MainActivity::class.java)
                                 intent.putExtra("User", user)
+                                intent.putExtra("userID",readID)
                                 startActivity(intent)
                                 finish()
                             }
@@ -139,14 +140,6 @@ class LoginFragment : Fragment() {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
-    fun userIDIntent() {
-        val intent = Intent(activity,MainActivity::class.java)
-        val readID = binding.loginIDTE.text.toString()
-        if (readID != "admin"){
-            intent.putExtra("userID",readID)
-            startActivity(intent)
-        }
 
-    }
 
 }
