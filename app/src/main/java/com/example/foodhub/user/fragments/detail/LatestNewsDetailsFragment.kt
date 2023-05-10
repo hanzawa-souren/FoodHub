@@ -15,7 +15,7 @@ import com.example.foodhub.R
 import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.databinding.FragmentLatestNewsDetailsBinding
 
-import com.example.foodhub.user.fragments.LatestNewsDetailsFragmentArgs
+import com.example.foodhub.user.fragments.detail.LatestNewsDetailsFragmentArgs
 
 
 class LatestNewsDetailsFragment : Fragment() {

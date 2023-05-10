@@ -22,7 +22,7 @@ import com.example.foodhub.databinding.FragmentEDigestDetailsBinding
 import com.example.foodhub.databinding.FragmentLatestNewsDetailsBinding
 import com.example.foodhub.login.UserViewModel
 import com.example.foodhub.user.models.ProfileModel
-import com.example.foodhub.user.fragments.EdigestDetailsFragmentArgs
+import com.example.foodhub.user.fragments.detail.EdigestDetailsFragmentArgs
 import com.example.foodhub.user.adapters.ProfileAdapter
 
 
