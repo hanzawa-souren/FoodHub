@@ -4,9 +4,11 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.database.tables.VoluntaryWork
 import com.example.foodhub.databinding.PreviewCardVolunteerBinding
+import com.example.foodhub.user.fragments.HomeFragmentDirections
 
 class VoluntaryWorkHomeAdapter: RecyclerView.Adapter<VoluntaryWorkHomeAdapter.VoluntaryWorkPreviewViewHolder>() {
 
@@ -42,7 +44,8 @@ class VoluntaryWorkHomeAdapter: RecyclerView.Adapter<VoluntaryWorkHomeAdapter.Vo
         holder.binding.volunteerCardLocation.text = currentItem.vCity
 
         holder.binding.volunteerCardContainer.setOnClickListener { view: View ->
-            TODO("Redirect to volunteer details page.")
+            val action = HomeFragmentDirections.actionHomeFragmentToVolunteerDetailsFragment(currentItem)
+            view.findNavController().navigate(action)
         }
     }
 

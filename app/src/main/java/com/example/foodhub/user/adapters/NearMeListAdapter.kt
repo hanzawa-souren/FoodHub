@@ -4,9 +4,11 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.database.tables.Facility
 import com.example.foodhub.databinding.ListCardNearMeBinding
+import com.example.foodhub.user.fragments.list.NearMeFragmentDirections
 
 class NearMeListAdapter: RecyclerView.Adapter<NearMeListAdapter.NearMeListViewHolder>() {
 
@@ -37,7 +39,8 @@ class NearMeListAdapter: RecyclerView.Adapter<NearMeListAdapter.NearMeListViewHo
         holder.binding.nearMeCardLocation.text = currentItem.nCity
 
         holder.binding.nearMeCardContainer.setOnClickListener { view: View ->
-            TODO("Redirect to near me details page.")
+            val action = NearMeFragmentDirections.actionNearMeFragmentToNearMeDetailFragment(currentItem)
+            view.findNavController().navigate(action)
         }
     }
 
