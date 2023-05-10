@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout3"
@@ -25,42 +26,40 @@
         android:id="@+id/preLogLoginBtn"
         android:layout_width="111dp"
         android:layout_height="65dp"
-        android:layout_marginStart="13dp"
         android:layout_marginBottom="30dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/LoginButton"
         android:textSize="20sp"
         app:backgroundTint="@color/salmon"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.582"
-        app:layout_constraintStart_toStartOf="@+id/textView3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/preLogRegButton"
         android:layout_width="142dp"
         android:layout_height="57dp"
-        android:layout_marginStart="140dp"
         android:layout_marginBottom="128dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/RegisterButton"
         android:textSize="20sp"
         app:backgroundTint="@color/salmon"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="61dp"
         android:layout_marginBottom="28dp"
         android:fontFamily="@font/poppins"
         android:text="or"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/preLogRegButton"
-        app:layout_constraintStart_toStartOf="@+id/preLogRegButton" />
+        app:layout_constraintEnd_toEndOf="@+id/preLogLoginBtn"
+        app:layout_constraintStart_toStartOf="@+id/preLogLoginBtn" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -74,3 +73,4 @@
         app:srcCompat="@drawable/ic_prelogin"
         tools:src="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
