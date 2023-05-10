@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/nd_image"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bitcoin_logo" />
+
+    <TextView
+        android:id="@+id/nd_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Allen Shearer"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#B3000000"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/nd_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="10 May 2023"
+        android:textColor="#FC7753"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@id/nd_title"
+        app:layout_constraintTop_toBottomOf="@+id/nd_image" />
+
+    <TextView
+        android:id="@+id/nd_title"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:textColor="#B3000000"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Why people should stop throwing rubbish into rivers"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nd_date" />
+
+    <TextView
+        android:id="@+id/nd_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppins"
+        android:text="Content Here"
+        android:textSize="16dp"
+        android:textColor="#B3000000"
+        app:layout_constraintEnd_toEndOf="@+id/nd_title"
+        app:layout_constraintStart_toStartOf="@+id/nd_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="Written and prepared by"
+        android:textSize="16dp"
+        android:textColor="#FC7753"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/nd_title"
+        app:layout_constraintTop_toBottomOf="@+id/nd_title" />
+
+    <TextView
+        android:id="@+id/nd_space"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="@+id/nd_content"
+        app:layout_constraintStart_toStartOf="@+id/nd_content"
+        app:layout_constraintTop_toBottomOf="@+id/nd_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -142,8 +142,11 @@ class LoginFragment : Fragment() {
     fun userIDIntent() {
         val intent = Intent(activity,MainActivity::class.java)
         val readID = binding.loginIDTE.text.toString()
-        intent.putExtra("userID",readID)
-        startActivity(intent)
+        if (readID != "admin"){
+            intent.putExtra("userID",readID)
+            startActivity(intent)
+        }
+
     }
 
 }

@@ -285,13 +285,31 @@
                 android:textSize="20sp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-
+                android:layout_marginTop="10dp"
                 android:textColor="#4A9798"
                 android:drawableLeft="@drawable/add_location_alt"
                 app:layout_constraintEnd_toEndOf="@+id/imageView"
                 app:layout_constraintStart_toStartOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
                 android:background="@drawable/white_button_bg_squarish"/>
+
+            <android.widget.Button
+                android:id="@+id/WazeButton"
+                android:layout_marginTop="15dp"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:background="@drawable/white_button_bg_squarish"
+                android:drawableLeft="@drawable/waze_1"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+
+                android:text="Go Now"
+                android:textColor="#4A9798"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/GoNowButton" />
             <TextView
                 android:id="@+id/bottom_space"
                 android:layout_width="wrap_content"
@@ -299,7 +317,7 @@
                 android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/GoNowButton" />
+                app:layout_constraintTop_toBottomOf="@+id/WazeButton" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
