@@ -85,7 +85,7 @@
         android:label="DonateConfirmFragment" />
     <fragment
         android:id="@+id/volunteerDetailsFragment"
-        android:name="com.example.foodhub.user.fragments.VolunteerDetailsFragment"
+        android:name="com.example.foodhub.user.fragments.detail.VolunteerDetailsFragment"
         android:label="VolunteerDetailsFragment" >
         <action
             android:id="@+id/action_volunteerDetailsFragment_to_volunteerFragment"
@@ -136,7 +136,7 @@
     </fragment>
     <fragment
         android:id="@+id/helplineDetailFragment"
-        android:name="com.example.foodhub.user.fragments.HelplineDetailFragment"
+        android:name="com.example.foodhub.user.fragments.detail.HelplineDetailFragment"
         android:label="fragment_helpline_detail"
         tools:layout="@layout/fragment_helpline_detail" >
         <action
@@ -148,7 +148,7 @@
     </fragment>
     <fragment
         android:id="@+id/latestNewsDetailsFragment"
-        android:name="com.example.foodhub.user.fragments.LatestNewsDetailsFragment"
+        android:name="com.example.foodhub.user.fragments.detail.LatestNewsDetailsFragment"
         android:label="LatestNewsDetailsFragment" >
         <action
             android:id="@+id/action_latestNewsDetailsFragment_to_latestNewsFragment"
@@ -162,7 +162,7 @@
     </fragment>
     <fragment
         android:id="@+id/edigestDetailsFragment"
-        android:name="com.example.foodhub.user.fragments.EdigestDetailsFragment"
+        android:name="com.example.foodhub.user.fragments.detail.EdigestDetailsFragment"
         android:label="EdigestDetailsFragment" >
         <action
             android:id="@+id/action_edigestDetailsFragment_to_homeFragment"

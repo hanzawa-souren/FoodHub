@@ -18,8 +18,8 @@ import com.example.foodhub.DonateCardAdapter
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentDonateBinding
 import com.example.foodhub.donateAmountAdapter
-import com.example.foodhub.donateAmountModel
-import com.example.foodhub.user.viewmodels.DonateCardModel
+import com.example.foodhub.user.models.donateAmountModel
+import com.example.foodhub.user.models.DonateCardModel
 import com.example.foodhub.user.viewmodels.DonateViewModal
 
 

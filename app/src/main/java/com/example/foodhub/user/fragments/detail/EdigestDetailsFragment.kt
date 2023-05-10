@@ -1,4 +1,4 @@
-package com.example.foodhub.user.fragments
+package com.example.foodhub.user.fragments.detail
 
 import android.os.Bundle
 import android.util.Log
@@ -18,17 +18,18 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.database.ImageStorageManager
+import com.example.foodhub.databinding.FragmentEDigestDetailsBinding
 import com.example.foodhub.databinding.FragmentLatestNewsDetailsBinding
 import com.example.foodhub.login.UserViewModel
-import com.example.foodhub.user.ProfileModel
-
+import com.example.foodhub.user.models.ProfileModel
+import com.example.foodhub.user.fragments.EdigestDetailsFragmentArgs
 import com.example.foodhub.user.adapters.ProfileAdapter
 
 
-class LatestNewsDetailsFragment : Fragment() {
+class EdigestDetailsFragment : Fragment() {
 
-    private lateinit var bindingNewsDetails: FragmentLatestNewsDetailsBinding
-    private val args by navArgs<LatestNewsDetailsFragmentArgs>()
+    private lateinit var bindingEdigestDetails: FragmentEDigestDetailsBinding
+    private val args by navArgs<EdigestDetailsFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,29 +42,29 @@ class LatestNewsDetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_my_profile, container, false)
 
-        bindingNewsDetails = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_latest_news_details, container, false)
-        return bindingNewsDetails.root
+        bindingEdigestDetails = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_e_digest_details, container, false)
+        return bindingEdigestDetails.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val imageFileName = args.currentNews.lnImage.substring(args.currentNews.lnImage.lastIndexOf("/")+1)
-        Log.d("VolunteerDetailFragment", "Image for ${args.currentNews.lnTitle}: $imageFileName")
+        val imageFileName = args.currentDigest.eImage.substring(args.currentDigest.eImage.lastIndexOf("/")+1)
+        Log.d("VolunteerDetailFragment", "Image for ${args.currentDigest.eTitle}: $imageFileName")
         val imageBitmap = ImageStorageManager.getImageFromInternalStorage(requireContext(), imageFileName)
-        bindingNewsDetails.ndImage.setImageBitmap(imageBitmap)
+        bindingEdigestDetails.eddImage.setImageBitmap(imageBitmap)
 
-        bindingNewsDetails.ndDate.text = args.currentNews.lnDate
-        bindingNewsDetails.ndTitle.text = args.currentNews.lnTitle
-        bindingNewsDetails.ndAuthor.text = args.currentNews.lnAuthor
-        bindingNewsDetails.ndContent.text = args.currentNews.lnContent
+        bindingEdigestDetails.eddDate.text = args.currentDigest.eDate
+        bindingEdigestDetails.eddTitle.text = args.currentDigest.eTitle
+        bindingEdigestDetails.eddAuthor.text = args.currentDigest.eAuthor
+        bindingEdigestDetails.eddContent.text = args.currentDigest.eContent
     }
 
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle_salmon)
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = "Latest News"
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = "E-Digest"
         (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).setTextColor(
             ContextCompat.getColor(requireContext(),
             R.color.salmon

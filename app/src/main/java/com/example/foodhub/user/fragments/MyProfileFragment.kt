@@ -18,7 +18,7 @@ import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentMyProfileBinding
 import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
-import com.example.foodhub.user.ProfileModel
+import com.example.foodhub.user.models.ProfileModel
 
 import com.example.foodhub.user.adapters.ProfileAdapter
 import com.example.foodhub.user.viewmodels.DonateViewModal

@@ -2,7 +2,7 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:context=".user.fragments.HelplineDetailFragment">
+    tools:context=".user.fragments.detail.HelplineDetailFragment">
     <ScrollView
         android:id="@+id/home_fragment_layout"
         android:layout_width="match_parent"

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.R
 import com.example.foodhub.login.UserViewModel
 
-import com.example.foodhub.user.ProfileModel
+import com.example.foodhub.user.models.ProfileModel
 import com.example.foodhub.user.viewmodels.DonateViewModal
 
 class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : String,var donateAmount:Double) : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {

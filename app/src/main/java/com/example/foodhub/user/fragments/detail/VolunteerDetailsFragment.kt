@@ -1,4 +1,4 @@
-package com.example.foodhub.user.fragments
+package com.example.foodhub.user.fragments.detail
 
 import android.content.Intent
 import android.net.Uri
