@@ -1,76 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout3"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".login.PreLogin">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="355dp"
-        android:layout_height="148dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/poppins"
-        android:text="@string/preLogTitleTV"
-        android:textColor="#000000"
-        android:textSize="45sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".login.PreLogin">
 
-    <Button
-        android:id="@+id/preLogLoginBtn"
-        android:layout_width="111dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="30dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/LoginButton"
-        android:textSize="20sp"
-        app:backgroundTint="@color/salmon"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="355dp"
+            android:layout_height="148dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/preLogTitleTV"
+            android:textColor="#000000"
+            android:textSize="45sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/preLogRegButton"
-        android:layout_width="142dp"
-        android:layout_height="57dp"
-        android:layout_marginBottom="128dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/RegisterButton"
-        android:textSize="20sp"
-        app:backgroundTint="@color/salmon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/preLogLoginBtn"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/LoginButton"
+            android:textSize="20sp"
+            app:backgroundTint="@color/darkCyan"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:fontFamily="@font/poppins"
-        android:text="or"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/preLogRegButton"
-        app:layout_constraintEnd_toEndOf="@+id/preLogLoginBtn"
-        app:layout_constraintStart_toStartOf="@+id/preLogLoginBtn" />
+        <Button
+            android:id="@+id/preLogRegButton"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="100dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/RegisterButton"
+            android:textSize="20sp"
+            app:backgroundTint="@color/darkCyan"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="300dp"
-        android:layout_height="168dp"
-        android:layout_marginBottom="364dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_prelogin"
-        tools:src="@tools:sample/avatars" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/poppins"
+            android:text="or"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/preLogRegButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="320dp"
+            android:layout_height="188dp"
+            android:layout_marginBottom="344dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_prelogin"
+            tools:src="@tools:sample/avatars" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

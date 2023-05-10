@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/usernameSettingLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/usernameSettingLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".user.settings.UsernameSetting">
 
-    <include
-        layout="@layout/orange_backdrop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/user_volunteer_appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:orientation="vertical"
+            app:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/user_volunteer_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="97dp"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/orange_backdrop"
+                app:layout_scrollFlags="scroll|enterAlways" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
         android:id="@+id/usernameTV1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,34 +44,34 @@
         app:layout_constraintStart_toStartOf="@+id/usernameTV2"
         app:layout_constraintTop_toBottomOf="@+id/usernameTV2" />
 
-    <TextView
-        android:id="@+id/usernameTV2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Change Name"
-        android:textColor="@color/white"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18"
-        app:layout_goneMarginBottom="0dp" />
+        <TextView
+            android:id="@+id/usernameTV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Change Name"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.127"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_goneMarginBottom="0dp" />
 
-    <TextView
-        android:id="@+id/usernameTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="New Name"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/usernameTV1"
-        app:layout_constraintTop_toBottomOf="@+id/usernameTV1" />
+        <TextView
+            android:id="@+id/usernameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="New Name"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/usernameTV1"
+            app:layout_constraintTop_toBottomOf="@+id/usernameTV1" />
 
     <EditText
         android:id="@+id/changeUsernameTE"
@@ -69,15 +85,16 @@
         app:layout_constraintStart_toStartOf="@+id/usernameTV"
         app:layout_constraintTop_toBottomOf="@+id/usernameTV" />
 
-    <Button
-        android:id="@+id/changeUsernameBtn"
-        android:layout_width="351dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="52dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Confirm"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/changeUsernameTE"
-        app:layout_constraintTop_toBottomOf="@+id/changeUsernameTE" />
+        <Button
+            android:id="@+id/changeUsernameBtn"
+            android:layout_width="351dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="52dp"
+            android:backgroundTint="@color/darkCyan"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Confirm"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/changeUsernameTE"
+            app:layout_constraintTop_toBottomOf="@+id/changeUsernameTE" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
