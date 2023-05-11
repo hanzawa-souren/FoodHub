@@ -1,9 +1,15 @@
 package com.example.foodhub.admin.fragments
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.provider.SyncStateContract
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -14,9 +20,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.foodhub.R
+import com.example.foodhub.admin.AdminMainActivity
 import com.example.foodhub.admin.viewmodels.*
 import com.example.foodhub.databinding.FragmentAdminHomeBinding
 import com.example.foodhub.login.UserViewModel
+import com.example.foodhub.user.MainActivity
 
 class AdminHomeFragment : Fragment(), MenuProvider {
 
@@ -28,6 +36,9 @@ class AdminHomeFragment : Fragment(), MenuProvider {
     private lateinit var helplineViewModel: HelplineViewModel
     private lateinit var newsViewModel: LatestNewsViewModel
     private lateinit var eDigestViewModel: EDigestViewModel
+
+    private lateinit var aContext: AdminMainActivity
+    private var doubleBackToExitPressedOnce = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -123,5 +134,25 @@ class AdminHomeFragment : Fragment(), MenuProvider {
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return NavigationUI
             .onNavDestinationSelected(menuItem, requireView().findNavController())
+    }
+
+    @Suppress("DEPRECATION")
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        aContext = context as AdminMainActivity
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (doubleBackToExitPressedOnce) {
+                    activity?.finish()
+                }
+                else {
+                    Toast.makeText(requireContext(), "Press back again to exit", Toast.LENGTH_SHORT).show()
+                }
+                doubleBackToExitPressedOnce = true
+                Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 }
