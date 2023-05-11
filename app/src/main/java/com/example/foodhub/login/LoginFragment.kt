@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 
 import androidx.fragment.app.Fragment
 
@@ -71,10 +72,10 @@ class LoginFragment : Fragment() {
             }else {
                 binding.loadingOverlay.visibility = View.VISIBLE
                 binding.loadingProgress.visibility = View.VISIBLE
-                while (tries <= 50) {
+                while (tries <= 70) {
                     var user: User? = mUserViewModel.loginUser(readID)
-                    nouser = false
                     if (user != null) {
+                        nouser = false
                         if (readID == user.loginID) {
                             if (readPW == user.password) {
                                 wrong = false
@@ -94,17 +95,7 @@ class LoginFragment : Fragment() {
                     }
                     tries++
                 }
-                if (wrong) {
-                    binding.loadingOverlay.visibility = View.INVISIBLE
-                    binding.loadingProgress.visibility = View.INVISIBLE
-                    Toast.makeText(requireContext(), "Wrong Password or Name", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                if (nouser) {
-                    binding.loadingOverlay.visibility = View.INVISIBLE
-                    binding.loadingProgress.visibility = View.INVISIBLE
-                    Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
-                }
+
             }
 
         }
@@ -113,6 +104,17 @@ class LoginFragment : Fragment() {
             binding.loadingProgress.visibility = View.INVISIBLE
             Toast.makeText(requireContext(), "Please input all fields", Toast.LENGTH_SHORT)
                 .show()
+        }
+        if (wrong) {
+            binding.loadingOverlay.visibility = View.INVISIBLE
+            binding.loadingProgress.visibility = View.INVISIBLE
+            Toast.makeText(requireContext(), "Wrong Password or Name", Toast.LENGTH_SHORT)
+                .show()
+        }
+        if (nouser) {
+            binding.loadingOverlay.visibility = View.INVISIBLE
+            binding.loadingProgress.visibility = View.INVISIBLE
+            Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
         }
     }
 
