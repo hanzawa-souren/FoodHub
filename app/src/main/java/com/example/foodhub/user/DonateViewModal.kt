@@ -4,6 +4,7 @@ import android.util.Log
 import android.widget.CheckBox
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.foodhub.database.tables.Donation
 import kotlin.math.log
 
 class DonateViewModal:ViewModel() {
@@ -15,6 +16,12 @@ class DonateViewModal:ViewModel() {
     var day =MutableLiveData<Int>()
     var month =MutableLiveData<Int>()
     var year =MutableLiveData<Int>()
+
+    var donateHistoryAmount = MutableLiveData<String>()
+    var donateHistoryPaymentMethod = MutableLiveData<String>()
+    var donateHistoryDate = MutableLiveData<String>()
+    var donateHistoryRef = MutableLiveData<String>()
+    var donateHistoryCardNumber = MutableLiveData<String>()
 
 
 

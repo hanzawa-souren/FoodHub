@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+        android:id="@+id/home_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/dr_amount"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="RM 5.50"
+        android:paddingBottom="10dp"
+        android:textColor="#FC7753"
+
+        android:background="@drawable/underline"
+        android:textColorLink="@color/black"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dr_payment_method"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/underline"
+        android:fontFamily="@font/poppins"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Payment Method"
+        android:textSize="20dp"
+
+        app:layout_constraintEnd_toEndOf="@+id/dr_amount"
+        app:layout_constraintStart_toStartOf="@+id/dr_amount"
+        app:layout_constraintTop_toBottomOf="@+id/dr_amount" />
+
+    <TextView
+        android:id="@+id/dr_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/underline"
+        android:fontFamily="@font/poppins"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:scrollbarSize="20dp"
+        android:text="Date Of Donation"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/dr_payment_method"
+        app:layout_constraintStart_toStartOf="@+id/dr_payment_method"
+        app:layout_constraintTop_toBottomOf="@+id/dr_payment_method" />
+
+    <TextView
+        android:id="@+id/dr_reference"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/underline"
+        android:fontFamily="@font/poppins"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+
+        android:text="Donation Reference"
+        android:textSize="20dp"
+
+        app:layout_constraintEnd_toEndOf="@+id/dr_date"
+        app:layout_constraintStart_toStartOf="@+id/dr_date"
+        app:layout_constraintTop_toBottomOf="@+id/dr_date" />
+
+    <TextView
+        android:id="@+id/dr_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/underline"
+        android:fontFamily="@font/poppins"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Status"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/dr_reference"
+        app:layout_constraintStart_toStartOf="@+id/dr_reference"
+        app:layout_constraintTop_toBottomOf="@+id/dr_reference" />
+
+    <TextView
+        android:id="@+id/dr_cardNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/underline"
+        android:fontFamily="@font/poppins"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Card Number"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/dr_status"
+        app:layout_constraintStart_toStartOf="@+id/dr_status"
+        app:layout_constraintTop_toBottomOf="@+id/dr_status" />
+
+    <TextView
+        android:id="@+id/dr_paymentMethod_content"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FC7753"
+        android:textSize="18dp"
+        android:fontFamily="@font/poppins"
+        android:text="MasterCard"
+        app:layout_constraintBottom_toBottomOf="@+id/dr_payment_method"
+        app:layout_constraintEnd_toEndOf="@+id/dr_payment_method"
+        app:layout_constraintTop_toTopOf="@+id/dr_payment_method" />
+
+    <TextView
+        android:id="@+id/dr_date_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FC7753"
+        android:textSize="18dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins"
+        android:text="41 gay 4023"
+        app:layout_constraintBottom_toBottomOf="@+id/dr_date"
+        app:layout_constraintEnd_toEndOf="@+id/dr_date"
+        app:layout_constraintTop_toTopOf="@+id/dr_date" />
+
+    <TextView
+        android:id="@+id/dr_ref_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="10dp"
+        android:textColor="#FC7753"
+        android:textSize="18dp"
+        android:fontFamily="@font/poppins"
+        android:text="1233333"
+        app:layout_constraintBottom_toBottomOf="@+id/dr_reference"
+        app:layout_constraintEnd_toEndOf="@+id/dr_reference"
+        app:layout_constraintTop_toTopOf="@+id/dr_reference" />
+
+    <TextView
+        android:id="@+id/dr_status_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Successful"
+        android:textColor="#FC7753"
+        android:layout_marginEnd="10dp"
+        android:textSize="18dp"
+        android:fontFamily="@font/poppins"
+        app:layout_constraintBottom_toBottomOf="@+id/dr_status"
+        app:layout_constraintEnd_toEndOf="@+id/dr_status"
+        app:layout_constraintTop_toTopOf="@+id/dr_status" />
+
+    <TextView
+        android:id="@+id/dr_cardNumber_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="1234-5678-9087-6543"
+        android:textColor="#FC7753"
+        android:textSize="18dp"
+        android:layout_marginEnd="10dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/dr_cardNumber"
+        app:layout_constraintEnd_toEndOf="@+id/dr_cardNumber"
+        app:layout_constraintTop_toTopOf="@+id/dr_cardNumber" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

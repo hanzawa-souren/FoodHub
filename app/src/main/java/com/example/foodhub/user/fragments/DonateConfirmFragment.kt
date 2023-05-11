@@ -58,6 +58,7 @@ class DonateConfirmFragment : Fragment() {
         bindingDonateConfirm.donatePaymentImage.setImageResource(paymentMethodImage[paymentMethodImageNum(paymentMethodName)])
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
+
         bindingDonateConfirm.confirmDonation.setOnClickListener{
             if (bindingDonateConfirm.cardNumber.text.isEmpty() || bindingDonateConfirm.cardNumber.text.length < 15){
                 if(bindingDonateConfirm.cardNumber.text.isEmpty()){
@@ -67,6 +68,8 @@ class DonateConfirmFragment : Fragment() {
                 }else if(bindingDonateConfirm.cardNumber.text.length < 15){
                     Toast.makeText(requireContext(), "Invalid card number", Toast.LENGTH_SHORT).show()
                 }
+
+
             }else if(bindingDonateConfirm.monthExpiry.text.isEmpty() || bindingDonateConfirm.monthExpiry.text.toString().toInt() > 12){
                 bindingDonateConfirm.cardNumber.background = null
                 if(bindingDonateConfirm.monthExpiry.text.isEmpty()){
@@ -100,6 +103,8 @@ class DonateConfirmFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please check the terms and condition box", Toast.LENGTH_SHORT).show()
             }else{
                 @Suppress("DEPRECATION")
+                var cardNumberEntered : String = ""
+                cardNumberEntered = bindingDonateConfirm.cardNumber.text.toString()
                 val name : User = activity?.intent?.getParcelableExtra("User")!!
                 var id : String = name.loginID
                 if (number != null) {
@@ -108,9 +113,10 @@ class DonateConfirmFragment : Fragment() {
                             0,
                             "$id",
                             paymentMethodNames[paymentMethodImageNum(paymentMethodName)],
-                            number.toDouble()))
+                            number.toDouble(),"$cardNumberEntered"))
 
                 }
+
                 view.findNavController().navigate(R.id.donateSuccessFragment)
 
             }

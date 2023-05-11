@@ -12,4 +12,9 @@ interface DonationDao {
 
     @Query("SELECT SUM(d_amount) FROM donation")
     fun getTotalDonatedAmount(): LiveData<Double>
+
+
+
+
+    
 }

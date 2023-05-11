@@ -49,12 +49,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/profile_pic" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="0dp"
-                android:layout_gravity="center_horizontal"
                 android:id="@+id/profile_stats"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 

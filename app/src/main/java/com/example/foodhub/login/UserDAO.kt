@@ -37,6 +37,15 @@ interface UserDAO {
     fun getUserCount(): LiveData<Int>
     @Query("SELECT SUM(d.d_Amount) FROM donation d INNER JOIN user_table u ON u.loginID = d.u_id WHERE u.loginID = :id")
     fun getUserDonation(id: String): LiveData<Double>
+    @Query("SELECT d.day FROM donation d INNER JOIN user_table u ON u.loginID = d.u_id WHERE u.loginID = :id")
+    fun getUserDonationDay(id: String): List<Int>
+
+    @Query("SELECT d.month FROM donation d INNER JOIN user_table u ON u.loginID = d.u_id WHERE u.loginID = :id")
+    fun getUserDonationMonth(id: String): List<Int>
+
+    @Query("SELECT d.year FROM donation d INNER JOIN user_table u ON u.loginID = d.u_id WHERE u.loginID = :id")
+    fun getUserDonationYear(id: String): List<Int>
+
 
     @Query("SELECT day FROM user_table WHERE loginID = :id")
     fun getUserDateDay(id: String): LiveData<Int>
@@ -45,6 +54,10 @@ interface UserDAO {
     fun getUserDateMonth(id: String): LiveData<Int>
     @Query("SELECT year FROM user_table WHERE loginID = :id")
     fun getUserDateYear(id: String): LiveData<Int>
+
+    @Query("SELECT * FROM donation WHERE u_id = :id")
+    fun getDonataionObject(id:String): LiveData<List<Donation>>
+
     @Transaction
     @Query("SELECT * FROM user_table")
     fun getUsersWithDonations(): LiveData<List<UserWithDonations>>

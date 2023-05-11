@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.R
+import com.example.foodhub.database.tables.Donation
 
 import com.example.foodhub.user.models.ProfileModel
 
@@ -14,16 +16,17 @@ class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : Str
 
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val title: TextView = itemView.findViewById(R.id.profile_row_title)
-        val content: TextView = itemView.findViewById(R.id.profile_row_content)
+        val title: TextView = itemView.findViewById(R.id.donateAmountTitle)
+        val content: TextView = itemView.findViewById(R.id.transferMethod)
         val image: ImageView = itemView.findViewById(R.id.profile_row_img)
+        val card : CardView = itemView.findViewById(R.id.profile_card)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.profile_row, parent, false)
         return ViewHolder(view)
     }
-
+    var onItemClick : ((ProfileModel)-> Unit)? = null
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ItemsViewModel = mList[position]
 
@@ -45,7 +48,9 @@ class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : Str
             holder.content.text = ItemsViewModel.content
             holder.image.setImageResource(ItemsViewModel.image)
         }
-
+        holder.card.setOnClickListener {
+            onItemClick?.invoke(ItemsViewModel)
+        }
     }
 
 

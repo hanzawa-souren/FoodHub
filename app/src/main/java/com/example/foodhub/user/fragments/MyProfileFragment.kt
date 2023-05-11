@@ -11,6 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentMyProfileBinding
@@ -80,8 +82,16 @@ class MyProfileFragment : Fragment() {
         var dateJoined = "$day $month $year"
 
 
-
-        rview.adapter = ProfileAdapter(setDataList(), dateJoined,viewModel.donateAmounts.value?:0.0)
+        val adapter1 = ProfileAdapter(setDataList(), dateJoined,viewModel.donateAmounts.value?:0.0)
+        rview.adapter = adapter1
+        adapter1.onItemClick={
+                profileRow ->
+            if(profileRow.title == "Total Donations"){
+                view.findNavController().navigate(R.id.donateHistoryFragment)
+            }else if(profileRow.title == "Date Joined"){
+                view.findNavController().navigate(R.id.donateHistoryFragment)
+            }
+        }
 
 
 
