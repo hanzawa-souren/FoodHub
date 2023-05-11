@@ -1,5 +1,6 @@
 package com.example.foodhub.user.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
@@ -16,6 +18,7 @@ import com.example.foodhub.databinding.FragmentMyProfileBinding
 import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
 import com.example.foodhub.user.DonateViewModal
+import com.example.foodhub.user.MainActivity
 import com.example.foodhub.user.models.ProfileModel
 
 import com.example.foodhub.user.adapters.ProfileAdapter
@@ -58,29 +61,31 @@ class MyProfileFragment : Fragment() {
         val rview = bindingProfile.profileStats
         @Suppress("DEPRECATION")
         val name : User = activity?.intent?.getParcelableExtra("User")!!
-        var user = mUserViewModel.getUser(name.loginID)
-////        var donateAmount : Double = mUserViewModel.getUserDonation(name.loginID)
+        mUserViewModel.getLogged(name.id).observe(viewLifecycleOwner, Observer { user ->
+            bindingProfile.profileName.text = user?.loginID
+            val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
+            rview.layoutManager = LinearLayoutManager(requireContext())
+            rview.setHasFixedSize(true)
+            var day : String= user?.day.toString()
+
+            var year : String= user?.year.toString()
+            var month: String = months[user?.month!!]
+            var dateJoined = "$day $month $year"
+            rview.adapter = ProfileAdapter(setDataList(),dateJoined,viewModel.donateAmounts.value?:0.0)
+
+        })
+//        var donateAmount : Double = mUserViewModel.getUserDonation(name.loginID)
 //        var donateAmount : Double = viewModel.donateAmounts.value?:0.0
-//        mUserViewModel.getUserDonation(name.loginID).observe(viewLifecycleOwner, Observer { amount ->
-//
-//            viewModel.donateAmounts.value = amount
-//        })
+        mUserViewModel.getUserDonation(name.loginID).observe(viewLifecycleOwner, Observer { amount ->
+
+            viewModel.donateAmounts.value = amount
+        })
 
 //        Toast.makeText(requireContext(), "$donateAmount", Toast.LENGTH_SHORT).show()
 
-        bindingProfile.profileName.text = user?.loginID
-        val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
-        rview.layoutManager = LinearLayoutManager(requireContext())
-        rview.setHasFixedSize(true)
-        var day : String= user?.day.toString()
-
-        var year : String= user?.year.toString()
-        var month: String = months[user?.month!!]
-        var dateJoined = "$day $month $year"
 
 
 
-        rview.adapter = ProfileAdapter(setDataList(),dateJoined,viewModel.donateAmounts.value?:0.0)
 
 
 

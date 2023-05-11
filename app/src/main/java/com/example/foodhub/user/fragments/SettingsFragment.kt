@@ -97,8 +97,6 @@ class SettingsFragment : Fragment() {
 
         settingMenu.adapter = CustomAdapter(requireContext())
 
-        (activity as AppCompatActivity).supportActionBar?.title = ""
-        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
         settingMenu.setOnItemClickListener { parent, view, position, id ->
             // Do something with the clicked item
             val selectedItem = parent.getItemAtPosition(position)
@@ -112,7 +110,7 @@ class SettingsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.title = ""
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = ""
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
     }
 

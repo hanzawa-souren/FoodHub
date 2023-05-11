@@ -10,17 +10,25 @@ interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addUser(user: User)
 
-    @Query("UPDATE user_table SET loginID = :logID WHERE loginID = :id")
-    fun updateUser(id: String, logID : String)
+    @Query("UPDATE user_table SET loginID = :logID WHERE id = :id")
+    fun updateUser(id: Int, logID : String)
 
-    @Query("UPDATE user_table SET password = :password WHERE loginID = :id")
-    fun updatePassword(id: String, password : String)
+    @Query("SELECT * FROM user_table WHERE loginID = :id")
+    fun updateUserCheck(id: String): User?
+    @Query("UPDATE user_table SET password = :password WHERE id = :id")
+    fun updatePassword(id: Int, password : String)
 
     @Query("DELETE FROM user_table WHERE loginID = :id")
     fun deleleUser(id: String)
 
     @Query("SELECT * FROM user_table WHERE loginID = :id")
-    fun getUser(id: String): User
+    fun getUser(id: String): LiveData<User>?
+
+    @Query("SELECT * FROM user_table WHERE loginID = :id")
+    fun loginUser(id: String): User?
+
+    @Query("SELECT * FROM user_table WHERE id = :id")
+    fun getLogged(id: Int): LiveData<User>
 
     @Insert
     suspend fun addDonation(donation: Donation)
