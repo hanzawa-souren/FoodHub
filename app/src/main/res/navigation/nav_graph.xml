@@ -174,5 +174,13 @@
             android:name="currentDigest"
             app:argType="com.example.foodhub.database.tables.EDigest" />
     </fragment>
+    <fragment
+        android:id="@+id/donateHistoryFragment"
+        android:name="com.example.foodhub.user.fragments.DonateHistoryFragment"
+        android:label="DonateHistoryFragment" />
+    <fragment
+        android:id="@+id/donateReceiptFragment"
+        android:name="com.example.foodhub.user.fragments.DonateReceiptFragment"
+        android:label="DonateReceiptFragment" />
 
 </navigation>

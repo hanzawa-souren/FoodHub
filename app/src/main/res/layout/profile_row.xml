@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bulletin_card_container"
+    android:id="@+id/profile_card"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -14,7 +14,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bulletin_card"
+        android:id="@+id/l"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
@@ -32,17 +32,17 @@
             app:srcCompat="@drawable/date_range_fill" />
 
         <TextView
-            android:id="@+id/profile_row_content"
+            android:id="@+id/transferMethod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:text="content"
             android:textColor="#A4A4A4"
             app:layout_constraintStart_toEndOf="@+id/profile_row_img"
-            app:layout_constraintTop_toBottomOf="@+id/profile_row_title" />
+            app:layout_constraintTop_toBottomOf="@+id/donateAmountTitle" />
 
         <TextView
-            android:id="@+id/profile_row_title"
+            android:id="@+id/donateAmountTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
