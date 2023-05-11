@@ -13,6 +13,17 @@ class UserRepository(private val userDao : UserDAO) {
     fun getUserDonation(id:String):LiveData<Double>{
         return userDao.getUserDonation(id)
     }
+
+    fun getUserDateDay(id: String):LiveData<Int>{
+        return userDao.getUserDateDay(id)
+    }
+    fun getUserDateMonth(id: String):LiveData<Int>{
+        return userDao.getUserDateMonth(id)
+    } fun getUserDateYear(id: String):LiveData<Int>{
+        return userDao.getUserDateYear(id)
+    }
+
+
     suspend fun addUser(user: User){
         userDao.addUser(user)
     }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -100,13 +101,31 @@ class HomeFragment : Fragment() {
         }
         @Suppress("DEPRECATION")
         val name : User = activity?.intent?.getParcelableExtra("User")!!
-        var user = mUserViewModel.getUser(name.loginID)
+
 //        var donateAmount : Double = mUserViewModel.getUserDonation(name.loginID)
         var donateAmount : Double = viewModel.donateAmounts.value?:0.0
         mUserViewModel.getUserDonation(name.loginID).observe(viewLifecycleOwner, Observer { amount ->
 
             viewModel.donateAmounts.value = amount
         })
+
+
+        mUserViewModel.getUserDateDay(name.loginID).observe(viewLifecycleOwner, Observer { day ->
+
+            viewModel.day.value = day
+        })
+        mUserViewModel.getUserDateMonth(name.loginID).observe(viewLifecycleOwner, Observer { month ->
+
+            viewModel.month.value = month
+        })
+        mUserViewModel.getUserDateYear(name.loginID).observe(viewLifecycleOwner, Observer { year ->
+
+            viewModel.year.value = year
+        })
+
+
+
+
     }
 
     private fun setVolunteerPreviewScroll() {

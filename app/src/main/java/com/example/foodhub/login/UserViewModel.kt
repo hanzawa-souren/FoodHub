@@ -77,6 +77,23 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
         return userDonation
     }
+    private lateinit var userDateDay: LiveData<Int>
+    private lateinit var userDateMonth: LiveData<Int>
+    private lateinit var userDateYear: LiveData<Int>
+
+
+    fun getUserDateDay(id: String): LiveData<Int>{
+        userDateDay = repository.getUserDateDay(id)
+        return userDateDay
+    }
+    fun getUserDateMonth(id: String): LiveData<Int>{
+        userDateMonth = repository.getUserDateMonth(id)
+        return userDateMonth
+    }
+    fun getUserDateYear(id: String): LiveData<Int>{
+        userDateYear = repository.getUserDateYear(id)
+        return userDateYear
+    }
 
 
 }
