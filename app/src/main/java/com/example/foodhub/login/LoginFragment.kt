@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 
 import androidx.fragment.app.Fragment
 
@@ -58,8 +59,6 @@ class LoginFragment : Fragment() {
         val readPW = binding.loginPWTE.text.toString()
 
         if (inputCheck(readID, readPW)) {
-            binding.loadingOverlay.visibility = View.VISIBLE
-            binding.loadingProgress.visibility = View.VISIBLE
             if (readID == "admin") {
                 if (readPW == "admin") {
                     wrong = false
@@ -71,9 +70,12 @@ class LoginFragment : Fragment() {
                     wrong = true
                 }
             }else {
-                while (tries <= 50) {
+                binding.loadingOverlay.visibility = View.VISIBLE
+                binding.loadingProgress.visibility = View.VISIBLE
+                while (tries <= 70) {
                     var user: User? = mUserViewModel.loginUser(readID)
                     if (user != null) {
+                        nouser = false
                         if (readID == user.loginID) {
                             if (readPW == user.password) {
                                 wrong = false
@@ -93,6 +95,7 @@ class LoginFragment : Fragment() {
                     }
                     tries++
                 }
+
             }
 
         }
