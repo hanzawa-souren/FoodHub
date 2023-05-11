@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -68,19 +69,19 @@ class MyProfileFragment : Fragment() {
 
 //        Toast.makeText(requireContext(), "$donateAmount", Toast.LENGTH_SHORT).show()
 
-        bindingProfile.profileName.text = user?.loginID
+        bindingProfile.profileName.text = name.loginID
         val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
         rview.layoutManager = LinearLayoutManager(requireContext())
         rview.setHasFixedSize(true)
-        var day : String= user?.day.toString()
+        var day : String= viewModel.day.value.toString()
 
-        var year : String= user?.year.toString()
-        var month: String = months[user?.month!!]
+        var year : String= viewModel.year.value.toString()
+        var month: String = months[viewModel.month.value!!]
         var dateJoined = "$day $month $year"
 
 
 
-        rview.adapter = ProfileAdapter(setDataList(),dateJoined,viewModel.donateAmounts.value?:0.0)
+        rview.adapter = ProfileAdapter(setDataList(), dateJoined,viewModel.donateAmounts.value?:0.0)
 
 
 

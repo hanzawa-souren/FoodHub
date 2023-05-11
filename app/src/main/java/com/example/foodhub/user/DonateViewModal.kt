@@ -12,6 +12,12 @@ class DonateViewModal:ViewModel() {
     var tnc = MutableLiveData<Boolean>(false) // initialize with false
     var userID = MutableLiveData<String>()
     var donateAmounts =MutableLiveData<Double>()
+    var day =MutableLiveData<Int>()
+    var month =MutableLiveData<Int>()
+    var year =MutableLiveData<Int>()
+
+
+
 
     fun updateTncValue(value: Boolean) {
         Log.d("Cbox", "True");
