@@ -1,6 +1,7 @@
 package com.example.foodhub.user.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,15 +28,16 @@ import com.example.foodhub.user.*
 import com.example.foodhub.user.adapters.EDigestHomeAdapter
 import com.example.foodhub.user.adapters.LatestNewsHomeAdapter
 import com.example.foodhub.user.adapters.NearMeHomeAdapter
+import com.example.foodhub.user.adapters.ProfileAdapter
 import com.example.foodhub.user.viewmodels.VoluntaryWorkHomeAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
     private val viewModel: DonateViewModal by activityViewModels()
-    private var fullName = "Ali bin Abu"
-    private var firstName = fullName.substring(0, fullName.indexOf(" "))
-    private var phNum = "+6012-3456789"
-    private val userInfo: UserInfo = UserInfo(fullName, firstName, phNum)
+    private lateinit var fullName: String
+//    private var firstName = fullName.substring(0, fullName.indexOf(" "))
+//    private var phNum = "+6012-3456789"
+    private lateinit var userInfo: UserInfo
     private lateinit var mUserViewModel: UserViewModel
     private lateinit var bindingHome: FragmentHomeBinding
     private lateinit var voluntaryWorkViewModel: VoluntaryWorkViewModel
@@ -60,6 +62,14 @@ class HomeFragment : Fragment() {
         latestNewsViewModel = ViewModelProvider(this).get(LatestNewsViewModel::class.java)
         eDigestViewModel = ViewModelProvider(this).get(EDigestViewModel::class.java)
         mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+
+        @Suppress("DEPRECATION")
+        val user : User = activity?.intent?.getParcelableExtra("User")!!
+        userInfo = UserInfo(user.loginID, user.loginID, user.phNum)
+        mUserViewModel.getLogged(user.id).observe(viewLifecycleOwner, Observer { logged ->
+            userInfo = UserInfo(logged.loginID, logged.loginID, logged.phNum)
+        })
+
         return bindingHome.root
     }
 

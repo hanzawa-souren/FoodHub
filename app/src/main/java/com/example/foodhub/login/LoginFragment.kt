@@ -72,7 +72,7 @@ class LoginFragment : Fragment() {
                 }
             }else {
                 while (tries <= 50) {
-                    var user: User? = mUserViewModel.getUser(readID)
+                    var user: User? = mUserViewModel.loginUser(readID)
                     if (user != null) {
                         if (readID == user.loginID) {
                             if (readPW == user.password) {
