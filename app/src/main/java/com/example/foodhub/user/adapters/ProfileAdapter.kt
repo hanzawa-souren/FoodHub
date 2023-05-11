@@ -36,7 +36,7 @@ class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : Str
             holder.image.setImageResource(ItemsViewModel.image)
         }else if(position == 2){
             holder.title.text = ItemsViewModel.title
-            holder.content.text = donateAmount.toString()
+            holder.content.text = "RM "+donateAmount.toString()
             holder.image.setImageResource(ItemsViewModel.image)
         }
 
