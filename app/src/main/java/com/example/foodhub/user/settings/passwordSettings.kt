@@ -9,12 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentPasswordSettingsBinding
 import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
+import com.example.foodhub.user.adapters.ProfileAdapter
 
 class passwordSettings : Fragment() {
 
@@ -23,6 +26,7 @@ class passwordSettings : Fragment() {
 
     private lateinit var mUserViewModel: UserViewModel
     private lateinit var user : User
+    private lateinit var loggedUser : User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +48,6 @@ class passwordSettings : Fragment() {
 
         @Suppress("DEPRECATION")
         user = activity?.intent?.getParcelableExtra("User")!!
-
         return binding.root
     }
 
@@ -58,7 +61,7 @@ class passwordSettings : Fragment() {
     private fun updatePassword() {
         val newPass = binding.changePasswordTE.text.toString()
         if (inputCheck(newPass)){
-            mUserViewModel.updatePassword(user.loginID, newPass)
+            mUserViewModel.updatePassword(user.id, newPass)
         }
 
     }

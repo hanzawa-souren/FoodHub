@@ -17,8 +17,8 @@ data class User(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val loginID : String,
-
     val password : String,
+    val phNum : String,
     @ColumnInfo(name = "day") val day: Int = Calendar.getInstance().get(Calendar.DAY_OF_MONTH),
     @ColumnInfo(name = "month") val month: Int = Calendar.getInstance().get(Calendar.MONTH) ,
     @ColumnInfo(name = "year") val year: Int = Calendar.getInstance().get(Calendar.YEAR)

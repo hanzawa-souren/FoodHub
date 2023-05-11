@@ -30,7 +30,6 @@ class RegisterFragment : Fragment() {
 
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-
         binding.regConfirmButton.setOnClickListener {
             insertUser()
         }
@@ -49,8 +48,12 @@ class RegisterFragment : Fragment() {
         val id = 0
         val loginID = binding.regIDTE.text.toString()
         val pw = binding.regPWTE.text.toString()
+        val spinner = binding.phoneSpinner
+        val phCountry = spinner.selectedItem.toString()
+        val phRead = binding.editTextNumber.text.toString()
+        val phNum = StringBuilder().append(phCountry).append(phRead).toString()
         if (inputCheck(loginID, pw)){
-            val user = User(id, loginID, pw)
+            val user = User(id, loginID, pw, phNum)
             mUserViewModel.addUser(user)
             findNavController().navigate(R.id.action_registerFragment_to_preLogin)
         }

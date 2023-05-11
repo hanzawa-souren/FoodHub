@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -55,13 +57,29 @@ class UsernameSetting : Fragment() {
     private fun updateUsername() {
         val newName = binding.changeUsernameTE.text.toString()
         if (inputCheck(newName)){
-            mUserViewModel.updateUsername(user.loginID, newName)
+            for (x in 1..10){
+                if(dbCheck(newName)){
+                    mUserViewModel.updateUsername(user.id, newName)
+                }else {
+                    Toast.makeText(requireContext(), "Name already used", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
         }
 
     }
 
     private fun inputCheck(name: String): Boolean {
         return !(TextUtils.isEmpty(name))
+    }
+
+    private fun dbCheck(id: String) : Boolean {
+        val readUser = mUserViewModel.updateUsernameCheck(id)
+        if (readUser == null){
+            return true
+        }else {
+            return false
+        }
     }
 
 
