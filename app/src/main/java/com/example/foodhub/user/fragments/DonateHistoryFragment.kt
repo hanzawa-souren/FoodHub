@@ -68,7 +68,7 @@ class DonateHistoryFragment: Fragment() {
         rview.setHasFixedSize(true)
         var adapter1 = DonationHistoryAdapter(donations)
         rview.adapter = adapter1
-        mUserViewModel.getUserDonationObject(name.loginID).observe(viewLifecycleOwner, Observer { donation ->
+        mUserViewModel.getUserDonationObject(viewModel.name.value?:"").observe(viewLifecycleOwner, Observer { donation ->
             adapter1.updateData(donation.reversed())
         })
         adapter1.onItemClick = {

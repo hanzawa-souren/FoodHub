@@ -58,10 +58,11 @@ class MyProfileFragment : Fragment() {
 
 
         (activity as AppCompatActivity).supportActionBar?.hide()
+
         val rview = bindingProfile.profileStats
         @Suppress("DEPRECATION")
         val name : User = activity?.intent?.getParcelableExtra("User")!!
-        var user = mUserViewModel.getUser(name.loginID)
+
 ////        var donateAmount : Double = mUserViewModel.getUserDonation(name.loginID)
 //        var donateAmount : Double = viewModel.donateAmounts.value?:0.0
 //        mUserViewModel.getUserDonation(name.loginID).observe(viewLifecycleOwner, Observer { amount ->
@@ -69,9 +70,9 @@ class MyProfileFragment : Fragment() {
 //            viewModel.donateAmounts.value = amount
 //        })
 
-//        Toast.makeText(requireContext(), "$donateAmount", Toast.LENGTH_SHORT).show()
 
-        bindingProfile.profileName.text = name.loginID
+        Toast.makeText(requireContext(),viewModel.userID.value, Toast.LENGTH_SHORT).show()
+        bindingProfile.profileName.text = viewModel.name.value
         val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
         rview.layoutManager = LinearLayoutManager(requireContext())
         rview.setHasFixedSize(true)
@@ -89,7 +90,7 @@ class MyProfileFragment : Fragment() {
             if(profileRow.title == "Total Donations"){
                 view.findNavController().navigate(R.id.donateHistoryFragment)
             }else if(profileRow.title == "Date Joined"){
-                view.findNavController().navigate(R.id.donateHistoryFragment)
+                view.findNavController().navigate(R.id.dateJoinedFragment)
             }
         }
 

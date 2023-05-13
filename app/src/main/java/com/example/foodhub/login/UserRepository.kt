@@ -20,6 +20,9 @@ class UserRepository(private val userDao : UserDAO) {
         val readUser = userDao.getLogged(id)
         return readUser
     }
+    fun updateDonationUser(oldID: String, newID : String){
+        userDao.updateDonationUser(oldID, newID)
+    }
 
     fun getUserDonation(id:String):LiveData<Double>{
         return userDao.getUserDonation(id)
