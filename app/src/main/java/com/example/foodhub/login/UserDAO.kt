@@ -13,6 +13,9 @@ interface UserDAO {
     @Query("UPDATE user_table SET loginID = :logID WHERE id = :id")
     fun updateUser(id: Int, logID : String)
 
+    @Query("UPDATE Donation SET u_id = :newID WHERE u_id = :oldID")
+    fun updateDonationUser(oldID: String, newID : String)
+
     @Query("SELECT * FROM user_table WHERE loginID = :id")
     fun updateUserCheck(id: String): User?
     @Query("UPDATE user_table SET password = :password WHERE id = :id")

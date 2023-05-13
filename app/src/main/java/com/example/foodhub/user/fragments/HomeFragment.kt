@@ -110,10 +110,13 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.edigestFragment)
         }
         @Suppress("DEPRECATION")
-        val name : User = activity?.intent?.getParcelableExtra("User")!!
+        var name : User = activity?.intent?.getParcelableExtra("User")!!
 
 //        var donateAmount : Double = mUserViewModel.getUserDonation(name.loginID)
         var donateAmount : Double = viewModel.donateAmounts.value?:0.0
+
+        viewModel.name.value = name.loginID
+
         mUserViewModel.getUserDonation(name.loginID).observe(viewLifecycleOwner, Observer { amount ->
 
             viewModel.donateAmounts.value = amount

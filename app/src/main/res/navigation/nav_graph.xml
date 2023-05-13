@@ -182,5 +182,9 @@
         android:id="@+id/donateReceiptFragment"
         android:name="com.example.foodhub.user.fragments.DonateReceiptFragment"
         android:label="DonateReceiptFragment" />
+    <fragment
+        android:id="@+id/dateJoinedFragment"
+        android:name="com.example.foodhub.user.fragments.DateJoinedFragment"
+        android:label="DateJoinedFragment" />
 
 </navigation>

@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -19,13 +20,14 @@ import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentUsernameSettingBinding
 import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
+import com.example.foodhub.user.DonateViewModal
 import com.example.foodhub.user.fragments.SettingsFragment
 
 class UsernameSetting : Fragment() {
 
     private var _binding: FragmentUsernameSettingBinding? = null
     private val binding get() = _binding!!
-
+    private val viewModel: DonateViewModal by activityViewModels()
     private lateinit var mUserViewModel: UserViewModel
     private lateinit var user : User
 
@@ -59,7 +61,10 @@ class UsernameSetting : Fragment() {
         if (inputCheck(newName)){
             for (x in 1..10){
                 if(dbCheck(newName)){
+                    mUserViewModel.updateDonationUser(user.loginID, newName)
                     mUserViewModel.updateUsername(user.id, newName)
+                    viewModel.name.value = newName
+
                 }else {
                     Toast.makeText(requireContext(), "Name already used", Toast.LENGTH_SHORT)
                         .show()

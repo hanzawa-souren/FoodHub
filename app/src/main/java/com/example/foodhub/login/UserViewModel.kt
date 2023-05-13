@@ -128,6 +128,12 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         return userDonationObject
 
     }
+    fun updateDonationUser(oldID : String,newID:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateDonationUser(oldID,newID)
+        }
+
+    }
 
 
 
