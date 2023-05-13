@@ -16,7 +16,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/calendar" />
@@ -28,7 +28,8 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="9"
         android:layout_marginBottom="50dp"
-        android:textSize="70sp"
+        android:layout_marginTop="10dp"
+        android:textSize="80sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView15"
         app:layout_constraintEnd_toEndOf="@+id/imageView15"
 
@@ -74,6 +75,20 @@
         app:layout_constraintEnd_toEndOf="@+id/dj_msg"
         app:layout_constraintStart_toStartOf="@+id/dj_msg"
         app:layout_constraintTop_toBottomOf="@+id/dj_msg" />
+
+    <Button
+        android:id="@+id/dj_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Return"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/confirm_donate_button"
+        android:textSize="20sp"
+
+        app:layout_constraintEnd_toEndOf="@+id/dj_msg2"
+        app:layout_constraintStart_toStartOf="@+id/dj_msg2"
+        app:layout_constraintTop_toBottomOf="@+id/dj_msg2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
