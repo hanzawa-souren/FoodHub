@@ -52,7 +52,9 @@ class DateJoinedFragment : Fragment() {
         bindingDonateJoined.djDay.text = viewModel.day.value.toString()
         val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
         bindingDonateJoined.djMonth.text = months[viewModel.month.value?:0]
-
+        bindingDonateJoined.djButton.setOnClickListener{
+            view.findNavController().navigate(R.id.homeFragment)
+        }
 
 
 
