@@ -1,5 +1,6 @@
 package com.example.foodhub.admin.fragments.add
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -20,10 +21,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.foodhub.R
+import com.example.foodhub.admin.AdminMainActivity
 import com.example.foodhub.admin.viewmodels.VoluntaryWorkViewModel
+import com.example.foodhub.database.CheckConnection
+import com.example.foodhub.database.DBSyncManager
 import com.example.foodhub.database.ImageStorageManager
+import com.example.foodhub.database.TypeConverter
 import com.example.foodhub.database.tables.VoluntaryWork
 import com.example.foodhub.databinding.FragmentAdminAddVolunteerBinding
 import kotlinx.coroutines.launch
@@ -36,6 +42,9 @@ class AdminAddVolunteerFragment : Fragment() {
     private lateinit var voluntaryWorkViewModel: VoluntaryWorkViewModel
     private lateinit var uploadedImage: Uri
     private var imageUriNull = true
+    private val checkConnection by lazy { CheckConnection((activity as AppCompatActivity).application) }
+
+    private var internetUp = true
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         // Callback is invoked after the user selects a media item or closes the
@@ -71,7 +80,18 @@ class AdminAddVolunteerFragment : Fragment() {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
-        bindingAddVolunteer.vPublishButton.setOnClickListener { insertItem() }
+        bindingAddVolunteer.vPublishButton.setOnClickListener {
+            if (internetUp) {
+                insertItem()
+            }
+            else {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setPositiveButton("OK") { _, _ -> }
+                builder.setTitle("No Internet Connection")
+                builder.setMessage("Please try again later")
+                builder.create().show()
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -92,24 +112,43 @@ class AdminAddVolunteerFragment : Fragment() {
 
         if (inputCheck(vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vPhone, vWebsite, vReglink, vMaps, vWaze)) {
 
-            val currentTime = Calendar.getInstance().time
+            /*var workFound: String = ""*/
+
+            /*voluntaryWorkViewModel.searchWorks(vTitle).observe(viewLifecycleOwner, Observer { list ->
+                if (list != null) {
+                    duplicateWork = true
+                }
+            })*/
+
+            var workCount = 0
+
+            voluntaryWorkViewModel.getWorkCount().observe(viewLifecycleOwner, Observer { totalWork ->
+                if (totalWork != null) {
+                    workCount = totalWork
+                }
+            })
+
+            /*val currentTime = Calendar.getInstance().time
             val formatter = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
             val timestamp = formatter.format(currentTime).toString()
-            val imageFileName = "v_work_img_$timestamp"
+            val imageFileName = "v_work_img_${timestamp}_${(10000..100000).random()}"
 
-            var vImage = ""
+            var vImage = ""*/
             val imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireActivity().contentResolver, uploadedImage))
 
             // Create a bitmap copy of the admin-selected image and save it into the application storage
             // The image file absolute path is stored inside ROOM
-            viewLifecycleOwner.lifecycleScope.launch {
+            /*viewLifecycleOwner.lifecycleScope.launch {
                 vImage = ImageStorageManager.saveToInternalStorage(requireContext(), imageBitmap, imageFileName)
             }
             Log.d("AddVolunteerFragment", "Image file name: $imageFileName")
-            Log.d("AddVolunteerFragment", "File absolute path: $vImage")
+            Log.d("AddVolunteerFragment", "File absolute path: $vImage")*/
 
-            val voluntaryWork = VoluntaryWork(0, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze)
-            voluntaryWorkViewModel.insertWork(voluntaryWork)
+            val voluntaryWork = VoluntaryWork(++workCount, TypeConverter.bitmapToBase64(imageBitmap), vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze)
+
+            // Sync to remote DB
+            DBSyncManager.insertWork(viewLifecycleOwner, requireContext(), voluntaryWork)
+
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_adminAddVolunteerFragment_to_adminVolunteerFragment)
         }
@@ -128,6 +167,21 @@ class AdminAddVolunteerFragment : Fragment() {
         (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = "New Work"
         if (!imageUriNull) {
             bindingAddVolunteer.addVImage.setImageURI(uploadedImage)
+        }
+
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = "Voluntary Works"
+
+        bindingAddVolunteer.apply {
+            checkConnection.observe(viewLifecycleOwner) {
+                if (it) {
+                    (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_no_internet_bar).visibility = View.GONE
+                    //internetUp = true
+                }
+                else {
+                    (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_no_internet_bar).visibility = View.VISIBLE
+                    //internetUp = false
+                }
+            }
         }
     }
 }

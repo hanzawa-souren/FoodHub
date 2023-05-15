@@ -21,12 +21,16 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodhub.R
+import com.example.foodhub.admin.AdminMainActivity
 import com.example.foodhub.admin.viewmodels.VoluntaryWorkViewModel
+import com.example.foodhub.database.CheckConnection
+import com.example.foodhub.database.DBSyncManager
 import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.database.tables.VoluntaryWork
 import com.example.foodhub.databinding.FragmentAdminUpdateVolunteerBinding
@@ -58,6 +62,10 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
             Log.d("PhotoPicker", "No media selected")
         }
     }
+
+    private val checkConnection by lazy { CheckConnection((activity as AppCompatActivity).application) }
+
+    private var internetUp = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -98,7 +106,25 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         bindingUpdateVolunteer.updateVMaps.setText(args.currentWork.vMaps)
         bindingUpdateVolunteer.updateVWaze.setText(args.currentWork.vWaze)
 
-        bindingUpdateVolunteer.vUpdateButton.setOnClickListener { updateItem() }
+        bindingUpdateVolunteer.vUpdateButton.setOnClickListener {
+
+            checkConnection.observe((activity as AppCompatActivity)) {
+                if (it) {
+                    internetUp = true
+                }
+            }
+
+            if (internetUp) {
+                updateItem()
+            }
+            else {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setPositiveButton("OK") { _, _ -> }
+                builder.setTitle("No Internet Connection")
+                builder.setMessage("Please try again later")
+                builder.create().show()
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -119,36 +145,49 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
 
         if (inputCheck(vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vPhone, vWebsite, vReglink, vMaps, vWaze)) {
 
-            val currentTime = Calendar.getInstance().time
-            val formatter = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
-            val timestamp = formatter.format(currentTime).toString()
-            val imageFileName = "v_work_img_$timestamp"
+            var duplicateWork: Boolean = false
 
-            var vImage = ""
-            var success: Boolean = false
-            if (!imageUriNull) {
-                val imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireActivity().contentResolver, uploadedImage))
-
-                // Save the new image file into internal storage
-                viewLifecycleOwner.lifecycleScope.launch {
-                    vImage = ImageStorageManager.saveToInternalStorage(requireContext(), imageBitmap, imageFileName)
+            voluntaryWorkViewModel.searchWorks(vTitle).observe(viewLifecycleOwner, Observer { workFound ->
+                if (workFound != null) {
+                    duplicateWork = true
                 }
+            })
 
-                // Remove the old image file from internal storage
-                viewLifecycleOwner.lifecycleScope.launch {
-                    success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentWork.vImage.substring(args.currentWork.vImage.lastIndexOf("/")+1))
+            if (!duplicateWork) {
+                val currentTime = Calendar.getInstance().time
+                val formatter = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
+                val timestamp = formatter.format(currentTime).toString()
+                val imageFileName = "v_work_img_$timestamp"
+
+                var vImage = ""
+                var success: Boolean = false
+                if (!imageUriNull) {
+                    val imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireActivity().contentResolver, uploadedImage))
+
+                    // Save the new image file into internal storage
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        vImage = ImageStorageManager.saveToInternalStorage(requireContext(), imageBitmap, imageFileName)
+                    }
+
+                    // Remove the old image file from internal storage
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentWork.vImage.substring(args.currentWork.vImage.lastIndexOf("/")+1))
+                    }
                 }
+                else {
+                    vImage = args.currentWork.vImage
+                }
+                Log.d("Update new pic", "File absolute path: $vImage")
+                Log.d("Delete old pic", "Successful?: $success")
+
+                val voluntaryWork = VoluntaryWork(args.currentWork.vId, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze)
+                voluntaryWorkViewModel.updateWork(voluntaryWork)
+                Toast.makeText(requireContext(), "Successfully updated!", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_adminUpdateVolunteerFragment_to_adminVolunteerFragment)
             }
             else {
-                vImage = args.currentWork.vImage
+                Toast.makeText(requireContext(), "Title already exists.", Toast.LENGTH_SHORT).show()
             }
-            Log.d("Update new pic", "File absolute path: $vImage")
-            Log.d("Delete old pic", "Successful?: $success")
-
-            val voluntaryWork = VoluntaryWork(args.currentWork.vId, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze)
-            voluntaryWorkViewModel.updateWork(voluntaryWork)
-            Toast.makeText(requireContext(), "Successfully updated!", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_adminUpdateVolunteerFragment_to_adminVolunteerFragment)
         }
         else {
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT).show()
@@ -165,33 +204,52 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem.itemId == R.id.menu_delete) {
-            deleteWork()
+
+            checkConnection.observe((activity as AppCompatActivity)) {
+                if (it) {
+                    internetUp = true
+                }
+            }
+
+            if (internetUp) {
+
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setPositiveButton("Yes") { _, _ ->
+                    deleteWork()
+                    Toast.makeText(
+                        requireContext(),
+                        "Successfully removed ${args.currentWork.vTitle}",
+                        Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_adminUpdateVolunteerFragment_to_adminVolunteerFragment)
+                }
+                builder.setNegativeButton("No") { _, _ -> }
+                builder.setTitle("Delete ${args.currentWork.vTitle}?")
+                builder.setMessage("Are you sure you want to delete ${args.currentWork.vTitle}?")
+                builder.create().show()
+            }
+            else {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setPositiveButton("OK") { _, _ -> }
+                builder.setTitle("No Internet Connection")
+                builder.setMessage("Please try again later")
+                builder.create().show()
+            }
+
         }
         return false
     }
 
     private fun deleteWork() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes") { _, _ ->
-
-            Log.d("Photo to-be-deleted", "File path: ${args.currentWork.vImage}")
-            var success: Boolean = false
-            viewLifecycleOwner.lifecycleScope.launch {
-                success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentWork.vImage.substring(args.currentWork.vImage.lastIndexOf("/")+1))
-            }
-            Log.d("Deletion successful?", "File path: $success")
-
-            voluntaryWorkViewModel.deleteWork(args.currentWork)
-            Toast.makeText(
-                requireContext(),
-                "Successfully removed ${args.currentWork.vTitle}",
-                Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_adminUpdateVolunteerFragment_to_adminVolunteerFragment)
+        Log.d("Photo to-be-deleted", "File path: ${args.currentWork.vImage}")
+        var success: Boolean = false
+        viewLifecycleOwner.lifecycleScope.launch {
+            success = ImageStorageManager.deleteImageFromInternalStorage(requireContext(), args.currentWork.vImage.substring(args.currentWork.vImage.lastIndexOf("/")+1))
         }
-        builder.setNegativeButton("No") { _, _ -> }
-        builder.setTitle("Delete ${args.currentWork.vTitle}?")
-        builder.setMessage("Are you sure you want to delete ${args.currentWork.vTitle}?")
-        builder.create().show()
+        Log.d("Deletion successful?", "File path: $success")
+
+        voluntaryWorkViewModel.deleteWork(args.currentWork)
+        // Sync to remote DB
+        DBSyncManager.deleteWork(viewLifecycleOwner, requireContext(), args.currentWork)
     }
 
     override fun onResume() {
@@ -200,6 +258,19 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = "Edit Work"
         if (!imageUriNull) {
             bindingUpdateVolunteer.updateVImage.setImageURI(uploadedImage)
+        }
+
+        bindingUpdateVolunteer.apply {
+            checkConnection.observe(viewLifecycleOwner) {
+                if (it) {
+                    (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_no_internet_bar).visibility = View.GONE
+                    //internetUp = true
+                }
+                else {
+                    (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_no_internet_bar).visibility = View.VISIBLE
+                    //internetUp = false
+                }
+            }
         }
     }
 }

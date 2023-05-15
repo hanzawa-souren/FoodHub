@@ -20,6 +20,19 @@
             app:defaultNavHost="true"
             app:navGraph="@navigation/admin_nav_graph"/>
 
+        <TextView
+            android:id="@+id/admin_no_internet_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="@dimen/margin"
+            android:background="@android:color/holo_red_dark"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/white"
+            android:text="Network error. Entering read-only mode."
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/admin_toolbar"
             android:layout_width="match_parent"
@@ -27,7 +40,7 @@
             android:layout_alignParentTop="true"
             android:background="@color/salmon"
             android:theme="@style/ActionBarThemeOverlay"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/admin_no_internet_bar">
 
             <TextView
                 android:id="@+id/admin_toolbar_title"

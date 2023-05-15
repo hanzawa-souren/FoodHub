@@ -22,6 +22,7 @@ import androidx.navigation.ui.NavigationUI
 import com.example.foodhub.R
 import com.example.foodhub.admin.AdminMainActivity
 import com.example.foodhub.admin.viewmodels.*
+import com.example.foodhub.database.CheckConnection
 import com.example.foodhub.databinding.FragmentAdminHomeBinding
 import com.example.foodhub.login.UserViewModel
 import com.example.foodhub.user.MainActivity
@@ -39,6 +40,10 @@ class AdminHomeFragment : Fragment(), MenuProvider {
 
     private lateinit var aContext: AdminMainActivity
     private var doubleBackToExitPressedOnce = false
+
+    private val checkConnection by lazy { CheckConnection((activity as AppCompatActivity).application) }
+
+    private var internetUp = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -125,6 +130,20 @@ class AdminHomeFragment : Fragment(), MenuProvider {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = "Dashboard"
+
+        bindingAdminHome.apply {
+            checkConnection.observe(viewLifecycleOwner) {
+                if (it) {
+                    (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_no_internet_bar).visibility = View.GONE
+                    //internetUp = true
+
+                }
+                else {
+                    (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_no_internet_bar).visibility = View.VISIBLE
+                    //internetUp = false
+                }
+            }
+        }
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -147,7 +166,7 @@ class AdminHomeFragment : Fragment(), MenuProvider {
                     activity?.finish()
                 }
                 else {
-                    Toast.makeText(requireContext(), "Press back again to exit", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Press again to exit", Toast.LENGTH_SHORT).show()
                 }
                 doubleBackToExitPressedOnce = true
                 Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
