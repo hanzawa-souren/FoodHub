@@ -9,7 +9,6 @@ import com.example.foodhub.database.AppDatabase
 import com.example.foodhub.database.tables.Donation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 class UserViewModel(application: Application): AndroidViewModel(application) {
 

@@ -1,7 +1,7 @@
 package com.example.foodhub.database
 
+import com.example.foodhub.database.tables.UserVolunteeredWork
 import android.content.Context
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -10,7 +10,7 @@ import com.example.foodhub.database.tables.*
 import com.example.foodhub.login.User
 import com.example.foodhub.login.UserDAO
 
-@Database(entities = [User::class, VoluntaryWork::class, Facility::class, Helpline::class, LatestNews::class, EDigest::class, Donation::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, VoluntaryWork::class, Facility::class, Helpline::class, LatestNews::class, EDigest::class, Donation::class, UserVolunteeredWork::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDAO
@@ -20,6 +20,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun latestNewsDao(): LatestNewsDao
     abstract fun eDigestDao(): EDigestDao
     abstract fun donationDao(): DonationDao
+
+    abstract fun userVolunteeredWorkDao(): UserVolunteeredWorkDao
 
     companion object{
         @Volatile

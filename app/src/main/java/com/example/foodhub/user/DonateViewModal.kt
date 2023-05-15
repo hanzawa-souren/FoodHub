@@ -24,7 +24,7 @@ class DonateViewModal:ViewModel() {
     var donateHistoryCardNumber = MutableLiveData<String>()
 
     var name = MutableLiveData<String>()
-
+    var numEventsVolunteered= MutableLiveData<Int>()
 
 
 

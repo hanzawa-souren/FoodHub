@@ -186,5 +186,9 @@
         android:id="@+id/dateJoinedFragment"
         android:name="com.example.foodhub.user.fragments.DateJoinedFragment"
         android:label="DateJoinedFragment" />
+    <fragment
+        android:id="@+id/eventsVolunteeredFragment"
+        android:name="com.example.foodhub.user.fragments.EventsVolunteeredFragment"
+        android:label="EventsVolunteeredFragment" />
 
 </navigation>

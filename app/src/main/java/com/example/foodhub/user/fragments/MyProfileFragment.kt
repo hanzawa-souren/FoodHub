@@ -10,11 +10,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
+import com.example.foodhub.database.tables.UserVolunteeredWork
 import com.example.foodhub.databinding.FragmentMyProfileBinding
 import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
@@ -22,10 +24,11 @@ import com.example.foodhub.user.DonateViewModal
 import com.example.foodhub.user.models.ProfileModel
 
 import com.example.foodhub.user.adapters.ProfileAdapter
+import com.example.foodhub.user.viewmodels.UserVolunteeredWorkViewModel
 
 
 class MyProfileFragment : Fragment() {
-
+    private lateinit var mUserVolunteeredWork: UserVolunteeredWorkViewModel
     private lateinit var bindingProfile: FragmentMyProfileBinding
     private lateinit var mUserViewModel: UserViewModel
     private lateinit var mDonateViewModal: DonateViewModal
@@ -43,6 +46,7 @@ class MyProfileFragment : Fragment() {
 
         bindingProfile = DataBindingUtil.inflate(inflater,
             R.layout.fragment_my_profile, container, false)
+        mUserVolunteeredWork = ViewModelProvider(this)[UserVolunteeredWorkViewModel::class.java]
         mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         mDonateViewModal = ViewModelProvider(this)[DonateViewModal::class.java]
         return bindingProfile.root
@@ -54,7 +58,6 @@ class MyProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
 
         (activity as AppCompatActivity).supportActionBar?.hide()
@@ -83,7 +86,7 @@ class MyProfileFragment : Fragment() {
         var dateJoined = "$day $month $year"
 
 
-        val adapter1 = ProfileAdapter(setDataList(), dateJoined,viewModel.donateAmounts.value?:0.0)
+        val adapter1 = ProfileAdapter(setDataList(), dateJoined,viewModel.donateAmounts.value?:0.0,viewModel.numEventsVolunteered.value?:0)
         rview.adapter = adapter1
         adapter1.onItemClick={
                 profileRow ->
@@ -91,7 +94,9 @@ class MyProfileFragment : Fragment() {
                 view.findNavController().navigate(R.id.donateHistoryFragment)
             }else if(profileRow.title == "Date Joined"){
                 view.findNavController().navigate(R.id.dateJoinedFragment)
-            }
+            }else if(profileRow.title == "Events Volunteered"){
+                view.findNavController().navigate(R.id.eventsVolunteeredFragment)
+                }
         }
 
 

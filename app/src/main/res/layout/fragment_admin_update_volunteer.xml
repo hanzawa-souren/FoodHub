@@ -315,7 +315,7 @@
                         android:scrollbars="vertical" />
 
                     <View
-                        android:id="@+id/line_9"
+                        android:id="@+id/line_19"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/lightGray"
@@ -389,7 +389,88 @@
                 android:layout_marginVertical="@dimen/margin_double"
                 android:text="@string/update"
                 style="@style/ButtonStyle"
-                app:layout_constraintTop_toBottomOf="@id/update_link_fields"/>
+                app:layout_constraintTop_toBottomOf="@+id/update_calendar_fields"/>
+            <View
+                android:id="@+id/line_18"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"
+                android:layout_margin="@dimen/margin"
+                app:layout_constraintTop_toBottomOf="@+id/update_link_fields"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/update_calendar_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                app:layout_constraintTop_toBottomOf="@+id/line_18">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|start"
+                    android:src="@drawable/calendar_today__2_"
+                    android:paddingEnd="@dimen/margin"
+                    app:tint="@color/darkGray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/update_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:hint="Event day"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins"
+                        android:inputType="textMultiLine"
+                        android:minLines="1"
+                        android:maxLines="3"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical" />
+
+                    <View
+                        android:id="@+id/line_9"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGray"
+                        android:layout_marginVertical="@dimen/margin" />
+
+                    <EditText
+                        android:id="@+id/update_month"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:hint="Event month"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins"
+                        android:inputType="textMultiLine"
+                        android:minLines="1"
+                        android:maxLines="3"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical" />
+
+                    <View
+                        android:id="@+id/line_100"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGray"
+                        android:layout_marginVertical="@dimen/margin" />
+
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

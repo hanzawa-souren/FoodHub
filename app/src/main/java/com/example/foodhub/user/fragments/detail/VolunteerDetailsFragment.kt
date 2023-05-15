@@ -9,19 +9,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodhub.R
 import com.example.foodhub.database.ImageStorageManager
+import com.example.foodhub.database.tables.UserVolunteeredWork
 import com.example.foodhub.databinding.FragmentVolunteerDetailBinding
+import com.example.foodhub.user.DonateViewModal
+import com.example.foodhub.user.viewmodels.UserVolunteeredWorkViewModel
+import java.util.*
 
 class VolunteerDetailsFragment : Fragment() {
 
     private lateinit var bindingVolunteerDetails: FragmentVolunteerDetailBinding
     private val args by navArgs<VolunteerDetailsFragmentArgs>()
-
+    private lateinit var mUserVolunteeredWork: UserVolunteeredWorkViewModel
+    private val viewModel: DonateViewModal by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +39,7 @@ class VolunteerDetailsFragment : Fragment() {
 
         bindingVolunteerDetails = DataBindingUtil.inflate(inflater,
             R.layout.fragment_volunteer_detail, container, false)
+        mUserVolunteeredWork = ViewModelProvider(this)[UserVolunteeredWorkViewModel::class.java]
         return bindingVolunteerDetails.root
     }
 
@@ -42,7 +53,12 @@ class VolunteerDetailsFragment : Fragment() {
 
         bindingVolunteerDetails.eventTitle.text = args.currentWork.vTitle
         bindingVolunteerDetails.aboutUsContent.text = args.currentWork.vDesc
-
+        val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
+        val calendar = Calendar.getInstance()
+        val currentYear = calendar.get(Calendar.YEAR)
+        var day = args.currentWork.day.toString()
+        var month = months[args.currentWork.month+1]
+        bindingVolunteerDetails.calendarContent.text = "$day $month $currentYear"
         val address = args.currentWork.vStreet + ", " + args.currentWork.vCity + ", " + args.currentWork.vPostcode + ", " + args.currentWork.vState + ", " + args.currentWork.vCountry
         bindingVolunteerDetails.locationContent.text = address
         bindingVolunteerDetails.webpageContent2.text = args.currentWork.vWebsite
@@ -60,13 +76,24 @@ class VolunteerDetailsFragment : Fragment() {
         bindingVolunteerDetails.phoneContent.text = args.currentWork.vPhone
 
         bindingVolunteerDetails.registerButton.setOnClickListener {
-            var regUrl = args.currentWork.vRegLink
-            if (!regUrl.startsWith("http://") && !regUrl.startsWith("https://")) {
-                regUrl = "http://$regUrl"
+
+            var check = mUserVolunteeredWork.checkVolunteered(viewModel.name.value?:"",args.currentWork.vId).value
+            if (check == 0){
+                mUserVolunteeredWork.addVolunteeredWork(UserVolunteeredWork(0,args.currentWork.vId,viewModel.name.value?:"","Pending",args.currentWork.vImage,args.currentWork.vTitle,args.currentWork.vDesc,args.currentWork.vStreet,args.currentWork.vCity,args.currentWork.vPostcode,args.currentWork.vState,args.currentWork.vCountry,args.currentWork.vWebsite,args.currentWork.vPhone,args.currentWork.vRegLink,args.currentWork.vMaps,args.currentWork.vWaze,args.currentWork.day,args.currentWork.month))
+                Toast.makeText(requireContext(), "Registered", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(requireContext(), "Already Registered", Toast.LENGTH_SHORT).show()
             }
 
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(regUrl))
-            startActivity(browserIntent)
+
+            view.findNavController().navigate(R.id.homeFragment)
+//            var regUrl = args.currentWork.vRegLink
+//            if (!regUrl.startsWith("http://") && !regUrl.startsWith("https://")) {
+//                regUrl = "http://$regUrl"
+//            }
+//
+//            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(regUrl))
+//            startActivity(browserIntent)
         }
 
         bindingVolunteerDetails.GoNowButton.setOnClickListener {

@@ -22,6 +22,7 @@ import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
 import com.example.foodhub.user.DonateViewModal
 import com.example.foodhub.user.fragments.SettingsFragment
+import com.example.foodhub.user.viewmodels.UserVolunteeredWorkViewModel
 
 class UsernameSetting : Fragment() {
 
@@ -29,6 +30,7 @@ class UsernameSetting : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: DonateViewModal by activityViewModels()
     private lateinit var mUserViewModel: UserViewModel
+    private lateinit var mUserVolunteeredWork: UserVolunteeredWorkViewModel
     private lateinit var user : User
 
     override fun onCreateView(
@@ -38,7 +40,7 @@ class UsernameSetting : Fragment() {
         _binding = FragmentUsernameSettingBinding.inflate(inflater, container, false)
 
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-
+        mUserVolunteeredWork = ViewModelProvider(this)[UserVolunteeredWorkViewModel::class.java]
         binding.changeUsernameBtn.setOnClickListener{
             updateUsername()
             findNavController().navigate(R.id.settingsFragment)
@@ -63,6 +65,7 @@ class UsernameSetting : Fragment() {
                 if(dbCheck(newName)){
                     mUserViewModel.updateDonationUser(user.loginID, newName)
                     mUserViewModel.updateUsername(user.id, newName)
+                    mUserVolunteeredWork.updateVWUserID(user.loginID, newName)
                     viewModel.name.value = newName
 
                 }else {

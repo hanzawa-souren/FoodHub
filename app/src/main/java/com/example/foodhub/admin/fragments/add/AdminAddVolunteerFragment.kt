@@ -89,8 +89,10 @@ class AdminAddVolunteerFragment : Fragment() {
         val vReglink = bindingAddVolunteer.editVReglink.text.toString()
         val vMaps = bindingAddVolunteer.editVMaps.text.toString()
         val vWaze = bindingAddVolunteer.editVWaze.text.toString()
+        val vDay = bindingAddVolunteer.updateDay.text.toString()
+        val vMonth = bindingAddVolunteer.updateMonth.text.toString()
 
-        if (inputCheck(vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vPhone, vWebsite, vReglink, vMaps, vWaze)) {
+        if (inputCheck(vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vPhone, vWebsite, vReglink, vMaps, vWaze,vDay,vMonth)) {
 
             val currentTime = Calendar.getInstance().time
             val formatter = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
@@ -108,7 +110,7 @@ class AdminAddVolunteerFragment : Fragment() {
             Log.d("AddVolunteerFragment", "Image file name: $imageFileName")
             Log.d("AddVolunteerFragment", "File absolute path: $vImage")
 
-            val voluntaryWork = VoluntaryWork(0, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze)
+            val voluntaryWork = VoluntaryWork(0, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze,vDay.toInt(),vMonth.toInt()-1)
             voluntaryWorkViewModel.insertWork(voluntaryWork)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_adminAddVolunteerFragment_to_adminVolunteerFragment)
@@ -118,8 +120,8 @@ class AdminAddVolunteerFragment : Fragment() {
         }
     }
 
-    private fun inputCheck(vTitle: String, vDesc: String, vStreet: String, vCity: String, vPostcode: String, vState: String, vCountry: String, vPhone: String, vWebsite: String, vReglink: String, vMaps: String, vWaze: String): Boolean {
-        return !(imageUriNull || TextUtils.isEmpty(vTitle) || TextUtils.isEmpty(vDesc) || TextUtils.isEmpty(vStreet) || TextUtils.isEmpty(vCity) || TextUtils.isEmpty(vPostcode) || TextUtils.isEmpty(vState) || TextUtils.isEmpty(vCountry) || TextUtils.isEmpty(vPhone) || TextUtils.isEmpty(vWebsite) || TextUtils.isEmpty(vReglink) || TextUtils.isEmpty(vMaps) || TextUtils.isEmpty(vWaze))
+    private fun inputCheck(vTitle: String, vDesc: String, vStreet: String, vCity: String, vPostcode: String, vState: String, vCountry: String, vPhone: String, vWebsite: String, vReglink: String, vMaps: String, vWaze: String,vDay:String,vMonth:String): Boolean {
+        return !(imageUriNull || TextUtils.isEmpty(vTitle) || TextUtils.isEmpty(vDesc) || TextUtils.isEmpty(vStreet) || TextUtils.isEmpty(vCity) || TextUtils.isEmpty(vPostcode) || TextUtils.isEmpty(vState) || TextUtils.isEmpty(vCountry) || TextUtils.isEmpty(vPhone) || TextUtils.isEmpty(vWebsite) || TextUtils.isEmpty(vReglink) || TextUtils.isEmpty(vMaps) || TextUtils.isEmpty(vWaze)|| TextUtils.isEmpty(vDay)|| TextUtils.isEmpty(vMonth))
     }
 
     override fun onResume() {

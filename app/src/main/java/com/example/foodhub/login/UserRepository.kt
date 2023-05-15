@@ -2,7 +2,6 @@ package com.example.foodhub.login
 
 import androidx.lifecycle.LiveData
 import com.example.foodhub.database.tables.Donation
-import com.example.foodhub.database.tables.Helpline
 
 class UserRepository(private val userDao : UserDAO) {
 
@@ -43,7 +42,6 @@ class UserRepository(private val userDao : UserDAO) {
     fun getDonationObject(id:String):LiveData<List<Donation>>{
         return userDao.getDonataionObject(id)
     }
-
 
 
     suspend fun addUser(user: User){

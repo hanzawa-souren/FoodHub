@@ -59,6 +59,41 @@
                 app:layout_constraintTop_toTopOf="@+id/phone_title"
                 app:srcCompat="@drawable/add_call" />
 
+            //
+            <TextView
+                android:id="@+id/calendar_title"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Date"
+                android:textColor="#BF000000"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_content" />
+
+            <TextView
+                android:id="@+id/calendar_content"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+
+                android:text="0 Januaryy 2090"
+                android:textColor="#80000000"
+                app:layout_constraintStart_toStartOf="@+id/calendar_title"
+                app:layout_constraintTop_toBottomOf="@+id/calendar_title" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/calendar_title"
+                app:layout_constraintEnd_toStartOf="@+id/calendar_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/calendar_title"
+                app:srcCompat="@drawable/calendar_today__3_" />
+
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="30dp"
@@ -185,7 +220,7 @@
                 android:textSize="28sp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phone_content" />
+                app:layout_constraintTop_toBottomOf="@+id/calendar_content" />
             <TextView
                 android:id="@+id/register_content"
                 android:layout_width="wrap_content"

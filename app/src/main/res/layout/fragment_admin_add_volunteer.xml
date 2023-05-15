@@ -356,7 +356,83 @@
                 </LinearLayout>
 
             </LinearLayout>
+            <View
+                android:id="@+id/line_17"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"
+                android:layout_margin="@dimen/margin"
+                app:layout_constraintTop_toBottomOf="@id/link_fields"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+            <LinearLayout
+                android:id="@+id/date_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                app:layout_constraintTop_toBottomOf="@+id/line_17">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|start"
+                    android:src="@drawable/calendar_today__2_"
+                    android:paddingEnd="@dimen/margin"
+                    app:tint="@color/darkGray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/update_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:hint="Event day"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins"
+                        android:inputType="textMultiLine"
+                        android:minLines="1"
+                        android:maxLines="3"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical" />
+
+                    <View
+                        android:id="@+id/line_19"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGray"
+                        android:layout_marginVertical="@dimen/margin" />
+
+                    <EditText
+                        android:id="@+id/update_month"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:hint="Event month"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins"
+                        android:inputType="textMultiLine"
+                        android:minLines="1"
+                        android:maxLines="3"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical" />
+
+                    <View
+                        android:id="@+id/line_100"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGray"
+                        android:layout_marginVertical="@dimen/margin" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
             <Button
                 android:id="@+id/v_publish_button"
                 android:layout_width="match_parent"
@@ -365,7 +441,7 @@
                 android:layout_marginVertical="@dimen/margin_double"
                 android:text="@string/publish"
                 style="@style/ButtonStyle"
-                app:layout_constraintTop_toBottomOf="@id/link_fields"/>
+                app:layout_constraintTop_toBottomOf="@+id/date_fields"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
