@@ -31,8 +31,6 @@ class LatestNewsDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_my_profile, container, false)
 
         bindingNewsDetails = DataBindingUtil.inflate(inflater,
             R.layout.fragment_latest_news_details, container, false)
@@ -56,7 +54,7 @@ class LatestNewsDetailsFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle_salmon)
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = "Latest News"
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = getString(R.string.latest_news)
         (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).setTextColor(
             ContextCompat.getColor(requireContext(),
             R.color.salmon

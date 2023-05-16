@@ -77,6 +77,8 @@ import com.example.foodhub.database.tables.EDigest
 import com.example.foodhub.database.tables.LatestNews
 import com.example.foodhub.databinding.FragmentAdminBulletinBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AdminBulletinFragment : Fragment(), MenuProvider {
@@ -107,6 +109,8 @@ class AdminBulletinFragment : Fragment(), MenuProvider {
 
         bindingAdminBulletin.adminBulletinTabLayout.getTabAt(0)?.text = "Latest News"
         bindingAdminBulletin.adminBulletinTabLayout.getTabAt(1)?.text = "E-Digest"
+
+        bindingAdminBulletin.adminBulletinViewpager.isSaveEnabled = false
     }
 
     private fun setupTabLayout() {
@@ -150,11 +154,9 @@ class AdminBulletinFragment : Fragment(), MenuProvider {
                 newsList = list
             })
             for (item in newsList) {
-                Log.d("Hey", "Hey")
                 imageFileNames.add(item.lnImage.substring(item.lnImage.lastIndexOf("/")+1))
-                Log.d("Haha", item.lnImage.substring(item.lnImage.lastIndexOf("/")+1))
             }
-            lifecycleScope.launch {
+            viewLifecycleOwner.lifecycleScope.launch {
                 ImageStorageManager.deleteAllImagesFromInternalStorage(requireContext(), imageFileNames)
             }
 
@@ -186,7 +188,7 @@ class AdminBulletinFragment : Fragment(), MenuProvider {
                 imageFileNames.add(item.eImage.substring(item.eImage.lastIndexOf("/")+1))
                 Log.d("Haha", item.eImage.substring(item.eImage.lastIndexOf("/")+1))
             }
-            lifecycleScope.launch {
+            viewLifecycleOwner.lifecycleScope.launch {
                 ImageStorageManager.deleteAllImagesFromInternalStorage(requireContext(), imageFileNames)
             }
 

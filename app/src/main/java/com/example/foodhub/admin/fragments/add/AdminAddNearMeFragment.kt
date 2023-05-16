@@ -19,6 +19,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -80,9 +81,9 @@ class AdminAddNearMeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ArrayAdapter.createFromResource(
             requireContext(),
             R.array.facility_types,
-            android.R.layout.simple_spinner_item
+            R.layout.custom_spinner
         ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown)
             bindingAddNearMe.spinnerNFacility.adapter = adapter
         }
 
@@ -147,10 +148,30 @@ class AdminAddNearMeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = "New Facility"
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle_salmon)
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = getString(R.string.new_facility)
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).setTextColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.salmon)
+        )
+        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.admin_toolbar).setBackgroundColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.white)
+        )
         if (!imageUriNull) {
             bindingAddNearMe.addNImage.setImageURI(uploadedImage)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).setTextColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.white)
+        )
+        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.admin_toolbar).setBackgroundColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.salmon)
+        )
     }
 }

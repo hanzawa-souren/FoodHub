@@ -46,8 +46,7 @@ class AdminHomeFragment : Fragment(), MenuProvider {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_home, container, false)
+
         bindingAdminHome = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false)
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
@@ -66,15 +65,6 @@ class AdminHomeFragment : Fragment(), MenuProvider {
 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
-        /*val user1 = User("Ali bin Abu", "123456")
-        val user2 = User("EE", "12345")
-        val user3 = User("YX", "1234")
-        val user4 = User("YS", "123")
-        userViewModel.addUser(user1)
-        userViewModel.addUser(user2)
-        userViewModel.addUser(user3)
-        userViewModel.addUser(user4)*/
 
         bindingAdminHome.donationsCount.isSelected = true
 
@@ -152,7 +142,7 @@ class AdminHomeFragment : Fragment(), MenuProvider {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (doubleBackToExitPressedOnce) {
-                    activity?.finish()
+                    activity?.finishAffinity()
                 }
                 else {
                     Toast.makeText(requireContext(), "Press back again to exit", Toast.LENGTH_SHORT).show()

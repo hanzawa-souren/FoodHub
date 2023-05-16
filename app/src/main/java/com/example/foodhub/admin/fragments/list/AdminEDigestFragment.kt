@@ -173,36 +173,6 @@ class AdminEDigestFragment : Fragment(), SearchView.OnQueryTextListener {
         bindingAdminEDigest.adminEDigestSearchview.setOnQueryTextListener(this)
     }
 
-    /*private fun deleteAllDigest() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes") { _, _ ->
-
-            // Delete image files from internal storage upon entry removal from ROOM
-            var digestList = emptyList<EDigest>()
-            val imageFileNames: MutableList<String> = mutableListOf()
-            eDigestViewModel.getAllDigest.observe(viewLifecycleOwner, Observer { list ->
-                digestList = list
-            })
-            for (item in digestList) {
-                imageFileNames.add(item.eImage.substring(item.eImage.lastIndexOf("/")+1))
-            }
-            viewLifecycleOwner.lifecycleScope.launch {
-                ImageStorageManager.deleteAllImagesFromInternalStorage(requireContext(), imageFileNames)
-            }
-
-            eDigestViewModel.deleteAllDigest()
-            Toast.makeText(
-                requireContext(),
-                "Successfully removed all digest entries",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        builder.setNegativeButton("No") { _, _ -> }
-        builder.setTitle("Delete all digest entries?")
-        builder.setMessage("Are you sure you want to delete all digest entries?")
-        builder.create().show()
-    }*/
-
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query != null) {
             searchDigests(query)
