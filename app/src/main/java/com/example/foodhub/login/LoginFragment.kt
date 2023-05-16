@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -28,6 +29,7 @@ class LoginFragment : Fragment() {
 
     private lateinit var mUserViewModel: UserViewModel
     private lateinit var binding: FragmentLoginBinding
+    private var firstCheck = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,33 +54,29 @@ class LoginFragment : Fragment() {
     }
 
     private fun validateUser() {
-        var tries = 0
-        var wrong: Boolean = false
-        var nouser : Boolean = false
         val readID = binding.loginIDTE.text.toString()
         val readPW = binding.loginPWTE.text.toString()
 
         if (inputCheck(readID, readPW)) {
             if (readID == "admin") {
                 if (readPW == "admin") {
-                    wrong = false
+
                     requireActivity().run {
                         startActivity(Intent(this, AdminMainActivity::class.java))
                         finish()
                     }
                 } else {
-                    wrong = true
+                    binding.loadingOverlay.visibility = View.INVISIBLE
+                    binding.loadingProgress.visibility = View.INVISIBLE
+                    Toast.makeText(requireContext(), "Wrong Password or Name", Toast.LENGTH_SHORT).show()
                 }
             }else {
                 binding.loadingOverlay.visibility = View.VISIBLE
                 binding.loadingProgress.visibility = View.VISIBLE
-                while (tries <= 70) {
-                    var user: User? = mUserViewModel.loginUser(readID)
+                mUserViewModel.getUser(readID).observe(viewLifecycleOwner, Observer { user ->
                     if (user != null) {
-                        nouser = false
                         if (readID == user.loginID) {
                             if (readPW == user.password) {
-                                wrong = false
                                 requireActivity().run {
                                     val intent = Intent(this, MainActivity::class.java)
                                     intent.putExtra("User", user)
@@ -86,15 +84,44 @@ class LoginFragment : Fragment() {
                                     finish()
                                 }
                             } else {
-                                wrong = true
+                                binding.loadingOverlay.visibility = View.INVISIBLE
+                                binding.loadingProgress.visibility = View.INVISIBLE
+                                Toast.makeText(requireContext(), "Wrong Password or Name", Toast.LENGTH_SHORT).show()
+
                             }
                         }
 
-                    } else {
-                        nouser = true
                     }
-                    tries++
-                }
+                    else {
+                        binding.loadingOverlay.visibility = View.INVISIBLE
+                        binding.loadingProgress.visibility = View.INVISIBLE
+                        Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
+                    }
+                })
+//                while (tries <= 70) {
+//                    user = mUserViewModel.loginUser(readID)
+//                    if (user != null) {
+//                        nouser = false
+//                        if (readID == user.loginID) {
+//                            if (readPW == user.password) {
+//                                wrong = false
+//                                requireActivity().run {
+//                                    val intent = Intent(this, MainActivity::class.java)
+//                                    intent.putExtra("User", user)
+//                                    startActivity(intent)
+//                                    finish()
+//                                }
+//                            } else {
+//                                wrong = true
+//                            }
+//                        }
+//
+//                    }
+//                    else {
+//                        nouser = true
+//                    }
+//                    tries++
+//                }
 
             }
 
@@ -105,23 +132,10 @@ class LoginFragment : Fragment() {
             Toast.makeText(requireContext(), "Please input all fields", Toast.LENGTH_SHORT)
                 .show()
         }
-        if (wrong) {
-            binding.loadingOverlay.visibility = View.INVISIBLE
-            binding.loadingProgress.visibility = View.INVISIBLE
-            Toast.makeText(requireContext(), "Wrong Password or Name", Toast.LENGTH_SHORT)
-                .show()
-        }
-        if (nouser) {
-            binding.loadingOverlay.visibility = View.INVISIBLE
-            binding.loadingProgress.visibility = View.INVISIBLE
-            Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun inputCheck(id: String, pw: String): Boolean {
-        var decision : Boolean
-        decision = !(TextUtils.isEmpty(id) && TextUtils.isEmpty(pw))
-        return decision
+        return !(TextUtils.isEmpty(id) && TextUtils.isEmpty(pw))
     }
 
     fun Fragment.hideKeyboard() {

@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
 //    private var firstName = fullName.substring(0, fullName.indexOf(" "))
 //    private var phNum = "+6012-3456789"
     private lateinit var userInfo: UserInfo
+    private val userViewModel : UserViewModel by activityViewModels()
     private lateinit var mUserViewModel: UserViewModel
     private lateinit var bindingHome: FragmentHomeBinding
     private lateinit var voluntaryWorkViewModel: VoluntaryWorkViewModel
@@ -65,10 +66,12 @@ class HomeFragment : Fragment() {
 
         @Suppress("DEPRECATION")
         val user : User = activity?.intent?.getParcelableExtra("User")!!
-        userInfo = UserInfo(user.loginID, user.loginID, user.phNum)
-        mUserViewModel.getLogged(user.id).observe(viewLifecycleOwner, Observer { logged ->
-            userInfo = UserInfo(logged.loginID, logged.loginID, logged.phNum)
-        })
+        if (userViewModel.changedHome) {
+            userInfo = UserInfo(user.loginID, user.loginID, user.phNum)
+        }
+        else {
+            userInfo = UserInfo(userViewModel.changedUsername.value.toString(), userViewModel.changedUsername.value.toString(), user.phNum )
+        }
 
         return bindingHome.root
     }

@@ -57,15 +57,21 @@
             <TextView
                 android:id="@+id/username"
                 style="@style/BlackTextStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="@dimen/margin_half"
+                android:layout_marginRight="@dimen/margin"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_semibold"
+                android:gravity="left"
+                android:maxLines="1"
                 android:text="@={userInfo.firstName}"
                 android:textSize="@dimen/greeting"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/hi"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="test" />
 
             <TextView
                 android:id="@+id/do_your_part"

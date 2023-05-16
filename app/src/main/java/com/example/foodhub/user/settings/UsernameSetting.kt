@@ -1,11 +1,14 @@
 package com.example.foodhub.user.settings
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
@@ -28,6 +31,7 @@ class UsernameSetting : Fragment() {
     private var _binding: FragmentUsernameSettingBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DonateViewModal by activityViewModels()
+    private val userViewModel : UserViewModel by activityViewModels()
     private lateinit var mUserViewModel: UserViewModel
     private lateinit var user : User
 
@@ -41,6 +45,7 @@ class UsernameSetting : Fragment() {
 
         binding.changeUsernameBtn.setOnClickListener{
             updateUsername()
+            hideKeyboard()
             findNavController().navigate(R.id.settingsFragment)
         }
 
@@ -64,6 +69,8 @@ class UsernameSetting : Fragment() {
                     mUserViewModel.updateDonationUser(user.loginID, newName)
                     mUserViewModel.updateUsername(user.id, newName)
                     viewModel.name.value = newName
+                    userViewModel.changedUsername.value = newName
+                    userViewModel.changedHome = false
 
                 }else {
                     Toast.makeText(requireContext(), "Name already used", Toast.LENGTH_SHORT)
@@ -79,13 +86,21 @@ class UsernameSetting : Fragment() {
     }
 
     private fun dbCheck(id: String) : Boolean {
-        val readUser = mUserViewModel.updateUsernameCheck(id)
-        if (readUser == null){
-            return true
-        }else {
-            return false
-        }
+        var check : Boolean = true
+        mUserViewModel.updateUsernameCheck(id).observe(viewLifecycleOwner, Observer { readUser ->
+            if (readUser != null) {
+                check = false
+            }
+        })
+        return check
     }
 
+    fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
 
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 }

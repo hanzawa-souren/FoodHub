@@ -1,5 +1,6 @@
 package com.example.foodhub.user.settings
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -43,6 +45,7 @@ class passwordSettings : Fragment() {
 
         binding.changePasswordBtn.setOnClickListener{
             updatePassword()
+            hideKeyboard()
             findNavController().navigate(R.id.settingsFragment)
         }
 
@@ -68,5 +71,14 @@ class passwordSettings : Fragment() {
 
     private fun inputCheck(name: String): Boolean {
         return !(TextUtils.isEmpty(name))
+    }
+
+    fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
