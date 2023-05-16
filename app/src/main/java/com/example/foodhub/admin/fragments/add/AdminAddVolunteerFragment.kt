@@ -94,27 +94,34 @@ class AdminAddVolunteerFragment : Fragment() {
         val vMonth = bindingAddVolunteer.updateMonth.text.toString()
 
         if (inputCheck(vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vPhone, vWebsite, vReglink, vMaps, vWaze,vDay,vMonth)) {
+            if (vDay.toInt() > 31 || vDay.toInt() < 1){
+                Toast.makeText(requireContext(), "Please enter a valid day", Toast.LENGTH_SHORT).show()
+            }else if(vMonth.toInt() > 12 || vMonth.toInt() < 1){
+                Toast.makeText(requireContext(), "Please enter a valid month", Toast.LENGTH_SHORT).show()
+            }else{
+                val currentTime = Calendar.getInstance().time
+                val formatter = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
+                val timestamp = formatter.format(currentTime).toString()
+                val imageFileName = "v_work_img_$timestamp"
 
-            val currentTime = Calendar.getInstance().time
-            val formatter = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
-            val timestamp = formatter.format(currentTime).toString()
-            val imageFileName = "v_work_img_$timestamp"
+                var vImage = ""
+                val imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireActivity().contentResolver, uploadedImage))
 
-            var vImage = ""
-            val imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireActivity().contentResolver, uploadedImage))
+                // Create a bitmap copy of the admin-selected image and save it into the application storage
+                // The image file absolute path is stored inside ROOM
+                viewLifecycleOwner.lifecycleScope.launch {
+                    vImage = ImageStorageManager.saveToInternalStorage(requireContext(), imageBitmap, imageFileName)
+                }
+                Log.d("AddVolunteerFragment", "Image file name: $imageFileName")
+                Log.d("AddVolunteerFragment", "File absolute path: $vImage")
 
-            // Create a bitmap copy of the admin-selected image and save it into the application storage
-            // The image file absolute path is stored inside ROOM
-            viewLifecycleOwner.lifecycleScope.launch {
-                vImage = ImageStorageManager.saveToInternalStorage(requireContext(), imageBitmap, imageFileName)
+                val voluntaryWork = VoluntaryWork(0, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze,vDay.toInt(),vMonth.toInt())
+                voluntaryWorkViewModel.insertWork(voluntaryWork)
+                Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_adminAddVolunteerFragment_to_adminVolunteerFragment)
+
             }
-            Log.d("AddVolunteerFragment", "Image file name: $imageFileName")
-            Log.d("AddVolunteerFragment", "File absolute path: $vImage")
 
-            val voluntaryWork = VoluntaryWork(0, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze,vDay.toInt(),vMonth.toInt()-1)
-            voluntaryWorkViewModel.insertWork(voluntaryWork)
-            Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_adminAddVolunteerFragment_to_adminVolunteerFragment)
         }
         else {
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT).show()

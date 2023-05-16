@@ -53,11 +53,11 @@ class VolunteerDetailsFragment : Fragment() {
 
         bindingVolunteerDetails.eventTitle.text = args.currentWork.vTitle
         bindingVolunteerDetails.aboutUsContent.text = args.currentWork.vDesc
-        val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
+        val months = arrayOf("","January","February","March","April","May","June","July","August","September","October","November","December")
         val calendar = Calendar.getInstance()
         val currentYear = calendar.get(Calendar.YEAR)
         var day = args.currentWork.day.toString()
-        var month = months[args.currentWork.month+1]
+        var month = months[args.currentWork.month]
         bindingVolunteerDetails.calendarContent.text = "$day $month $currentYear"
         val address = args.currentWork.vStreet + ", " + args.currentWork.vCity + ", " + args.currentWork.vPostcode + ", " + args.currentWork.vState + ", " + args.currentWork.vCountry
         bindingVolunteerDetails.locationContent.text = address

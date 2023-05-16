@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -80,8 +81,9 @@ class EventsVolunteeredFragment: Fragment() {
             viewModel.evWaze.value = userVolunteeredWork.vWaze
             viewModel.evGmap.value = userVolunteeredWork.vMaps
             viewModel.evTitle.value = userVolunteeredWork.vTitle
-            val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
-            var month = months[userVolunteeredWork.month+1]
+            val months = arrayOf("","January","February","March","April","May","June","July","August","September","October","November","December")
+            var month = months[userVolunteeredWork.month]
+
             var date = "${userVolunteeredWork.day} $month 2023"
             viewModel.evDate.value = date
             viewModel.evImage.value = userVolunteeredWork.vImage
