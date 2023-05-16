@@ -109,6 +109,8 @@ class AdminBulletinFragment : Fragment(), MenuProvider {
 
         bindingAdminBulletin.adminBulletinTabLayout.getTabAt(0)?.text = "Latest News"
         bindingAdminBulletin.adminBulletinTabLayout.getTabAt(1)?.text = "E-Digest"
+
+        bindingAdminBulletin.adminBulletinViewpager.isSaveEnabled = false
     }
 
     private fun setupTabLayout() {
