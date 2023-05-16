@@ -1,7 +1,9 @@
 package com.example.foodhub.user
 
+import android.graphics.Bitmap
 import android.util.Log
 import android.widget.CheckBox
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.foodhub.database.tables.Donation
@@ -26,8 +28,17 @@ class DonateViewModal:ViewModel() {
     var name = MutableLiveData<String>()
     var numEventsVolunteered= MutableLiveData<Int>()
 
-
-
+    var evAboutUs = MutableLiveData<String>()
+    var evLocation = MutableLiveData<String>()
+    var evWebPage = MutableLiveData<String>()
+    var evPhone = MutableLiveData<String>()
+    var evDate = MutableLiveData<String>()
+    var evStatus = MutableLiveData<String>()
+    var evWaze= MutableLiveData<String>()
+    var evGmap= MutableLiveData<String>()
+    var evImage = MutableLiveData<String>()
+    var evVid = MutableLiveData<Int>()
+    var evTitle= MutableLiveData<String>()
     fun updateTncValue(value: Boolean) {
         Log.d("Cbox", "True");
         tnc.value = value
@@ -44,4 +55,11 @@ class DonateViewModal:ViewModel() {
     fun setString(text:String){
         userID.value = text
     }
+//    fun setImage(bitmap: Bitmap) {
+//        evImage.value = bitmap
+//    }
+//
+//    fun getImage(): LiveData<Bitmap> {
+//        return evImage
+//    }
 }

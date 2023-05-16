@@ -36,9 +36,9 @@ class UserVolunteeredWorkViewModel(application: Application): AndroidViewModel(a
         }
     }
 
-    fun cancelEventsVolunteeredUser(uvwId: String){
+    fun cancelEventsVolunteeredUser(id: String,vid: Int){
         viewModelScope.launch(Dispatchers.IO){
-            repository.cancelEventsVolunteeredUser(uvwId)
+            repository.cancelEventsVolunteeredUser(id,vid)
         }
     }
 

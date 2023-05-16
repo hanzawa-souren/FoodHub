@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".user.fragments.VolunteerDetailsFragment">
+    <ScrollView
+        android:id="@+id/home_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="150dp">
+
+            <TextView
+                android:id="@+id/webpage_content2"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+
+                android:fontFamily="@font/poppins"
+                android:text="kecharasoupkitchen.com"
+                android:textColor="#80000000"
+                app:layout_constraintStart_toStartOf="@+id/webpage_title"
+                app:layout_constraintTop_toBottomOf="@+id/webpage_title" />
+
+            <TextView
+                android:id="@+id/phone_title"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Phone"
+                android:textColor="#BF000000"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/webpage_content2" />
+
+            <TextView
+                android:id="@+id/phone_content"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+
+                android:text="+603-2141 6046"
+                android:textColor="#80000000"
+                app:layout_constraintStart_toStartOf="@+id/phone_title"
+                app:layout_constraintTop_toBottomOf="@+id/phone_title" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/phone_title"
+                app:layout_constraintEnd_toStartOf="@+id/phone_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/phone_title"
+                app:srcCompat="@drawable/add_call" />
+
+            //
+            <TextView
+                android:id="@+id/calendar_title"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Date"
+                android:textColor="#BF000000"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_content" />
+
+            <TextView
+                android:id="@+id/calendar_content"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+
+                android:text="0 Januaryy 2090"
+                android:textColor="#80000000"
+                app:layout_constraintStart_toStartOf="@+id/calendar_title"
+                app:layout_constraintTop_toBottomOf="@+id/calendar_title" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/calendar_title"
+                app:layout_constraintEnd_toStartOf="@+id/calendar_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/calendar_title"
+                app:srcCompat="@drawable/calendar_today__3_" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/webpage_title"
+                app:layout_constraintEnd_toStartOf="@+id/webpage_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/webpage_title"
+                app:srcCompat="@drawable/language" />
+
+            <TextView
+                android:id="@+id/webpage_title"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Webpage"
+                android:textColor="#BF000000"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/location_content" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bitcoin_logo" />
+
+            <TextView
+                android:id="@+id/event_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Kechara Soup Kitchen"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            <TextView
+                android:id="@+id/about_us_title"
+                android:layout_width="360dp"
+                android:textColor="#BF000000"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="About us"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_title" />
+
+            <TextView
+                android:id="@+id/about_us_content"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+
+                android:text="KSK has been serving marginalised communities in Malaysia for over 14 years; these include the homeless, urban poor and Orang Asli populations. Towards this end, we run our Soup Kittchen, Food Bank and Empowerment programmes to help these vulnerable demographies. We are non-religious and do not discriminate in the help we give."
+                android:textColor="#80000000"
+                app:layout_constraintStart_toStartOf="@+id/about_us_title"
+                app:layout_constraintTop_toBottomOf="@+id/about_us_title" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/about_us_content"
+                app:layout_constraintEnd_toStartOf="@+id/about_us_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/about_us_title"
+                app:srcCompat="@drawable/tips_and_updates" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/location_title"
+                app:layout_constraintEnd_toStartOf="@+id/location_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/location_title"
+                app:srcCompat="@drawable/pin_drop" />
+
+            <TextView
+                android:id="@+id/location_content"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+
+                android:text="17, Jalan Barat, Off Jalan Imbi, 55100 Kuala Lumpur"
+                android:textColor="#80000000"
+                app:layout_constraintStart_toStartOf="@+id/location_title"
+                app:layout_constraintTop_toBottomOf="@+id/location_title" />
+
+            <TextView
+                android:id="@+id/location_title"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Location"
+                android:textColor="#BF000000"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/about_us_content" />
+
+
+
+            <TextView
+                android:id="@+id/visit_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Visit Now"
+                android:textColor="#4A9798"
+                android:textSize="28sp"
+                android:layout_marginTop="@dimen/margin_double"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calendar_content" />
+
+            <android.widget.Button
+                android:id="@+id/GoNowButton"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="@dimen/margin_half"
+                android:layout_marginHorizontal="@dimen/margin"
+                android:background="@drawable/white_button_bg_squarish"
+                android:drawableLeft="@drawable/add_location_alt"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingHorizontal="20dp"
+                android:text="Go Now"
+                android:textColor="#4A9798"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/visit_title" />
+
+            <android.widget.Button
+                android:id="@+id/WazeButton"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_margin="@dimen/margin"
+                android:background="@drawable/white_button_bg_squarish"
+                android:drawableLeft="@drawable/waze_1"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingHorizontal="20dp"
+                android:text="Go Now"
+                android:textColor="#4A9798"
+                android:textSize="20sp"
+                app:flow_verticalBias="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/GoNowButton" />
+
+            <android.widget.Button
+                android:id="@+id/cancel_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#FF3F3F"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Cancel Registration"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/WazeButton"
+                app:layout_constraintStart_toStartOf="@+id/WazeButton"
+                app:layout_constraintTop_toBottomOf="@+id/WazeButton" />
+
+            <ImageView
+                android:id="@+id/evd_status_img"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cancel_btn"
+                app:layout_constraintEnd_toEndOf="@+id/cancel_btn"
+                app:layout_constraintStart_toStartOf="@+id/cancel_btn"
+                app:layout_constraintTop_toTopOf="@+id/cancel_btn"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/check_circle" />
+
+            <TextView
+                android:id="@+id/evd_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Completed"
+                android:textSize="20dp"
+                android:textColor="#49BD36"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/evd_status_img"
+                app:layout_constraintStart_toStartOf="@+id/evd_status_img"
+                app:layout_constraintTop_toBottomOf="@+id/evd_status_img" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

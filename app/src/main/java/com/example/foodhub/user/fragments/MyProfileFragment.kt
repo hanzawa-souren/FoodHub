@@ -58,7 +58,11 @@ class MyProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        var userVW = emptyList<UserVolunteeredWork>()
+        mUserVolunteeredWork.getEventsVolunteeredUser(viewModel.name.value?:"").observe(viewLifecycleOwner, Observer { volunteers ->
+            userVW = volunteers
+            viewModel.numEventsVolunteered.value = userVW.size
+        })
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 

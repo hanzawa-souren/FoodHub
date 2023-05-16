@@ -43,7 +43,7 @@ class EventsVolunteeredAdapter(private var mList: List<UserVolunteeredWork>) : R
         val statusTexts = arrayOf("Pending","Completed","Absent")
         val statusImages = arrayOf(R.drawable.do_not_disturb_on,R.drawable.check_circle,R.drawable.cancel)
         holder.mainImg.setImageURI(Uri.parse(ItemsViewModel.vImage))
-        holder.month.text = months[ItemsViewModel.month]
+        holder.month.text = months[ItemsViewModel.month+1]
         holder.day.text = ItemsViewModel.day.toString()
         holder.country.text = ItemsViewModel.vCountry.toString()
        if(ItemsViewModel.status == "Pending"){

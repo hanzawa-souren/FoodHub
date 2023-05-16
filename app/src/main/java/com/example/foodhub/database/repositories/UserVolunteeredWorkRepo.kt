@@ -12,8 +12,8 @@ class UserVolunteeredWorkRepo(private val userVolunteeredWorkDao: UserVolunteere
     suspend fun addVolunteeredWork(userVolunteeredWork: UserVolunteeredWork){
         userVolunteeredWorkDao.addVolunteeredWork(userVolunteeredWork)
     }
-    suspend fun cancelEventsVolunteeredUser(id:String){
-        userVolunteeredWorkDao.cancelEventsVolunteeredUser(id)
+    suspend fun cancelEventsVolunteeredUser(id:String,vid:Int){
+        userVolunteeredWorkDao.cancelEventsVolunteeredUser(id,vid)
     }
     suspend fun updateVolunteeredWorkStatus(uvwId:String,status:String){
         userVolunteeredWorkDao.updateVolunteeredWorkStatus(uvwId,status)

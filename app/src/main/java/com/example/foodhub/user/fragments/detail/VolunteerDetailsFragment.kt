@@ -75,18 +75,47 @@ class VolunteerDetailsFragment : Fragment() {
 
         bindingVolunteerDetails.phoneContent.text = args.currentWork.vPhone
 
+
         bindingVolunteerDetails.registerButton.setOnClickListener {
-
-            var check = mUserVolunteeredWork.checkVolunteered(viewModel.name.value?:"",args.currentWork.vId).value
-            if (check == 0){
-                mUserVolunteeredWork.addVolunteeredWork(UserVolunteeredWork(0,args.currentWork.vId,viewModel.name.value?:"","Pending",args.currentWork.vImage,args.currentWork.vTitle,args.currentWork.vDesc,args.currentWork.vStreet,args.currentWork.vCity,args.currentWork.vPostcode,args.currentWork.vState,args.currentWork.vCountry,args.currentWork.vWebsite,args.currentWork.vPhone,args.currentWork.vRegLink,args.currentWork.vMaps,args.currentWork.vWaze,args.currentWork.day,args.currentWork.month))
-                Toast.makeText(requireContext(), "Registered", Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(requireContext(), "Already Registered", Toast.LENGTH_SHORT).show()
-            }
+            mUserVolunteeredWork.checkVolunteered(viewModel.name.value ?: "", args.currentWork.vId)
+                .observe(viewLifecycleOwner) { check ->
 
 
-            view.findNavController().navigate(R.id.homeFragment)
+                    if (check == 0) {
+                        mUserVolunteeredWork.addVolunteeredWork(
+                            UserVolunteeredWork(
+                                0,
+                                args.currentWork.vId,
+                                viewModel.name.value ?: "",
+                                "Pending",
+                                args.currentWork.vImage,
+                                args.currentWork.vTitle,
+                                args.currentWork.vDesc,
+                                args.currentWork.vStreet,
+                                args.currentWork.vCity,
+                                args.currentWork.vPostcode,
+                                args.currentWork.vState,
+                                args.currentWork.vCountry,
+                                args.currentWork.vWebsite,
+                                args.currentWork.vPhone,
+                                args.currentWork.vRegLink,
+                                args.currentWork.vMaps,
+                                args.currentWork.vWaze,
+                                args.currentWork.day,
+                                args.currentWork.month
+                            )
+                        )
+                        Toast.makeText(requireContext(), "Registered", Toast.LENGTH_SHORT).show()
+                        view.findNavController().navigate(R.id.volunteerFragment)
+                    } else {
+                        Toast.makeText(requireContext(), "Already Registered", Toast.LENGTH_SHORT)
+                            .show()
+                        view.findNavController().navigate(R.id.volunteerFragment)
+                    }
+
+                }
+        }
+
 //            var regUrl = args.currentWork.vRegLink
 //            if (!regUrl.startsWith("http://") && !regUrl.startsWith("https://")) {
 //                regUrl = "http://$regUrl"
@@ -94,7 +123,7 @@ class VolunteerDetailsFragment : Fragment() {
 //
 //            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(regUrl))
 //            startActivity(browserIntent)
-        }
+
 
         bindingVolunteerDetails.GoNowButton.setOnClickListener {
             var mapsUrl = args.currentWork.vMaps

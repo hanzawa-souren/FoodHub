@@ -16,8 +16,8 @@ interface UserVolunteeredWorkDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addVolunteeredWork(userVolunteeredWork: UserVolunteeredWork)
 
-    @Query("DELETE FROM volunteered_work WHERE uvwId = :id")
-    suspend fun cancelEventsVolunteeredUser(id:String)
+    @Query("DELETE FROM volunteered_work WHERE v_id = :vid AND u_id = :id")
+    suspend fun cancelEventsVolunteeredUser(id:String,vid:Int)
 
     @Query("UPDATE volunteered_work SET status = :status WHERE uvwId = :uvwId")
     suspend fun updateVolunteeredWorkStatus(uvwId:String,status:String)

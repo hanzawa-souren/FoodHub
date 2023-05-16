@@ -190,5 +190,9 @@
         android:id="@+id/eventsVolunteeredFragment"
         android:name="com.example.foodhub.user.fragments.EventsVolunteeredFragment"
         android:label="EventsVolunteeredFragment" />
+    <fragment
+        android:id="@+id/eventsVolunteeredDetailFragment"
+        android:name="com.example.foodhub.user.fragments.detail.EventsVolunteeredDetailFragment"
+        android:label="EventsVolunteeredDetailFragment" />
 
 </navigation>

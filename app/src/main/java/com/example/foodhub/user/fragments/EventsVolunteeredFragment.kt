@@ -66,8 +66,27 @@ class EventsVolunteeredFragment: Fragment() {
 
         mUserVolunteeredWork.getEventsVolunteeredUser(viewModel.name.value?:"").observe(viewLifecycleOwner, Observer { volunteers ->
             adapter1.updateData(volunteers.reversed())
+            viewModel.numEventsVolunteered.value = userVW.size
         })
         (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = "Events Volunteered"
+        adapter1.onItemClick={
+            userVolunteeredWork ->
+            viewModel.evVid.value = userVolunteeredWork.vId
+            viewModel.evAboutUs.value = userVolunteeredWork.vDesc
+            viewModel.evLocation.value = userVolunteeredWork.vStreet + userVolunteeredWork.vCity + userVolunteeredWork.vState + userVolunteeredWork.vPostcode + userVolunteeredWork.vCountry
+            viewModel.evPhone.value = userVolunteeredWork.vPhone
+            viewModel.evWebPage.value = userVolunteeredWork.vWebsite
+            viewModel.evStatus.value = userVolunteeredWork.status
+            viewModel.evWaze.value = userVolunteeredWork.vWaze
+            viewModel.evGmap.value = userVolunteeredWork.vMaps
+            viewModel.evTitle.value = userVolunteeredWork.vTitle
+            val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
+            var month = months[userVolunteeredWork.month+1]
+            var date = "${userVolunteeredWork.day} $month 2023"
+            viewModel.evDate.value = date
+            viewModel.evImage.value = userVolunteeredWork.vImage
+            view.findNavController().navigate(R.id.eventsVolunteeredDetailFragment)
+        }
 
 
 
