@@ -31,12 +31,9 @@ class AdminHelplinesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextL
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_helplines, container, false)
+
         bindingAdminHelplines = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_helplines, container, false)
-
         helplineViewModel = ViewModelProvider(this).get(HelplineViewModel::class.java)
-
         return bindingAdminHelplines.root
     }
 

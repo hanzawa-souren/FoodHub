@@ -31,12 +31,9 @@ class AdminUpdateHelplineFragment : Fragment(), MenuProvider {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_update_helpline, container, false)
+
         bindingUpdateHelpline = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_update_helpline, container, false)
-
         helplineViewModel = ViewModelProvider(this).get(HelplineViewModel::class.java)
-
         return bindingUpdateHelpline.root
     }
 
