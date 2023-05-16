@@ -4,13 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.provider.SyncStateContract
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -18,15 +16,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.example.foodhub.R
 import com.example.foodhub.admin.AdminMainActivity
 import com.example.foodhub.admin.viewmodels.*
 import com.example.foodhub.databinding.FragmentAdminHomeBinding
 import com.example.foodhub.login.LoginActivity
 import com.example.foodhub.login.UserViewModel
-import com.example.foodhub.user.MainActivity
 
 class AdminHomeFragment : Fragment(), MenuProvider {
 
