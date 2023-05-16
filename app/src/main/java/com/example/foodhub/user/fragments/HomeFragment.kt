@@ -134,7 +134,7 @@ class HomeFragment : Fragment() {
 
         mUserViewModel.getUserDonation(name.loginID).observe(viewLifecycleOwner, Observer { amount ->
 
-            viewModel.donateAmounts.value = amount/2
+            viewModel.donateAmounts.value = amount
         })
 
 
