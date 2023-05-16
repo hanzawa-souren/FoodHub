@@ -12,7 +12,8 @@ interface UserVolunteeredWorkDao {
 
     @Query("SELECT * FROM volunteered_work WHERE u_id = :id")
     fun getEventsVolunteeredUser(id:String): LiveData<List<UserVolunteeredWork>>
-
+    @Query("SELECT * FROM volunteered_work WHERE v_id = :vid")
+    fun getParticipatedUser(vid:Int): LiveData<List<UserVolunteeredWork>>
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addVolunteeredWork(userVolunteeredWork: UserVolunteeredWork)
 
@@ -20,7 +21,10 @@ interface UserVolunteeredWorkDao {
     suspend fun cancelEventsVolunteeredUser(id:String,vid:Int)
 
     @Query("UPDATE volunteered_work SET status = :status WHERE uvwId = :uvwId")
-    suspend fun updateVolunteeredWorkStatus(uvwId:String,status:String)
+    suspend fun updateVolunteeredWorkStatus(uvwId:Int,status:String)
+
+    @Query("UPDATE volunteered_work SET status = :status WHERE v_id = :vId")
+    suspend fun updateAllPresent(vId:Int,status:String)
     @Query("SELECT COUNT(u_id) FROM volunteered_work WHERE u_id = :id")
     fun getVolunteeredCount(id:String): LiveData<Int>
     @Query("SELECT COUNT(u_id) FROM volunteered_work WHERE u_id = :id AND v_id = :vid")

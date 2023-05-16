@@ -390,6 +390,15 @@
                 android:text="@string/update"
                 style="@style/ButtonStyle"
                 app:layout_constraintTop_toBottomOf="@+id/update_calendar_fields"/>
+            <Button
+                android:id="@+id/check_volunteers_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin"
+                android:layout_marginVertical="10dp"
+                android:text="Check Volunteers"
+                style="@style/ButtonStyle"
+                app:layout_constraintTop_toBottomOf="@+id/v_update_button"/>
             <View
                 android:id="@+id/line_18"
                 android:layout_width="match_parent"

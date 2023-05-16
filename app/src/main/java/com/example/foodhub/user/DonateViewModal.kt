@@ -39,6 +39,10 @@ class DonateViewModal:ViewModel() {
     var evImage = MutableLiveData<String>()
     var evVid = MutableLiveData<Int>()
     var evTitle= MutableLiveData<String>()
+
+    var adminVid= MutableLiveData<Int>()
+    var checkId= MutableLiveData<String>()
+    var checkUvid = MutableLiveData<Int>()
     fun updateTncValue(value: Boolean) {
         Log.d("Cbox", "True");
         tnc.value = value

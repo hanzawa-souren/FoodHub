@@ -37,7 +37,9 @@ class UserRepository(private val userDao : UserDAO) {
         return userDao.getUserDateYear(id)
     }
 
-
+    fun getAllUser(): LiveData<List<User>>{
+        return userDao.getAllUser()
+    }
 
     fun getDonationObject(id:String):LiveData<List<Donation>>{
         return userDao.getDonataionObject(id)

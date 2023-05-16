@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_card"
+    android:layout_width="370dp"
+    android:layout_height="200dp"
+    android:layout_margin="8dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="@dimen/category_ic_radius"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/l"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <TextView
+            android:id="@+id/vw_right_bg"
+            android:layout_width="170dp"
+            android:layout_height="200dp"
+            android:background="@drawable/volunteered_work_profile_right_bg"
+            android:elevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        </FrameLayout>-->
+
+
+        <ImageView
+            android:id="@+id/vw_main_img"
+            android:layout_width="200dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/profile_pic" />
+
+
+
+
+
+        <TextView
+            android:id="@+id/cv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Name"
+            android:textColor="#99000000"
+
+
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView20"
+            app:layout_constraintStart_toEndOf="@+id/imageView20"
+            app:layout_constraintTop_toTopOf="@+id/imageView20" />
+
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:elevation="6dp"
+            app:layout_constraintStart_toStartOf="@+id/vw_right_bg"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/account_circle" />
+
+        <ImageView
+            android:id="@+id/imageView21"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="10dp"
+            android:elevation="6dp"
+
+            app:layout_constraintEnd_toEndOf="@+id/imageView20"
+            app:layout_constraintStart_toStartOf="@+id/imageView20"
+            app:layout_constraintTop_toBottomOf="@+id/imageView20"
+            app:srcCompat="@drawable/add_call" />
+
+        <TextView
+            android:id="@+id/cv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Phone"
+            android:layout_marginStart="10dp"
+            android:textColor="#99000000"
+
+
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView21"
+            app:layout_constraintStart_toEndOf="@+id/imageView21"
+            app:layout_constraintTop_toTopOf="@+id/imageView21" />
+
+        <ImageView
+            android:id="@+id/cv_status_img"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:elevation="6dp"
+            android:layout_marginBottom="30dp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/vw_right_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/vw_right_bg"
+            app:layout_constraintTop_toBottomOf="@+id/cv_phone"
+            app:srcCompat="@drawable/do_not_disturb_on" />
+
+        <TextView
+            android:id="@+id/cv_status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="PENDING"
+            android:textColor="#F1E8B8"
+            android:textSize="16sp"
+
+            app:layout_constraintEnd_toEndOf="@+id/cv_status_img"
+            app:layout_constraintStart_toStartOf="@+id/cv_status_img"
+            app:layout_constraintTop_toBottomOf="@+id/cv_status_img" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

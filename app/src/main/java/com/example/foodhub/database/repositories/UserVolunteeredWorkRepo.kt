@@ -15,9 +15,10 @@ class UserVolunteeredWorkRepo(private val userVolunteeredWorkDao: UserVolunteere
     suspend fun cancelEventsVolunteeredUser(id:String,vid:Int){
         userVolunteeredWorkDao.cancelEventsVolunteeredUser(id,vid)
     }
-    suspend fun updateVolunteeredWorkStatus(uvwId:String,status:String){
+    suspend fun updateVolunteeredWorkStatus(uvwId:Int,status:String){
         userVolunteeredWorkDao.updateVolunteeredWorkStatus(uvwId,status)
     }
+
     fun checkVolunteered(id:String,vid:Int): LiveData<Int>{
         return userVolunteeredWorkDao.checkVolunteered(id,vid)
     }
@@ -26,5 +27,11 @@ class UserVolunteeredWorkRepo(private val userVolunteeredWorkDao: UserVolunteere
     }
     suspend fun updateVWUserID(oldID: String, newID : String){
         userVolunteeredWorkDao.updateVWUserID(oldID, newID)
+    }
+    fun getParticipatedUser(vid:Int): LiveData<List<UserVolunteeredWork>>{
+        return userVolunteeredWorkDao.getParticipatedUser(vid)
+    }
+    suspend fun updateAllPresent(vId:Int,status:String){
+        userVolunteeredWorkDao.updateAllPresent(vId,status)
     }
 }

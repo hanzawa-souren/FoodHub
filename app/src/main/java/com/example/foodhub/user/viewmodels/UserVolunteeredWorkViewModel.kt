@@ -42,7 +42,7 @@ class UserVolunteeredWorkViewModel(application: Application): AndroidViewModel(a
         }
     }
 
-    fun updateVolunteeredWorkStatus(uvwId:String,status:String){
+    fun updateVolunteeredWorkStatus(uvwId:Int,status:String){
         viewModelScope.launch(Dispatchers.IO){
             repository.updateVolunteeredWorkStatus(uvwId,status)
         }
@@ -55,6 +55,16 @@ class UserVolunteeredWorkViewModel(application: Application): AndroidViewModel(a
     fun updateVWUserID(oldID: String, newID : String){
         viewModelScope.launch(Dispatchers.IO){
             repository.updateVWUserID(oldID,newID)
+        }
+    }
+    private lateinit var participatedUserObject: LiveData<List<UserVolunteeredWork>>
+    fun getParticipatedUser(vid:Int): LiveData<List<UserVolunteeredWork>>{
+        participatedUserObject = repository.getParticipatedUser(vid)
+        return participatedUserObject
+    }
+    fun updateAll(vId:Int,status:String){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.updateAllPresent(vId,status)
         }
     }
 

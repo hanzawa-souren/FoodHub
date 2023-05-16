@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -30,13 +31,14 @@ import com.example.foodhub.admin.viewmodels.VoluntaryWorkViewModel
 import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.database.tables.VoluntaryWork
 import com.example.foodhub.databinding.FragmentAdminUpdateVolunteerBinding
+import com.example.foodhub.user.DonateViewModal
 import com.example.foodhub.user.viewmodels.UserVolunteeredWorkViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
-
+    private val viewModel: DonateViewModal by activityViewModels()
     private lateinit var bindingUpdateVolunteer: FragmentAdminUpdateVolunteerBinding
     private val args by navArgs<AdminUpdateVolunteerFragmentArgs>()
     private lateinit var voluntaryWorkViewModel: VoluntaryWorkViewModel
@@ -102,8 +104,12 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         bindingUpdateVolunteer.updateVWaze.setText(args.currentWork.vWaze)
         bindingUpdateVolunteer.updateDay.setText(args.currentWork.day.toString())
         bindingUpdateVolunteer.updateMonth.setText(args.currentWork.month.toString())
+        viewModel.adminVid.value = args.currentWork.vId
         bindingUpdateVolunteer.vUpdateButton.setOnClickListener { updateItem(args.currentWork.vId)
 
+        }
+        bindingUpdateVolunteer.checkVolunteersButton.setOnClickListener{
+            findNavController().navigate(R.id.action_adminUpdateVolunteerFragment_to_adminCheckVolunteerFragment)
         }
     }
 
@@ -161,6 +167,7 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         else {
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun inputCheck(vTitle: String, vDesc: String, vStreet: String, vCity: String, vPostcode: String, vState: String, vCountry: String, vPhone: String, vWebsite: String, vReglink: String, vMaps: String, vWaze: String,vDay:String,vMonth:String): Boolean {

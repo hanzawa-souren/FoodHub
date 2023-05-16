@@ -107,7 +107,9 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     private lateinit var userDateYear: LiveData<Int>
 
 
-
+    fun getAllUser(): LiveData<List<User>>{
+        return repository.getAllUser()
+    }
 
     fun getUserDateDay(id: String): LiveData<Int>{
         userDateDay = repository.getUserDateDay(id)

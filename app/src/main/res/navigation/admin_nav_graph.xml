@@ -42,6 +42,9 @@
         <argument
             android:name="currentWork"
             app:argType="com.example.foodhub.database.tables.VoluntaryWork" />
+        <action
+            android:id="@+id/action_adminUpdateVolunteerFragment_to_adminCheckVolunteerFragment"
+            app:destination="@id/adminCheckVolunteerFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminNearMeFragment"
@@ -183,5 +186,21 @@
         <action
             android:id="@+id/action_adminBulletinFragment_to_adminUpdateDigestFragment"
             app:destination="@id/adminUpdateDigestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminCheckVolunteerFragment"
+        android:name="com.example.foodhub.user.fragments.AdminCheckVolunteerFragment"
+        android:label="AdminCheckVolunteerFragment" >
+        <action
+            android:id="@+id/action_adminCheckVolunteerFragment_to_adminVolunteerUserCheck"
+            app:destination="@id/adminVolunteerUserCheck" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminVolunteerUserCheck"
+        android:name="com.example.foodhub.admin.fragments.AdminVolunteerUserCheck"
+        android:label="AdminVolunteerUserCheck" >
+        <action
+            android:id="@+id/action_adminVolunteerUserCheck_to_adminCheckVolunteerFragment"
+            app:destination="@id/adminCheckVolunteerFragment" />
     </fragment>
 </navigation>
