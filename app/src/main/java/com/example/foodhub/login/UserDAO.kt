@@ -1,5 +1,6 @@
 package com.example.foodhub.login
 
+
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.foodhub.database.relations.UserWithDonations
@@ -60,6 +61,9 @@ interface UserDAO {
 
     @Query("SELECT * FROM donation WHERE u_id = :id")
     fun getDonataionObject(id:String): LiveData<List<Donation>>
+
+    @Query("SELECT * FROM user_table ")
+    fun getAllUser(): LiveData<List<User>>
 
     @Transaction
     @Query("SELECT * FROM user_table")

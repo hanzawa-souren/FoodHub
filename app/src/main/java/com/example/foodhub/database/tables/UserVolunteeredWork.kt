@@ -7,11 +7,17 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
-@Parcelize
-@Entity
-data class VoluntaryWork(
+@Entity(tableName = "volunteered_work")
+data class UserVolunteeredWork(
     @PrimaryKey(autoGenerate = true)
+    val uvwId: Int,
+    @ColumnInfo(name = "v_id")
     val vId: Int,
+    @ColumnInfo(name = "u_id")
+    val uId: String = "",
+
+    @ColumnInfo(name = "status")
+    val status: String = "Pending",
 
     @ColumnInfo(name = "v_image")
     val vImage: String,
@@ -53,4 +59,5 @@ data class VoluntaryWork(
     val vWaze: String = "",
     @ColumnInfo(name = "day") val day: Int ,
     @ColumnInfo(name = "month") val month: Int
-): Parcelable
+
+)

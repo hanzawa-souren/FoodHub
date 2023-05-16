@@ -9,19 +9,25 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodhub.R
 import com.example.foodhub.admin.viewmodels.VoluntaryWorkViewModel
+import com.example.foodhub.database.tables.UserVolunteeredWork
 import com.example.foodhub.databinding.FragmentVolunteerBinding
+import com.example.foodhub.user.DonateViewModal
 import com.example.foodhub.user.adapters.VoluntaryWorkListAdapter
+import com.example.foodhub.user.viewmodels.UserVolunteeredWorkViewModel
 
 class VolunteerFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private lateinit var bindingVolunteer: FragmentVolunteerBinding
     private lateinit var voluntaryWorkViewModel: VoluntaryWorkViewModel
     private lateinit var adapter: VoluntaryWorkListAdapter
+    private val viewModel: DonateViewModal by activityViewModels()
+    private lateinit var mUserVolunteeredWork: UserVolunteeredWorkViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +37,7 @@ class VolunteerFragment : Fragment(), SearchView.OnQueryTextListener {
         bindingVolunteer = DataBindingUtil.inflate(inflater,
             R.layout.fragment_volunteer, container, false)
         voluntaryWorkViewModel = ViewModelProvider(this).get(VoluntaryWorkViewModel::class.java)
+        mUserVolunteeredWork = ViewModelProvider(this)[UserVolunteeredWorkViewModel::class.java]
         return bindingVolunteer.root
     }
 
@@ -44,9 +51,14 @@ class VolunteerFragment : Fragment(), SearchView.OnQueryTextListener {
         voluntaryWorkViewModel.getAllWork.observe(viewLifecycleOwner, Observer { voluntaryWork ->
             adapter.setData(voluntaryWork)
         })
-
+        var userVW = emptyList<UserVolunteeredWork>()
+        mUserVolunteeredWork.getEventsVolunteeredUser(viewModel.name.value?:"").observe(viewLifecycleOwner, Observer { volunteers ->
+            userVW = volunteers
+            viewModel.numEventsVolunteered.value = userVW.size
+        })
         bindingVolunteer.userVolunteerSearchview.isSubmitButtonEnabled = true
         bindingVolunteer.userVolunteerSearchview.setOnQueryTextListener(this)
+
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {

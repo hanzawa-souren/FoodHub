@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -31,15 +32,18 @@ import com.example.foodhub.admin.viewmodels.VoluntaryWorkViewModel
 import com.example.foodhub.database.ImageStorageManager
 import com.example.foodhub.database.tables.VoluntaryWork
 import com.example.foodhub.databinding.FragmentAdminUpdateVolunteerBinding
+import com.example.foodhub.user.DonateViewModal
+import com.example.foodhub.user.viewmodels.UserVolunteeredWorkViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
-
+    private val viewModel: DonateViewModal by activityViewModels()
     private lateinit var bindingUpdateVolunteer: FragmentAdminUpdateVolunteerBinding
     private val args by navArgs<AdminUpdateVolunteerFragmentArgs>()
     private lateinit var voluntaryWorkViewModel: VoluntaryWorkViewModel
+    private lateinit var mUserVolunteeredWork: UserVolunteeredWorkViewModel
     private lateinit var uploadedImage: Uri
     private var imageBitmap: Bitmap? = null
     private var imageUriNull = true
@@ -67,6 +71,7 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
 
         bindingUpdateVolunteer = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_update_volunteer, container, false)
         voluntaryWorkViewModel = ViewModelProvider(this).get(VoluntaryWorkViewModel::class.java)
+        mUserVolunteeredWork = ViewModelProvider(this)[UserVolunteeredWorkViewModel::class.java]
         return bindingUpdateVolunteer.root
     }
 
@@ -98,12 +103,19 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         bindingUpdateVolunteer.updateVReglink.setText(args.currentWork.vRegLink)
         bindingUpdateVolunteer.updateVMaps.setText(args.currentWork.vMaps)
         bindingUpdateVolunteer.updateVWaze.setText(args.currentWork.vWaze)
+        bindingUpdateVolunteer.updateDay.setText(args.currentWork.day.toString())
+        bindingUpdateVolunteer.updateMonth.setText(args.currentWork.month.toString())
+        viewModel.adminVid.value = args.currentWork.vId
+        bindingUpdateVolunteer.vUpdateButton.setOnClickListener { updateItem(args.currentWork.vId)
 
-        bindingUpdateVolunteer.vUpdateButton.setOnClickListener { updateItem() }
+        }
+        bindingUpdateVolunteer.checkVolunteersButton.setOnClickListener{
+            findNavController().navigate(R.id.action_adminUpdateVolunteerFragment_to_adminCheckVolunteerFragment)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
-    private fun updateItem() {
+    private fun updateItem(vid : Int) {
 
         val vTitle = bindingUpdateVolunteer.updateVTitle.text.toString()
         val vDesc = bindingUpdateVolunteer.updateVDesc.text.toString()
@@ -117,8 +129,9 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         val vReglink = bindingUpdateVolunteer.updateVReglink.text.toString()
         val vMaps = bindingUpdateVolunteer.updateVMaps.text.toString()
         val vWaze = bindingUpdateVolunteer.updateVWaze.text.toString()
-
-        if (inputCheck(vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vPhone, vWebsite, vReglink, vMaps, vWaze)) {
+        val vDay = bindingUpdateVolunteer.updateDay.text.toString()
+        val vMonth = bindingUpdateVolunteer.updateMonth.text.toString()
+        if (inputCheck(vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vPhone, vWebsite, vReglink, vMaps, vWaze,vDay,vMonth)) {
 
             val currentTime = Calendar.getInstance().time
             val formatter = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
@@ -146,18 +159,20 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
             Log.d("Update new pic", "File absolute path: $vImage")
             Log.d("Delete old pic", "Successful?: $success")
 
-            val voluntaryWork = VoluntaryWork(args.currentWork.vId, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze)
+            val voluntaryWork = VoluntaryWork(args.currentWork.vId, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze,vDay.toInt(),vMonth.toInt()-1)
             voluntaryWorkViewModel.updateWork(voluntaryWork)
+            mUserVolunteeredWork.updateVolunteeredInfo(vid,vImage,vTitle,vDesc,vStreet,vCity,vPostcode,vState,vCountry,vWebsite,vPhone,vReglink,vMaps,vWaze,vDay.toInt(),vMonth.toInt())
             Toast.makeText(requireContext(), "Successfully updated!", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_adminUpdateVolunteerFragment_to_adminVolunteerFragment)
         }
         else {
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT).show()
         }
+
     }
 
-    private fun inputCheck(vTitle: String, vDesc: String, vStreet: String, vCity: String, vPostcode: String, vState: String, vCountry: String, vPhone: String, vWebsite: String, vReglink: String, vMaps: String, vWaze: String): Boolean {
-        return !(TextUtils.isEmpty(vTitle) || TextUtils.isEmpty(vDesc) || TextUtils.isEmpty(vStreet) || TextUtils.isEmpty(vCity) || TextUtils.isEmpty(vPostcode) || TextUtils.isEmpty(vState) || TextUtils.isEmpty(vCountry) || TextUtils.isEmpty(vPhone) || TextUtils.isEmpty(vWebsite) || TextUtils.isEmpty(vReglink) || TextUtils.isEmpty(vMaps) || TextUtils.isEmpty(vWaze))
+    private fun inputCheck(vTitle: String, vDesc: String, vStreet: String, vCity: String, vPostcode: String, vState: String, vCountry: String, vPhone: String, vWebsite: String, vReglink: String, vMaps: String, vWaze: String,vDay:String,vMonth:String): Boolean {
+        return !(TextUtils.isEmpty(vTitle) || TextUtils.isEmpty(vDesc) || TextUtils.isEmpty(vStreet) || TextUtils.isEmpty(vCity) || TextUtils.isEmpty(vPostcode) || TextUtils.isEmpty(vState) || TextUtils.isEmpty(vCountry) || TextUtils.isEmpty(vPhone) || TextUtils.isEmpty(vWebsite) || TextUtils.isEmpty(vReglink) || TextUtils.isEmpty(vMaps) || TextUtils.isEmpty(vWaze)|| TextUtils.isEmpty(vDay)|| TextUtils.isEmpty(vMonth))
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

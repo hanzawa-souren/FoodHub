@@ -12,7 +12,7 @@ import com.example.foodhub.database.tables.Donation
 
 import com.example.foodhub.user.models.ProfileModel
 
-class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : String,var donateAmount:Double) : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
+class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : String,var donateAmount:Double, var volunteered : Int) : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
 
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -45,7 +45,7 @@ class ProfileAdapter(private val mList: List<ProfileModel>, var dateJoined : Str
 
         else{
             holder.title.text = ItemsViewModel.title
-            holder.content.text = ItemsViewModel.content
+            holder.content.text = volunteered.toString()
             holder.image.setImageResource(ItemsViewModel.image)
         }
         holder.card.setOnClickListener {

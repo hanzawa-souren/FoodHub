@@ -61,8 +61,8 @@ class DonateHistoryFragment: Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = ""
 
         val rview = bindingDonateHistory.donateHistoryRV
-        @Suppress("DEPRECATION")
-        val name : User = activity?.intent?.getParcelableExtra("User")!!
+//        @Suppress("DEPRECATION")
+//        val name : User = activity?.intent?.getParcelableExtra("User")!!
         var donations  = emptyList<Donation>()
         rview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         rview.setHasFixedSize(true)

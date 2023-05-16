@@ -9,7 +9,6 @@ import com.example.foodhub.database.AppDatabase
 import com.example.foodhub.database.tables.Donation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 class UserViewModel(application: Application): AndroidViewModel(application) {
 
@@ -113,7 +112,9 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     private lateinit var userDateYear: LiveData<Int>
 
 
-
+    fun getAllUser(): LiveData<List<User>>{
+        return repository.getAllUser()
+    }
 
     fun getUserDateDay(id: String): LiveData<Int>{
         userDateDay = repository.getUserDateDay(id)

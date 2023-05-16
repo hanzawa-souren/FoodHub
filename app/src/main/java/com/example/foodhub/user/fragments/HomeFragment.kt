@@ -25,6 +25,7 @@ import com.example.foodhub.admin.viewmodels.EDigestViewModel
 import com.example.foodhub.admin.viewmodels.FacilityViewModel
 import com.example.foodhub.admin.viewmodels.LatestNewsViewModel
 import com.example.foodhub.admin.viewmodels.VoluntaryWorkViewModel
+import com.example.foodhub.database.tables.UserVolunteeredWork
 import com.example.foodhub.databinding.FragmentHomeBinding
 import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
@@ -33,6 +34,7 @@ import com.example.foodhub.user.adapters.EDigestHomeAdapter
 import com.example.foodhub.user.adapters.LatestNewsHomeAdapter
 import com.example.foodhub.user.adapters.NearMeHomeAdapter
 import com.example.foodhub.user.adapters.ProfileAdapter
+import com.example.foodhub.user.viewmodels.UserVolunteeredWorkViewModel
 import com.example.foodhub.user.viewmodels.VoluntaryWorkHomeAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -54,6 +56,9 @@ class HomeFragment : Fragment() {
     private lateinit var eDigestViewModel: EDigestViewModel
     private lateinit var eDigestPreviewAdapter: EDigestHomeAdapter
 
+    private lateinit var mUserVolunteeredWork: UserVolunteeredWorkViewModel
+
+
     private lateinit var hContext: MainActivity
     private var doubleBackToExitPressedOnce = false
 
@@ -70,7 +75,7 @@ class HomeFragment : Fragment() {
         latestNewsViewModel = ViewModelProvider(this).get(LatestNewsViewModel::class.java)
         eDigestViewModel = ViewModelProvider(this).get(EDigestViewModel::class.java)
         mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-
+        mUserVolunteeredWork = ViewModelProvider(this)[UserVolunteeredWorkViewModel::class.java]
         @Suppress("DEPRECATION")
         val user : User = activity?.intent?.getParcelableExtra("User")!!
         if (userViewModel.changedHome) {
@@ -129,7 +134,7 @@ class HomeFragment : Fragment() {
 
         mUserViewModel.getUserDonation(name.loginID).observe(viewLifecycleOwner, Observer { amount ->
 
-            viewModel.donateAmounts.value = amount
+            viewModel.donateAmounts.value = amount/2
         })
 
 
@@ -145,7 +150,11 @@ class HomeFragment : Fragment() {
 
             viewModel.year.value = year
         })
-
+        var userVW = emptyList<UserVolunteeredWork>()
+        mUserVolunteeredWork.getEventsVolunteeredUser(viewModel.name.value?:"").observe(viewLifecycleOwner, Observer { volunteers ->
+            userVW = volunteers
+            viewModel.numEventsVolunteered.value = userVW.size
+        })
 
 
 
