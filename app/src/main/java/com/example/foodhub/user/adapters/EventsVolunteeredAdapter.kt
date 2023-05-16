@@ -37,13 +37,13 @@ class EventsVolunteeredAdapter(private var mList: List<UserVolunteeredWork>) : R
     var onItemClick : ((UserVolunteeredWork)-> Unit)? = null
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ItemsViewModel = mList[position]
-        val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
+        val months = arrayOf("","January","February","March","April","May","June","July","August","September","October","November","December")
         // pending(peach) , complete(green) , Absent(red)
         val colors = arrayOf("#F1E8B8","#49BD36","#FF0000")
         val statusTexts = arrayOf("Pending","Completed","Absent")
         val statusImages = arrayOf(R.drawable.do_not_disturb_on,R.drawable.check_circle,R.drawable.cancel)
         holder.mainImg.setImageURI(Uri.parse(ItemsViewModel.vImage))
-        holder.month.text = months[ItemsViewModel.month+1]
+        holder.month.text = months[ItemsViewModel.month]
         holder.day.text = ItemsViewModel.day.toString()
         holder.country.text = ItemsViewModel.vCountry.toString()
        if(ItemsViewModel.status == "Pending"){

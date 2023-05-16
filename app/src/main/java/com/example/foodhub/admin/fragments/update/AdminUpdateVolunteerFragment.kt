@@ -132,7 +132,14 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
         val vDay = bindingUpdateVolunteer.updateDay.text.toString()
         val vMonth = bindingUpdateVolunteer.updateMonth.text.toString()
         if (inputCheck(vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vPhone, vWebsite, vReglink, vMaps, vWaze,vDay,vMonth)) {
+            if (vDay.toInt() > 31 || vDay.toInt() < 1){
+                Toast.makeText(requireContext(), "Please enter a valid day", Toast.LENGTH_SHORT).show()
+            }else if(vMonth.toInt() > 12 || vMonth.toInt() < 1){
+                Toast.makeText(requireContext(), "Please enter a valid month", Toast.LENGTH_SHORT).show()
+            }else{
 
+
+            }
             val currentTime = Calendar.getInstance().time
             val formatter = SimpleDateFormat("yyyyMMdd_HH_mm_ss")
             val timestamp = formatter.format(currentTime).toString()
@@ -159,7 +166,7 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
             Log.d("Update new pic", "File absolute path: $vImage")
             Log.d("Delete old pic", "Successful?: $success")
 
-            val voluntaryWork = VoluntaryWork(args.currentWork.vId, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze,vDay.toInt(),vMonth.toInt()-1)
+            val voluntaryWork = VoluntaryWork(args.currentWork.vId, vImage, vTitle, vDesc, vStreet, vCity, vPostcode, vState, vCountry, vWebsite, vPhone, vReglink, vMaps, vWaze,vDay.toInt(),vMonth.toInt())
             voluntaryWorkViewModel.updateWork(voluntaryWork)
             mUserVolunteeredWork.updateVolunteeredInfo(vid,vImage,vTitle,vDesc,vStreet,vCity,vPostcode,vState,vCountry,vWebsite,vPhone,vReglink,vMaps,vWaze,vDay.toInt(),vMonth.toInt())
             Toast.makeText(requireContext(), "Successfully updated!", Toast.LENGTH_SHORT).show()
@@ -172,7 +179,17 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
     }
 
     private fun inputCheck(vTitle: String, vDesc: String, vStreet: String, vCity: String, vPostcode: String, vState: String, vCountry: String, vPhone: String, vWebsite: String, vReglink: String, vMaps: String, vWaze: String,vDay:String,vMonth:String): Boolean {
-        return !(TextUtils.isEmpty(vTitle) || TextUtils.isEmpty(vDesc) || TextUtils.isEmpty(vStreet) || TextUtils.isEmpty(vCity) || TextUtils.isEmpty(vPostcode) || TextUtils.isEmpty(vState) || TextUtils.isEmpty(vCountry) || TextUtils.isEmpty(vPhone) || TextUtils.isEmpty(vWebsite) || TextUtils.isEmpty(vReglink) || TextUtils.isEmpty(vMaps) || TextUtils.isEmpty(vWaze)|| TextUtils.isEmpty(vDay)|| TextUtils.isEmpty(vMonth))
+        if (vDay.toInt() > 31 || vDay.toInt() < 1){
+            Toast.makeText(requireContext(), "Please enter a valid day", Toast.LENGTH_SHORT).show()
+            return false
+        }else if(vMonth.toInt() > 12 || vMonth.toInt() < 1) {
+            Toast.makeText(requireContext(), "Please enter a valid month", Toast.LENGTH_SHORT)
+                .show()
+            return false
+        }
+            return !(TextUtils.isEmpty(vTitle) || TextUtils.isEmpty(vDesc) || TextUtils.isEmpty(vStreet) || TextUtils.isEmpty(vCity) || TextUtils.isEmpty(vPostcode) || TextUtils.isEmpty(vState) || TextUtils.isEmpty(vCountry) || TextUtils.isEmpty(vPhone) || TextUtils.isEmpty(vWebsite) || TextUtils.isEmpty(vReglink) || TextUtils.isEmpty(vMaps) || TextUtils.isEmpty(vWaze)|| TextUtils.isEmpty(vDay)|| TextUtils.isEmpty(vMonth))
+
+
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
