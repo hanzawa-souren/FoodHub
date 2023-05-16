@@ -1,11 +1,15 @@
 package com.example.foodhub.login
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
 import android.widget.Toast
@@ -31,6 +35,7 @@ class RegisterFragment : Fragment() {
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         binding.regConfirmButton.setOnClickListener {
+            hideKeyboard()
             insertUser()
         }
 
@@ -53,9 +58,14 @@ class RegisterFragment : Fragment() {
         val phRead = binding.editTextNumber.text.toString()
         val phNum = StringBuilder().append(phCountry).append(phRead).toString()
         if (inputCheck(loginID, pw)){
-            val user = User(id, loginID, pw, phNum)
-            mUserViewModel.addUser(user)
-            findNavController().navigate(R.id.action_registerFragment_to_preLogin)
+            if (telCheck(phRead)) {
+                val user = User(id, loginID, pw, phNum)
+                mUserViewModel.addUser(user)
+                findNavController().navigate(R.id.action_registerFragment_to_preLogin)
+            }
+            else {
+                Toast.makeText(requireContext(), "Phone Number Error", Toast.LENGTH_LONG).show()
+            }
         }
         else {
             Toast.makeText(requireContext(), "Please fill up all fields", Toast.LENGTH_LONG).show()
@@ -64,6 +74,24 @@ class RegisterFragment : Fragment() {
 
     private fun inputCheck(id: String, pw: String): Boolean {
         return !(TextUtils.isEmpty(id) && TextUtils.isEmpty(pw))
+    }
+
+    private fun telCheck(tel: String) : Boolean{
+        var count = 0
+        for (i in 0..tel.length) {
+            count++
+        }
+        Log.d("", count.toString())
+        return count >= 10
+    }
+
+    fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 }

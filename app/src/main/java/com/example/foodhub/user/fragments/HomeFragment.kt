@@ -1,11 +1,14 @@
 package com.example.foodhub.user.fragments
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -17,6 +20,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodhub.R
+import com.example.foodhub.admin.AdminMainActivity
 import com.example.foodhub.admin.viewmodels.EDigestViewModel
 import com.example.foodhub.admin.viewmodels.FacilityViewModel
 import com.example.foodhub.admin.viewmodels.LatestNewsViewModel
@@ -40,6 +44,7 @@ class HomeFragment : Fragment() {
 //    private var firstName = fullName.substring(0, fullName.indexOf(" "))
 //    private var phNum = "+6012-3456789"
     private lateinit var userInfo: UserInfo
+    private val userViewModel : UserViewModel by activityViewModels()
     private lateinit var mUserViewModel: UserViewModel
     private lateinit var bindingHome: FragmentHomeBinding
     private lateinit var voluntaryWorkViewModel: VoluntaryWorkViewModel
@@ -50,7 +55,13 @@ class HomeFragment : Fragment() {
     private lateinit var latestNewsPreviewAdapter: LatestNewsHomeAdapter
     private lateinit var eDigestViewModel: EDigestViewModel
     private lateinit var eDigestPreviewAdapter: EDigestHomeAdapter
+
     private lateinit var mUserVolunteeredWork: UserVolunteeredWorkViewModel
+
+
+    private lateinit var hContext: MainActivity
+    private var doubleBackToExitPressedOnce = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,10 +78,12 @@ class HomeFragment : Fragment() {
         mUserVolunteeredWork = ViewModelProvider(this)[UserVolunteeredWorkViewModel::class.java]
         @Suppress("DEPRECATION")
         val user : User = activity?.intent?.getParcelableExtra("User")!!
-        userInfo = UserInfo(user.loginID, user.loginID, user.phNum)
-        mUserViewModel.getLogged(user.id).observe(viewLifecycleOwner, Observer { logged ->
-            userInfo = UserInfo(logged.loginID, logged.loginID, logged.phNum)
-        })
+        if (userViewModel.changedHome) {
+            userInfo = UserInfo(user.loginID, user.loginID, user.phNum)
+        }
+        else {
+            userInfo = UserInfo(userViewModel.changedUsername.value.toString(), userViewModel.changedUsername.value.toString(), user.phNum )
+        }
 
         return bindingHome.root
     }
@@ -197,5 +210,23 @@ class HomeFragment : Fragment() {
         (activity as AppCompatActivity?)!!.findViewById<Toolbar>(R.id.top_toolbar).visibility = View.VISIBLE
     }
 
+    @Suppress("DEPRECATION")
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        hContext = context as MainActivity
 
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (doubleBackToExitPressedOnce) {
+                    activity?.finishAffinity()
+                }
+                else {
+                    Toast.makeText(requireContext(), "Press back again to exit", Toast.LENGTH_SHORT).show()
+                }
+                doubleBackToExitPressedOnce = true
+                Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 }

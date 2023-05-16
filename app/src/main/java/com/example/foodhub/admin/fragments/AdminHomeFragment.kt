@@ -1,15 +1,14 @@
 package com.example.foodhub.admin.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.provider.SyncStateContract
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -17,14 +16,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.example.foodhub.R
 import com.example.foodhub.admin.AdminMainActivity
 import com.example.foodhub.admin.viewmodels.*
 import com.example.foodhub.databinding.FragmentAdminHomeBinding
+import com.example.foodhub.login.LoginActivity
 import com.example.foodhub.login.UserViewModel
-import com.example.foodhub.user.MainActivity
 
 class AdminHomeFragment : Fragment(), MenuProvider {
 
@@ -44,8 +41,7 @@ class AdminHomeFragment : Fragment(), MenuProvider {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_admin_home, container, false)
+
         bindingAdminHome = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false)
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
@@ -64,15 +60,6 @@ class AdminHomeFragment : Fragment(), MenuProvider {
 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
-        /*val user1 = User("Ali bin Abu", "123456")
-        val user2 = User("EE", "12345")
-        val user3 = User("YX", "1234")
-        val user4 = User("YS", "123")
-        userViewModel.addUser(user1)
-        userViewModel.addUser(user2)
-        userViewModel.addUser(user3)
-        userViewModel.addUser(user4)*/
 
         bindingAdminHome.donationsCount.isSelected = true
 
@@ -132,8 +119,14 @@ class AdminHomeFragment : Fragment(), MenuProvider {
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        return NavigationUI
-            .onNavDestinationSelected(menuItem, requireView().findNavController())
+        if (menuItem.itemId == R.id.menu_logout) {
+            requireActivity().run {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+        return true
     }
 
     @Suppress("DEPRECATION")
@@ -144,7 +137,7 @@ class AdminHomeFragment : Fragment(), MenuProvider {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (doubleBackToExitPressedOnce) {
-                    activity?.finish()
+                    activity?.finishAffinity()
                 }
                 else {
                     Toast.makeText(requireContext(), "Press back again to exit", Toast.LENGTH_SHORT).show()

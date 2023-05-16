@@ -18,7 +18,7 @@ interface UserDAO {
     fun updateDonationUser(oldID: String, newID : String)
 
     @Query("SELECT * FROM user_table WHERE loginID = :id")
-    fun updateUserCheck(id: String): User?
+    fun updateUserCheck(id: String): LiveData<User>
     @Query("UPDATE user_table SET password = :password WHERE id = :id")
     fun updatePassword(id: Int, password : String)
 
@@ -26,7 +26,7 @@ interface UserDAO {
     fun deleleUser(id: String)
 
     @Query("SELECT * FROM user_table WHERE loginID = :id")
-    fun getUser(id: String): LiveData<User>?
+    fun getUser(id: String): LiveData<User>
 
     @Query("SELECT * FROM user_table WHERE loginID = :id")
     fun loginUser(id: String): User?

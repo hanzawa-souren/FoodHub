@@ -5,7 +5,7 @@ import com.example.foodhub.database.tables.Donation
 
 class UserRepository(private val userDao : UserDAO) {
 
-    fun getUser(id: String): LiveData<User>? {
+    fun getUser(id: String): LiveData<User> {
         val readUser = userDao.getUser(id)
         return readUser
     }
@@ -54,7 +54,7 @@ class UserRepository(private val userDao : UserDAO) {
         userDao.updateUser(id, logID)
     }
 
-    suspend fun updateUsernameCheck(id: String): User?{
+    fun updateUsernameCheck(id: String): LiveData<User>{
         return userDao.updateUserCheck(id)
     }
 

@@ -16,17 +16,24 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     private var readUser : User? = null
 
+    private lateinit var updateCheck : LiveData<User>
+
     private var userCount: LiveData<Int>
 
-    private var liveUser: LiveData<User>? = null
+    private var liveUser: LiveData<User>
 
     var loggedUser: LiveData<User> = MutableLiveData<User>(User(0, "", "","",0,0,0))
+
+    var changedUsername = MutableLiveData<String>()
+
+    var changedHome : Boolean = true
 
 
     init {
         val userDao = AppDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
         userCount = repository.getUserCount()
+        liveUser = repository.getUser("")
 
     }
 
@@ -36,7 +43,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun getUser(id: String): LiveData<User>? {
+    fun getUser(id: String): LiveData<User> {
         viewModelScope.launch(Dispatchers.IO) {
             liveUser = repository.getUser(id)
         }
@@ -63,11 +70,9 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun updateUsernameCheck(id: String): User?{
-        viewModelScope.launch(Dispatchers.IO){
-            readUser = repository.updateUsernameCheck(id)
-        }
-        return readUser
+    fun updateUsernameCheck(id: String): LiveData<User>{
+        updateCheck = repository.updateUsernameCheck(id)
+        return updateCheck
     }
 
     fun updatePassword(id: Int, password : String){

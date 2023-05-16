@@ -14,7 +14,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentHelplineDetailBinding
-import com.example.foodhub.user.fragments.detail.HelplineDetailFragmentArgs
 
 class HelplineDetailFragment : Fragment() {
 
@@ -62,7 +61,7 @@ class HelplineDetailFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle_salmon)
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = "Helplines"
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = getString(R.string.helplines)
         (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).setTextColor(
             ContextCompat.getColor(requireContext(),
             R.color.salmon

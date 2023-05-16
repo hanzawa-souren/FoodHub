@@ -1,60 +1,3 @@
-/*
-package com.example.foodhub.admin.fragments.list
-
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
-import com.example.foodhub.R
-import com.example.foodhub.databinding.FragmentAdminBulletinBinding
-import com.google.android.material.tabs.TabLayoutMediator
-
-class AdminBulletinFragment : Fragment() {
-
-    private lateinit var bindingAdminBulletin: FragmentAdminBulletinBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        bindingAdminBulletin = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_bulletin, container, false)
-        return bindingAdminBulletin.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setupViewPager()
-        setupTabLayout()
-
-        bindingAdminBulletin.adminBulletinTabLayout.getTabAt(0)?.text = "Latest News"
-        bindingAdminBulletin.adminBulletinTabLayout.getTabAt(1)?.text = "E-Digest"
-    }
-
-    private fun setupTabLayout() {
-        TabLayoutMediator(
-            bindingAdminBulletin.adminBulletinTabLayout, bindingAdminBulletin.adminBulletinViewpager
-        ) { tab, position -> tab.text = (position + 1).toString() }.attach()
-    }
-
-    private fun setupViewPager() {
-        val adapter = BulletinViewPagerAdapter(requireActivity(), 2)
-        bindingAdminBulletin.adminBulletinViewpager.adapter = adapter
-    }
-
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = "Bulletin"
-    }
-}*/
-
 package com.example.foodhub.admin.fragments.list
 
 import android.app.AlertDialog
@@ -77,6 +20,8 @@ import com.example.foodhub.database.tables.EDigest
 import com.example.foodhub.database.tables.LatestNews
 import com.example.foodhub.databinding.FragmentAdminBulletinBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AdminBulletinFragment : Fragment(), MenuProvider {
@@ -107,6 +52,8 @@ class AdminBulletinFragment : Fragment(), MenuProvider {
 
         bindingAdminBulletin.adminBulletinTabLayout.getTabAt(0)?.text = "Latest News"
         bindingAdminBulletin.adminBulletinTabLayout.getTabAt(1)?.text = "E-Digest"
+
+        bindingAdminBulletin.adminBulletinViewpager.isSaveEnabled = false
     }
 
     private fun setupTabLayout() {
@@ -150,11 +97,9 @@ class AdminBulletinFragment : Fragment(), MenuProvider {
                 newsList = list
             })
             for (item in newsList) {
-                Log.d("Hey", "Hey")
                 imageFileNames.add(item.lnImage.substring(item.lnImage.lastIndexOf("/")+1))
-                Log.d("Haha", item.lnImage.substring(item.lnImage.lastIndexOf("/")+1))
             }
-            lifecycleScope.launch {
+            viewLifecycleOwner.lifecycleScope.launch {
                 ImageStorageManager.deleteAllImagesFromInternalStorage(requireContext(), imageFileNames)
             }
 
@@ -186,7 +131,7 @@ class AdminBulletinFragment : Fragment(), MenuProvider {
                 imageFileNames.add(item.eImage.substring(item.eImage.lastIndexOf("/")+1))
                 Log.d("Haha", item.eImage.substring(item.eImage.lastIndexOf("/")+1))
             }
-            lifecycleScope.launch {
+            viewLifecycleOwner.lifecycleScope.launch {
                 ImageStorageManager.deleteAllImagesFromInternalStorage(requireContext(), imageFileNames)
             }
 
