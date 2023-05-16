@@ -1,5 +1,6 @@
 package com.example.foodhub.admin.fragments.add
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -17,6 +18,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -124,10 +126,30 @@ class AdminAddVolunteerFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = "New Work"
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle_salmon)
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = getString(R.string.new_work)
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).setTextColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.salmon)
+        )
+        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.admin_toolbar).setBackgroundColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.white)
+        )
         if (!imageUriNull) {
             bindingAddVolunteer.addVImage.setImageURI(uploadedImage)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).setTextColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.white)
+        )
+        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.admin_toolbar).setBackgroundColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.salmon)
+        )
     }
 }
