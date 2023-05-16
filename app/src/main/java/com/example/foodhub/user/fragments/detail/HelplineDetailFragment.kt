@@ -14,7 +14,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
 import com.example.foodhub.R
 import com.example.foodhub.databinding.FragmentHelplineDetailBinding
-import com.example.foodhub.user.fragments.detail.HelplineDetailFragmentArgs
 
 class HelplineDetailFragment : Fragment() {
 

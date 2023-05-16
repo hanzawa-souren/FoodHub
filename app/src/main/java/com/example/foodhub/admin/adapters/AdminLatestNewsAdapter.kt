@@ -1,11 +1,9 @@
 package com.example.foodhub.admin.adapters
 
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodhub.admin.fragments.list.AdminBulletinFragmentDirections
