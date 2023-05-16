@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
     private lateinit var eDigestViewModel: EDigestViewModel
     private lateinit var eDigestPreviewAdapter: EDigestHomeAdapter
 
-    private lateinit var aContext: MainActivity
+    private lateinit var hContext: MainActivity
     private var doubleBackToExitPressedOnce = false
 
     override fun onCreateView(
@@ -204,7 +204,7 @@ class HomeFragment : Fragment() {
     @Suppress("DEPRECATION")
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        aContext = context as MainActivity
+        hContext = context as MainActivity
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

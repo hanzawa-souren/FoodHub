@@ -14,15 +14,16 @@
 
             <TextView
                 android:id="@+id/helpline_detail_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="MIASA Crisis Helpline"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -47,7 +48,6 @@ Sunday"
                 android:id="@+id/imageView9"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-
                 app:layout_constraintStart_toStartOf="@+id/helpline_detail_title"
                 app:layout_constraintTop_toTopOf="@+id/helpline_schedule"
                 app:srcCompat="@drawable/pace" />
@@ -127,25 +127,28 @@ Sunday"
 
             <TextView
                 android:id="@+id/description_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Description"
                 android:textColor="@color/black"
                 android:textSize="22dp"
                 android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="@+id/website_link"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/call_now_title" />
 
             <TextView
                 android:id="@+id/description_content"
-                android:layout_width="370dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="@dimen/margin"
                 android:fontFamily="@font/poppins"
                 android:text="MIASA Crisis Helpline provides 24/7, free and confidential support by phone. We are here for everyone in Malaysia who may be struggling or looking for support with abuse and domestic violence, anxiety, bullying, dementia and Alzheimers, depression, eating and body image, family, gambling, gender and sexual identity, loneliness, parenting, pregnancy and abortion, trauma and PTSD, relationships, school and work, self-harm, stress, substance use, suicidal thoughts, supporting others, grief and loss, and physical illness. We are dedicated to preventing suicide. If you're contemplating suicide or you're worried about warning signs in someone else, please reach out to us for help.  When you reach out to us you will talk with one of our friendly and supportive peers or volunteers who have experience in how to help people with similar experiences to your own. They will listen, express empathy and understanding, and assist you to find a way through your situation. Anyone can call and receive free support. We exist to help everyone regardless of age, gender, beliefs or ethnicity. We recognise that difficult mental health or crisis experiences can happen at any time, so we are available 24 hours a day, every day of the week."
                 android:textColor="#80000000"
-                app:layout_constraintStart_toStartOf="@+id/description_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/description_title" />
 
             <TextView

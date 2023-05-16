@@ -93,7 +93,7 @@
                     android:id="@+id/spinner_update_n_facility"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/InputFieldStyle" />
+                    android:theme="@style/InputFieldStyle" />
 
             </LinearLayout>
 

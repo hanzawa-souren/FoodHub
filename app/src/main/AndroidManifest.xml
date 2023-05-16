@@ -36,7 +36,7 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.FoodHub"
-            android:windowSoftInputMode="adjustNothing"></activity>
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

@@ -81,9 +81,9 @@ class AdminAddNearMeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ArrayAdapter.createFromResource(
             requireContext(),
             R.array.facility_types,
-            android.R.layout.simple_spinner_item
+            R.layout.custom_spinner
         ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown)
             bindingAddNearMe.spinnerNFacility.adapter = adapter
         }
 

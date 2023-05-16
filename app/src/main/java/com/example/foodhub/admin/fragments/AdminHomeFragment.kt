@@ -142,7 +142,7 @@ class AdminHomeFragment : Fragment(), MenuProvider {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (doubleBackToExitPressedOnce) {
-                    activity?.finish()
+                    activity?.finishAffinity()
                 }
                 else {
                     Toast.makeText(requireContext(), "Press back again to exit", Toast.LENGTH_SHORT).show()

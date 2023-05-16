@@ -17,6 +17,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
@@ -156,15 +157,6 @@ class AdminUpdateDigestFragment : Fragment(), MenuProvider {
         return !(imageUriNull || TextUtils.isEmpty(eAuthor) || TextUtils.isEmpty(eTitle) || TextUtils.isEmpty(eContent))
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = "Edit Digest"
-        if (!imageUriNull) {
-            bindingUpdateDigest.updateEImage.setImageURI(uploadedImage)
-        }
-    }
-
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.admin_delete_menu, menu)
     }
@@ -199,5 +191,34 @@ class AdminUpdateDigestFragment : Fragment(), MenuProvider {
         builder.setTitle("Delete digest?")
         builder.setMessage("Are you sure you want to delete the digest?")
         builder.create().show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle_salmon)
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = getString(R.string.edit_digest)
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).setTextColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.salmon)
+        )
+        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.admin_toolbar).setBackgroundColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.white)
+        )
+        if (!imageUriNull) {
+            bindingUpdateDigest.updateEImage.setImageURI(uploadedImage)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).setTextColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.white)
+        )
+        (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.admin_toolbar).setBackgroundColor(
+            ContextCompat.getColor(requireContext(),
+                R.color.salmon)
+        )
     }
 }

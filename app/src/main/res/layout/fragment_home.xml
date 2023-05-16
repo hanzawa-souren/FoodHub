@@ -153,7 +153,7 @@
                     android:layout_gravity="center"
                     android:drawableTop="@drawable/ic_category_edigest"
                     android:drawablePadding="5dp"
-                    android:text="@string/edigest"
+                    android:text="@string/edigests"
                     android:textAlignment="center"
                     style="@style/BlackTextStyle" />
 
@@ -263,7 +263,7 @@
                 android:id="@+id/edigest_preview_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/edigest"
+                android:text="@string/edigests"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"

@@ -76,6 +76,6 @@ class HelplinesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = "Helplines"
+        (activity as AppCompatActivity).findViewById<TextView>(R.id.top_toolbar_title).text = getString(R.string.helplines)
     }
 }
