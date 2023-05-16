@@ -170,36 +170,6 @@ class AdminLatestNewsFragment : Fragment(), SearchView.OnQueryTextListener {
         bindingAdminLatestNews.adminLatestNewsSearchview.setOnQueryTextListener(this)
     }
 
-    /*private fun deleteAllNews() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes") { _, _ ->
-
-            // Delete image files from internal storage upon entry removal from ROOM
-            var newsList = emptyList<LatestNews>()
-            val imageFileNames: MutableList<String> = mutableListOf()
-            latestNewsViewModel.getAllNews.observe(viewLifecycleOwner, Observer { list ->
-                newsList = list
-            })
-            for (item in newsList) {
-                imageFileNames.add(item.lnImage.substring(item.lnImage.lastIndexOf("/")+1))
-            }
-            viewLifecycleOwner.lifecycleScope.launch {
-                ImageStorageManager.deleteAllImagesFromInternalStorage(requireContext(), imageFileNames)
-            }
-
-            latestNewsViewModel.deleteAllNews()
-            Toast.makeText(
-                requireContext(),
-                "Successfully removed all news entries",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        builder.setNegativeButton("No") { _, _ -> }
-        builder.setTitle("Delete all news entries?")
-        builder.setMessage("Are you sure you want to delete all news entries?")
-        builder.create().show()
-    }*/
-
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query != null) {
             searchNews(query)
