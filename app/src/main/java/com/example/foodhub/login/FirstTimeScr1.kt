@@ -36,8 +36,8 @@ class FirstTimeScr1 : Fragment() {
         var pref = appContext.getSharedPreferences("firstTime", Context.MODE_PRIVATE)
         val prefEditor = pref.edit()
         if (pref.getBoolean("firstTime", true)) { // use default of true
-//            prefEditor.putBoolean("firstTime", false)
-//            prefEditor.apply()
+            prefEditor.putBoolean("firstTime", false)
+            prefEditor.apply()
         } else {
             findNavController().navigate(R.id.preLogin)
         }
