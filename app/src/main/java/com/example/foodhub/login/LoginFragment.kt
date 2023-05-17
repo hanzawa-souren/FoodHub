@@ -40,7 +40,9 @@ class LoginFragment : Fragment() {
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         binding.loginButton.setOnClickListener {
-            validateUser()
+            for (x in 1..2){
+                validateUser()
+            }
             hideKeyboard()
 
         }
@@ -93,9 +95,12 @@ class LoginFragment : Fragment() {
 
                     }
                     else {
-                        binding.loadingOverlay.visibility = View.INVISIBLE
-                        binding.loadingProgress.visibility = View.INVISIBLE
-                        Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
+                        if(!firstCheck){
+                            binding.loadingOverlay.visibility = View.INVISIBLE
+                            binding.loadingProgress.visibility = View.INVISIBLE
+                            Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
+                        }
+                        firstCheck = false
                     }
                 })
 //                while (tries <= 70) {
