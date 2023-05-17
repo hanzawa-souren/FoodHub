@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
@@ -42,21 +43,24 @@ class AdminVolunteerUserCheck : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindingAdminUserCheck.ucName.text = viewModel.checkId.value
-        var user = emptyList<User>()
-        mUserViewModel.getAllUser().observe(viewLifecycleOwner, Observer { volunteer ->
-            user = volunteer
+//        var user = viewModel.checkUsers.value
+//        mUserViewModel.getAllUser().observe(viewLifecycleOwner, Observer { volunteer ->
+//            viewModel.checkUsers.value = volunteer
+//            user = volunteer
+//
+//        })
+//        Toast.makeText(requireContext(), "$viewModel.checkUsers.value", Toast.LENGTH_SHORT).show()
+//        var phoneNumber:String = ""
+//        for (i in viewModel.checkUsers.value!!){
+//            if(i.loginID == viewModel.checkId.value) {
+//                phoneNumber = i.phNum
+//            }else{
+//                phoneNumber = "123"
+//            }
+//        }
 
-        })
-        var phoneNumber:String = ""
-        for (i in user){
-            if(i.loginID == viewModel.checkId.value){
-                phoneNumber = i.phNum
-            }else{
-                phoneNumber = "0123456789"
-            }
-        }
-
-        bindingAdminUserCheck.ucPhone.text = phoneNumber
+        bindingAdminUserCheck.imageView21.visibility = View.INVISIBLE
+        bindingAdminUserCheck.ucPhone.visibility = View.INVISIBLE
 
 
         bindingAdminUserCheck.btnPresent.setOnClickListener{
