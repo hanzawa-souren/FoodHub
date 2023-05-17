@@ -69,6 +69,7 @@ class AdminCheckVolunteerFragment: Fragment() {
         var userVW = emptyList<UserVolunteeredWork>()
         var user = emptyList<User>()
         var adapter1 = AdminCheckVolunteerAdapter(userVW, user)
+
         mUserViewModel.getAllUser().observe(viewLifecycleOwner, Observer { volunteer ->
            user = volunteer
             adapter1.updateData2(volunteer)

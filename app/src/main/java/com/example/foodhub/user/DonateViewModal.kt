@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.foodhub.database.tables.Donation
+import com.example.foodhub.login.User
 import kotlin.math.log
 
 class DonateViewModal:ViewModel() {
@@ -43,6 +44,8 @@ class DonateViewModal:ViewModel() {
     var adminVid= MutableLiveData<Int>()
     var checkId= MutableLiveData<String>()
     var checkUvid = MutableLiveData<Int>()
+  
+
     fun updateTncValue(value: Boolean) {
         Log.d("Cbox", "True");
         tnc.value = value
