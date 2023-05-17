@@ -106,7 +106,7 @@ class DonateConfirmFragment : Fragment() {
                 var cardNumberEntered : String = ""
                 cardNumberEntered = bindingDonateConfirm.cardNumber.text.toString()
                 val name : User = activity?.intent?.getParcelableExtra("User")!!
-                var id : String = name.loginID
+                var id : String = viewModel.name.value?:""
                 if (number != null) {
 
                         mUserViewModel.addDonation(Donation(
