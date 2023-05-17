@@ -64,13 +64,21 @@ class UsernameSetting : Fragment() {
     }
 
     private fun updateUsername() {
+        var idUsed :String
+        if(viewModel.idCount.value == 0){
+            idUsed = user.loginID
+            viewModel.name.value = user.loginID
+            viewModel.idCount.value = 1
+        }else{
+            idUsed = viewModel.name.value?:""
+        }
         val newName = binding.changeUsernameTE.text.toString()
         if (inputCheck(newName)){
             for (x in 1..10){
                 if(dbCheck(newName)){
-                    mUserViewModel.updateDonationUser(user.loginID, newName)
+                    mUserViewModel.updateDonationUser(idUsed, newName)
                     mUserViewModel.updateUsername(user.id, newName)
-                    mUserVolunteeredWork.updateVWUserID(user.loginID, newName)
+                    mUserVolunteeredWork.updateVWUserID(idUsed, newName)
                     viewModel.name.value = newName
                     userViewModel.changedUsername.value = newName
                     userViewModel.changedHome = false

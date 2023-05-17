@@ -125,28 +125,37 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.edigestFragment)
         }
         @Suppress("DEPRECATION")
+
         var name : User = activity?.intent?.getParcelableExtra("User")!!
 
+        var idUsed :String
+        if(viewModel.idCount.value == 0){
+            idUsed = name.loginID
+            viewModel.name.value = name.loginID
+            viewModel.idCount.value = 1
+        }else{
+            idUsed = viewModel.name.value?:""
+        }
 //        var donateAmount : Double = mUserViewModel.getUserDonation(name.loginID)
         var donateAmount : Double = viewModel.donateAmounts.value?:0.0
 
-        viewModel.name.value = name.loginID
 
-        mUserViewModel.getUserDonation(name.loginID).observe(viewLifecycleOwner, Observer { amount ->
+
+        mUserViewModel.getUserDonation(idUsed).observe(viewLifecycleOwner, Observer { amount ->
 
             viewModel.donateAmounts.value = amount
         })
 
 
-        mUserViewModel.getUserDateDay(name.loginID).observe(viewLifecycleOwner, Observer { day ->
+        mUserViewModel.getUserDateDay(idUsed).observe(viewLifecycleOwner, Observer { day ->
 
             viewModel.day.value = day
         })
-        mUserViewModel.getUserDateMonth(name.loginID).observe(viewLifecycleOwner, Observer { month ->
+        mUserViewModel.getUserDateMonth(idUsed).observe(viewLifecycleOwner, Observer { month ->
 
             viewModel.month.value = month
         })
-        mUserViewModel.getUserDateYear(name.loginID).observe(viewLifecycleOwner, Observer { year ->
+        mUserViewModel.getUserDateYear(idUsed).observe(viewLifecycleOwner, Observer { year ->
 
             viewModel.year.value = year
         })
