@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin"
-                android:layout_marginTop="@dimen/margin"
+                android:layout_marginTop="@dimen/margin_half"
                 android:layout_marginEnd="@dimen/margin"
                 android:text="@string/categories"
                 android:textSize="@dimen/category"
@@ -101,6 +101,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/category_volunteer_card"
                 android:layout_marginStart="4dp"
+                android:layout_marginTop="@dimen/margin_half"
                 app:cardElevation="0dp"
                 app:layout_constraintTop_toBottomOf="@id/categories"
                 app:layout_constraintLeft_toLeftOf="@id/top_drop"
@@ -110,7 +111,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:drawableTop="@drawable/ic_category_volunteer"
                     android:drawablePadding="5dp"
                     android:text="@string/volunteer"
@@ -122,6 +123,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/category_latest_news_card"
                 app:cardElevation="0dp"
+                android:layout_marginTop="@dimen/margin_half"
                 app:layout_constraintTop_toBottomOf="@id/categories"
                 app:layout_constraintLeft_toRightOf="@id/category_volunteer_card"
                 app:layout_constraintRight_toLeftOf="@id/category_edigest_card"
@@ -130,7 +132,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:drawableTop="@drawable/ic_category_latest_news"
                     android:drawablePadding="5dp"
                     android:text="@string/latest_news"
@@ -142,6 +144,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/category_edigest_card"
                 app:cardElevation="0dp"
+                android:layout_marginTop="@dimen/margin_half"
                 app:layout_constraintTop_toBottomOf="@id/categories"
                 app:layout_constraintLeft_toRightOf="@id/category_latest_news_card"
                 app:layout_constraintRight_toLeftOf="@id/category_settings_card"
@@ -150,7 +153,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:drawableTop="@drawable/ic_category_edigest"
                     android:drawablePadding="5dp"
                     android:text="@string/edigests"
@@ -163,6 +166,7 @@
                 android:id="@+id/category_settings_card"
                 android:layout_marginEnd="4dp"
                 app:cardElevation="0dp"
+                android:layout_marginTop="@dimen/margin_half"
                 app:layout_constraintTop_toBottomOf="@id/categories"
                 app:layout_constraintLeft_toRightOf="@id/category_edigest_card"
                 app:layout_constraintRight_toRightOf="@id/top_drop"
@@ -171,7 +175,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:drawableTop="@drawable/ic_category_settings"
                     android:drawablePadding="5dp"
                     android:text="@string/settings"
