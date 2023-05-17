@@ -78,7 +78,7 @@ class AdminCheckVolunteerFragment: Fragment() {
             adapter1.updateData(volunteers.reversed())
 
         })
-        viewModel.checkUsers.value = user
+
 
         rview.adapter = adapter1
         adapter1.onItemClick={
