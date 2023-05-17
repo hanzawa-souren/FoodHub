@@ -29,8 +29,11 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:text="Check All Present"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
+                style="@style/ButtonStyle"
+                android:backgroundTint="#FC7753"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <Button
@@ -38,6 +41,8 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:text="Reset all"
+                style="@style/ButtonStyle"
+                android:backgroundTint="#FC7753"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
