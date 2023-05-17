@@ -78,7 +78,7 @@ class MyProfileFragment : Fragment() {
 //        })
 
 
-        Toast.makeText(requireContext(), "${viewModel.donateAmounts.value}", Toast.LENGTH_SHORT).show()
+
         bindingProfile.profileName.text = viewModel.name.value
         val months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
         rview.layoutManager = LinearLayoutManager(requireContext())
