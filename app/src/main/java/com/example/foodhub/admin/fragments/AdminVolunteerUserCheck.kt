@@ -59,8 +59,8 @@ class AdminVolunteerUserCheck : Fragment() {
 //            }
 //        }
 
-        bindingAdminUserCheck.imageView21.visibility = View.INVISIBLE
-        bindingAdminUserCheck.ucPhone.visibility = View.INVISIBLE
+
+        bindingAdminUserCheck.ucPhone.text = viewModel.checkStatus.value
 
 
         bindingAdminUserCheck.btnPresent.setOnClickListener{

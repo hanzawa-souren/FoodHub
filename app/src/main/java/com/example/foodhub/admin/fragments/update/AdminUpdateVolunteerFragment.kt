@@ -229,22 +229,23 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle_salmon)
+        //(activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle_salmon)
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.sign_out_circle)
         (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).text = getString(R.string.edit_work)
-        (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).setTextColor(
+        /*(activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).setTextColor(
             ContextCompat.getColor(requireContext(),
                 R.color.salmon)
         )
         (activity as AppCompatActivity).findViewById<androidx.appcompat.widget.Toolbar>(R.id.admin_toolbar).setBackgroundColor(
             ContextCompat.getColor(requireContext(),
                 R.color.white)
-        )
+        )*/
         if (!imageUriNull) {
             bindingUpdateVolunteer.updateVImage.setImageURI(uploadedImage)
         }
     }
 
-    override fun onStop() {
+    /*override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity).findViewById<TextView>(R.id.admin_toolbar_title).setTextColor(
             ContextCompat.getColor(requireContext(),
@@ -254,5 +255,5 @@ class AdminUpdateVolunteerFragment : Fragment(), MenuProvider {
             ContextCompat.getColor(requireContext(),
                 R.color.salmon)
         )
-    }
+    }*/
 }

@@ -85,6 +85,7 @@ class AdminCheckVolunteerFragment: Fragment() {
             UserVolunteeredWork->
             viewModel.checkId.value = UserVolunteeredWork.uId
             viewModel.checkUvid.value = UserVolunteeredWork.uvwId
+            viewModel.checkStatus.value = UserVolunteeredWork.status
             findNavController().navigate(R.id.action_adminCheckVolunteerFragment_to_adminVolunteerUserCheck)
         }
         bindingCheckVolunteer.allPresent.setOnClickListener{

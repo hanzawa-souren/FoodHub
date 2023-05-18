@@ -46,6 +46,7 @@ class DonateViewModal:ViewModel() {
     var checkUvid = MutableLiveData<Int>()
 
     var idCount =MutableLiveData<Int>(0)
+    var checkStatus = MutableLiveData<String>()
 
     fun updateTncValue(value: Boolean) {
         Log.d("Cbox", "True");

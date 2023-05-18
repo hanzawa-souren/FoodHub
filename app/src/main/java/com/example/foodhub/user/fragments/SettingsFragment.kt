@@ -1,5 +1,6 @@
 package com.example.foodhub.user.fragments
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 
@@ -13,19 +14,24 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.foodhub.R
+import com.example.foodhub.database.ImageStorageManager
 
 import com.example.foodhub.databinding.FragmentSettingsBinding
 import com.example.foodhub.login.LoginActivity
+import com.example.foodhub.login.User
 import com.example.foodhub.login.UserViewModel
 import com.example.foodhub.user.MainActivity
+import kotlinx.coroutines.launch
 
 class SettingsFragment : Fragment() {
 
     private lateinit var bindingSettings: FragmentSettingsBinding
     private lateinit var mUserViewModel: UserViewModel
+    private lateinit var user : User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,8 +90,11 @@ class SettingsFragment : Fragment() {
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         bindingSettings.button.setOnClickListener{
             deleteUser()
-            backToLogin()
+//            backToLogin()
         }
+
+        @Suppress("DEPRECATION")
+        user = activity?.intent?.getParcelableExtra("User")!!
         return bindingSettings.root
         // calling the action bar
 
@@ -115,15 +124,15 @@ class SettingsFragment : Fragment() {
     }
 
     fun deleteUser() {
-        var userID = ""
-        requireActivity().run {
-            val sharedPreference =  getSharedPreferences("tempUser", Context.MODE_PRIVATE)
-            userID = sharedPreference.getString("Username", "").toString()
-            val editor = sharedPreference.edit()
-            editor.clear()
-
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes") { _, _ ->
+            mUserViewModel.deleteUser(user.loginID)
+            backToLogin()
         }
-        mUserViewModel.deleteUser(userID)
+        builder.setNegativeButton("No") { _, _ -> }
+        builder.setTitle("Delete account?")
+        builder.setMessage("Are you sure you want to delete the account?")
+        builder.create().show()
     }
 
     fun backToLogin() {
