@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -65,6 +66,9 @@ class passwordSettings : Fragment() {
         val newPass = binding.changePasswordTE.text.toString()
         if (inputCheck(newPass)){
             mUserViewModel.updatePassword(user.id, newPass)
+        }
+        else {
+            Toast.makeText(requireContext(), "Please enter all fields", Toast.LENGTH_SHORT).show()
         }
 
     }

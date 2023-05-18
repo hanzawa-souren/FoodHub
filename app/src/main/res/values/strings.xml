@@ -34,7 +34,9 @@
     </string-array>
     <string-array name="phone_Country">
         <item>+60</item>
-        <item>+1</item>
+        <item>+62</item>
+        <item>+65</item>
+        <item>+850</item>
     </string-array>
 
     <string name="loginIDTVS">Name</string>

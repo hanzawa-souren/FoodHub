@@ -89,6 +89,9 @@ class UsernameSetting : Fragment() {
                 }
             }
         }
+        else {
+            Toast.makeText(requireContext(), "Please enter all fields", Toast.LENGTH_SHORT).show()
+        }
 
     }
 

@@ -99,8 +99,8 @@
         android:id="@+id/editTextNumber"
         android:layout_width="217dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:fontFamily="@font/poppins_semibold"
         android:inputType="number"
@@ -111,8 +111,9 @@
     <Spinner
         android:id="@+id/phoneSpinner"
         android:layout_width="115dp"
-        android:layout_height="62dp"
+        android:layout_height="70dp"
         android:layout_marginTop="10dp"
+        android:dropDownWidth="match_parent"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
